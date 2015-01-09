@@ -1,8 +1,3 @@
-body {
-  background: #fff;
-  height: 100%;
-  font-family: Helvetica, Arial, sans-serif;
-}
 #slideme-main-wrapper {
   padding: 50px 0 0 0;
   background: #f8f8f8;
@@ -20,6 +15,7 @@ body {
   -webkit-box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 [data-slidemejs] *::selection, [data-slidemejs] *:after::selection {
