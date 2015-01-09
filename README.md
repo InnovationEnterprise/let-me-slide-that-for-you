@@ -3,6 +3,9 @@
 Simple js plugin to roll presentations.
 You can use it as a video presntation slider, image presentation, text presentation or just a video player.
 
+all files are availabe through our cdn http://d3gr29hczmiozh.cloudfront.net/
+
+example - http://d3gr29hczmiozh.cloudfront.net/slideme.js
 
 ## Configuration
 
@@ -11,7 +14,7 @@ As in example.html define
 ```
  <div data-slidemejs="">
 ```
-Right after that load slideme.js if u wish u can include your own videojs.js file (right before slideme.js).
+Right after that load slideme.js if you wish you can include your own videojs.js file (right before slideme.js).
 
 Include css files video-js.css and slidemecss.css are mandatory if you would like to have ads add ads/slidemeads.css.
 
@@ -78,3 +81,5 @@ videoslidestype - images/text
 videoslides - if exitst loads images or any html/text from slidecontent
 If would like to load only video remove both.
 
+
+#### Changelog - v0.01 alpha
