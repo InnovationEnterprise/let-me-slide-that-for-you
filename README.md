@@ -5,7 +5,7 @@ You can use it as a video presntation slider, image presentation, text presentat
 
 all files are availabe through our cdn http://d3gr29hczmiozh.cloudfront.net/
 
-example - http://d3gr29hczmiozh.cloudfront.net/slideme.js
+example - http://d3gr29hczmiozh.cloudfront.net/slideme.min.js
 
 ## Configuration
 
