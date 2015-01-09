@@ -81,3 +81,5 @@ videoslidestype - images/text
 videoslides - if exitst loads images or any html/text from slidecontent
 If would like to load only video remove both.
 
+
+#### Changelog - v0.01 alpha
