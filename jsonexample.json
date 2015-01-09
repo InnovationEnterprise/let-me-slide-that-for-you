@@ -1,0 +1,35 @@
+{
+  "autoplay" : "false",
+  "preload" : "metadata", 
+  "videosources": {
+      "video/mp4" : "https://ieondemand.com/merged_videos/AshSharma-FPA-London14.mp4"
+  },
+  "videoslidestype": "images",
+  "playlist" : [
+      {
+        "link" : "http://theinnovationenterprise.com/",
+        "title" : "New Title"
+      },
+      {
+        "link" : "http://theinnovationenterprise.com/",
+        "title" : "New Title"
+      }
+  ],
+  "videoslides" : [
+      {
+        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/004/142/original/Tom_Hjelm_DigiPub_NY_201320140411-18475-upage4.pdf000.jpg?1397215078",
+        "timemin" : "0",
+        "timesec" : "0"
+      },
+      {
+        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/004/143/original/Tom_Hjelm_DigiPub_NY_201320140411-18475-upage4.pdf001.jpg?1397215078",
+        "timemin" : "1",
+        "timesec" : "1"
+      },
+      {
+        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/004/144/original/Tom_Hjelm_DigiPub_NY_201320140411-18475-upage4.pdf002.jpg?1397215078",
+        "timemin" : "2",
+        "timesec" : "2"
+      }
+  ]
+}
