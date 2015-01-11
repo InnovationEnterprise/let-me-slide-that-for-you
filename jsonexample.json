@@ -7,8 +7,9 @@
   "videoslidestype": "images",
   "playlist" : [
       {
-        "link" : "http://theinnovationenterprise.com/",
-        "title" : "New Title"
+        "link" : "http://d3gr29hczmiozh.cloudfront.net/jsonexample.json",
+        "title" : "Reload json",
+        "type" : "json"
       },
       {
         "link" : "http://theinnovationenterprise.com/",

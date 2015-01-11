@@ -44,8 +44,9 @@ your json file or config should look like this
   "videoslidestype": "images",
   "playlist" : [
       {
-        "link" : "http://theinnovationenterprise.com/",
-        "title" : "New Title"
+        "link" : "http://d3gr29hczmiozh.cloudfront.net/jsonexample.json",
+        "title" : "Reload json",
+        "type" : "json"
       },
       {
         "link" : "http://theinnovationenterprise.com/",
@@ -82,4 +83,8 @@ videoslides - if exitst loads images or any html/text from slidecontent
 If would like to load only video remove both.
 
 
-#### Changelog - v0.01 alpha
+#### Changelog - v0.02 alpha
+
+v0.02
+
+* added option to use playlist as a way to update player via json

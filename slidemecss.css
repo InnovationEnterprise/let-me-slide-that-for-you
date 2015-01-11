@@ -300,14 +300,15 @@
   display: none;
   font-size: 14px;
 }
-#slideme-playlist-list a {
+#slideme-playlist-list a, #slideme-playlist-list p {
   display: block;
   color: #000;
   text-decoration: none;
   padding: 5px;
   border-bottom: 1px solid #DBDBDB;
+  cursor: pointer;
 }
-#slideme-playlist-list a:hover {
+#slideme-playlist-list a:hover, #slideme-playlist-list p:hover {
   background: #fff;
 }
 

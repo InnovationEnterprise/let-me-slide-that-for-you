@@ -1,3 +1,4 @@
+// v0.02
 function slideMeJs(jsonUrl, reqJson) {
 
   var slideMeContainer = document.querySelectorAll('[data-slidemejs]')[0];
@@ -13,6 +14,7 @@ function slideMeJs(jsonUrl, reqJson) {
   var addClicks;
   var createImgContainer;
   var firstImage;
+  var preloaderWrapper;
 
   // fix later subtitles
   var createSubtitleNode;
@@ -66,12 +68,17 @@ function slideMeJs(jsonUrl, reqJson) {
 ///////////////////////////////////
 ///////////////////////////////////
 
-  var preloaderDom = '<i class="icon-spinner">.</i>';
-  var preloaderWrapper = document.createElement('div');
-  preloaderWrapper.setAttribute('id', 'slideme-preloader');
-  preloaderWrapper.innerHTML = preloaderDom;
-  slideMeContainer.appendChild(preloaderWrapper);
+  function addPreloader() {
 
+    var preloaderDom = '<i class="icon-spinner">.</i>';
+    preloaderWrapper = document.createElement('div');
+    preloaderWrapper.setAttribute('id', 'slideme-preloader');
+    preloaderWrapper.innerHTML = preloaderDom;
+    slideMeContainer.appendChild(preloaderWrapper);
+
+  }
+
+  addPreloader();
 
 ///////////////////////////////////
 ///////////////////////////////////
@@ -595,6 +602,54 @@ function slideMeJs(jsonUrl, reqJson) {
   }
 
 
+  function loadJson(jsonUrl) {
+    var request = new XMLHttpRequest();
+    request.open('GET', jsonUrl, true);
+
+    request.onload = function() {
+
+      if (request.status >= 200 && request.status < 400) {
+
+        data = JSON.parse(request.responseText); 
+        console.log('json fetched');
+        createPlayer();
+        if (isVideoSlide !== undefined) {
+          slideMePresentation();
+        }
+        if (haveSource) {
+          loadVideoJs();
+        }
+
+        playList();
+
+      } else {
+
+        errorThat('cannot connect', slideMeContainer);
+
+      }
+
+    };
+
+    request.onerror = function() {
+      errorThat('cannot connect', slideMeContainer);
+    };
+
+    request.send();
+  }
+
+
+  function reloadSlideMeJs(jsonfile) {
+
+    thisPlayer.dispose();
+
+    while(slideMeContainer.firstChild) {
+      slideMeContainer.removeChild(slideMeContainer.firstChild);
+    }
+    addPreloader();
+    loadJson(jsonfile);
+
+  }
+
   function playList() {
 
     var createPlaylist = document.createElement('div');
@@ -602,19 +657,38 @@ function slideMeJs(jsonUrl, reqJson) {
     createPlaylist.innerHTML = '<div id="slideme-playlist-title">Playlist<div id="slideme-playlist-drop">></div></div><div id="slideme-playlist-list"></div>';
     slideMeContainer.appendChild(createPlaylist);
 
-    slideMeContainer.style.margin = '0 auto 50px auto'
+    slideMeContainer.style.margin = '0 auto 50px auto';
 
 
     var playListTitle = document.getElementById('slideme-playlist-title');
-    var playListDrop = document.getElementById('slideme-playlist-drop');
     var playListList = document.getElementById('slideme-playlist-list');
 
     for (var i = 0; i < data.playlist.length; i++) {
 
-      var newElemnt = document.createElement('a');
-      newElemnt.innerHTML = data.playlist[i].title;
-      newElemnt.setAttribute('href', data.playlist[i].link);
-      playListList.appendChild(newElemnt);
+      if (data.playlist[i].type === 'json'){
+
+        var newElemnt = document.createElement('p');
+        newElemnt.innerHTML = data.playlist[i].title;
+        newElemnt.setAttribute('data-json', data.playlist[i].link);
+
+        playListList.appendChild(newElemnt);
+
+        newElemnt.addEventListener('click', function(){
+
+          reloadSlideMeJs(this.getAttribute('data-json'));
+          return false;
+
+        });
+
+      } else {
+
+        var newElemnt = document.createElement('a');
+        newElemnt.innerHTML = data.playlist[i].title;
+        newElemnt.setAttribute('href', data.playlist[i].link);
+
+        playListList.appendChild(newElemnt);
+
+      }
 
     }
 
@@ -640,8 +714,6 @@ function slideMeJs(jsonUrl, reqJson) {
 
   }
 
-
-
   ///////////////////////////////////
   ///////////////////////////////////
     // request json file
@@ -650,38 +722,8 @@ function slideMeJs(jsonUrl, reqJson) {
 
     if (reqJson !== false) {
 
-      var request = new XMLHttpRequest();
-      request.open('GET', jsonUrl, true);
+      loadJson(jsonUrl);
 
-      request.onload = function() {
-
-        if (request.status >= 200 && request.status < 400) {
-
-          data = JSON.parse(request.responseText); 
-          console.log('json fetched');
-          createPlayer();
-          if (isVideoSlide !== undefined) {
-            slideMePresentation();
-          }
-          if (haveSource) {
-            loadVideoJs();
-          }
-
-          playList();
-
-        } else {
-
-          errorThat('cannot connect', slideMeContainer);
-
-        }
-
-      };
-
-      request.onerror = function() {
-        errorThat('cannot connect', slideMeContainer);
-      };
-
-      request.send();
 
     } else {
 
