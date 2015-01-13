@@ -1,7 +1,7 @@
 ### SlideMe
 
 Simple js plugin to roll presentations.
-You can use it as a video presntation slider, image presentation, text presentation or just a video player.
+You can use it as a video presentation slider, image presentation, text presentation or just a video player.
 
 all files are availabe through our cdn http://d3gr29hczmiozh.cloudfront.net/
 
@@ -29,7 +29,7 @@ slideMeJs(http://d3gr29hczmiozh.cloudfront.net/jsonexample.json);
 or none json
 
 ```
-slideMeJs(testConfig, false);
+slideMeJs(yourConfig, false);
 ```
 
 your json file or config should look like this
@@ -83,7 +83,26 @@ videoslides - if exitst loads images or any html/text from slidecontent
 If would like to load only video remove both.
 
 
-#### Changelog - v0.02 alpha
+### Playlist
+
+Add id="slideme-playlist" somwhere on your website if u would like to change default position.
+
+#### Load New Player 
+
+add a link to your playlist with type set to json or call
+
+```
+slideMe.reload('jsonurl');
+```
+
+### Changelog - v0.03 alpha
+
+v0.03
+
+* add mini api
+ * slideMe.reload('youJSONurl') load new player
+ * slideMe.destroyPlaylist() that will remove playlist
+
 
 v0.02
 

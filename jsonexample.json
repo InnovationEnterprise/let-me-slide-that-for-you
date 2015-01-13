@@ -7,7 +7,7 @@
   "videoslidestype": "images",
   "playlist" : [
       {
-        "link" : "http://d3gr29hczmiozh.cloudfront.net/jsonexample.json",
+        "link" : "http://0.0.0.0:3000/jsonexample.json",
         "title" : "Reload json",
         "type" : "json"
       },

@@ -1,4 +1,4 @@
-// v0.02
+// SlideMe v0.03
 function slideMeJs(jsonUrl, reqJson) {
 
   var slideMeContainer = document.querySelectorAll('[data-slidemejs]')[0];
@@ -15,6 +15,7 @@ function slideMeJs(jsonUrl, reqJson) {
   var createImgContainer;
   var firstImage;
   var preloaderWrapper;
+  var playListData;
 
   // fix later subtitles
   var createSubtitleNode;
@@ -602,58 +603,21 @@ function slideMeJs(jsonUrl, reqJson) {
   }
 
 
-  function loadJson(jsonUrl) {
-    var request = new XMLHttpRequest();
-    request.open('GET', jsonUrl, true);
-
-    request.onload = function() {
-
-      if (request.status >= 200 && request.status < 400) {
-
-        data = JSON.parse(request.responseText); 
-        console.log('json fetched');
-        createPlayer();
-        if (isVideoSlide !== undefined) {
-          slideMePresentation();
-        }
-        if (haveSource) {
-          loadVideoJs();
-        }
-
-        playList();
-
-      } else {
-
-        errorThat('cannot connect', slideMeContainer);
-
-      }
-
-    };
-
-    request.onerror = function() {
-      errorThat('cannot connect', slideMeContainer);
-    };
-
-    request.send();
-  }
-
-
-  function reloadSlideMeJs(jsonfile) {
-
-    thisPlayer.dispose();
-
-    while(slideMeContainer.firstChild) {
-      slideMeContainer.removeChild(slideMeContainer.firstChild);
-    }
-    addPreloader();
-    loadJson(jsonfile);
-
-  }
-
   function playList() {
 
-    var createPlaylist = document.createElement('div');
-    createPlaylist.setAttribute('id', 'slideme-playlist');
+    var createPlaylist;
+
+    if (document.getElementById('slideme-playlist') !== null) {
+
+      createPlaylist = document.getElementById('slideme-playlist');
+
+    } else {
+
+      var createPlaylist = document.createElement('div');
+      createPlaylist.setAttribute('id', 'slideme-playlist');
+
+    }
+
     createPlaylist.innerHTML = '<div id="slideme-playlist-title">Playlist<div id="slideme-playlist-drop">></div></div><div id="slideme-playlist-list"></div>';
     slideMeContainer.appendChild(createPlaylist);
 
@@ -663,13 +627,17 @@ function slideMeJs(jsonUrl, reqJson) {
     var playListTitle = document.getElementById('slideme-playlist-title');
     var playListList = document.getElementById('slideme-playlist-list');
 
-    for (var i = 0; i < data.playlist.length; i++) {
+    if (data.playlist !== undefined) {
+      playListData = data.playlist;
+    }    
 
-      if (data.playlist[i].type === 'json'){
+    for (var i = 0; i < playListData.length; i++) {
+
+      if (playListData[i].type === 'json'){
 
         var newElemnt = document.createElement('p');
-        newElemnt.innerHTML = data.playlist[i].title;
-        newElemnt.setAttribute('data-json', data.playlist[i].link);
+        newElemnt.innerHTML = playListData[i].title;
+        newElemnt.setAttribute('data-json', playListData[i].link);
 
         playListList.appendChild(newElemnt);
 
@@ -683,8 +651,8 @@ function slideMeJs(jsonUrl, reqJson) {
       } else {
 
         var newElemnt = document.createElement('a');
-        newElemnt.innerHTML = data.playlist[i].title;
-        newElemnt.setAttribute('href', data.playlist[i].link);
+        newElemnt.innerHTML = playListData[i].title;
+        newElemnt.setAttribute('href', playListData[i].link);
 
         playListList.appendChild(newElemnt);
 
@@ -713,6 +681,77 @@ function slideMeJs(jsonUrl, reqJson) {
     });
 
   }
+
+  function loadJson(jsonUrl) {
+
+    var request = new XMLHttpRequest();
+    request.open('GET', jsonUrl, true);
+
+    request.onload = function() {
+
+      if (request.status >= 200 && request.status < 400) {
+
+        data = JSON.parse(request.responseText); 
+        console.log('json fetched');
+        createPlayer();
+        if (isVideoSlide !== undefined) {
+          slideMePresentation();
+        }
+        if (haveSource) {
+          loadVideoJs();
+        }
+        console.log(data.playlist);
+        if (data.playlist !== 'destroy') {
+          playList();
+        } else {
+          slideMe.destroyPlaylist();
+        }
+        
+
+      } else {
+
+        errorThat('cannot connect', slideMeContainer);
+
+      }
+
+    };
+
+    request.onerror = function() {
+      errorThat('cannot connect', slideMeContainer);
+    };
+
+    request.send();
+
+  }
+
+  function reloadSlideMeJs(jsonfile) {
+
+    thisPlayer.dispose();
+
+    while(slideMeContainer.firstChild) {
+      slideMeContainer.removeChild(slideMeContainer.firstChild);
+    }
+    addPreloader();
+    loadJson(jsonfile);
+
+  }
+
+///////////////////////////////////
+///////////////////////////////////
+  // mini api
+///////////////////////////////////
+///////////////////////////////////
+
+  slideMe = {
+
+    reload: function (jsonUrl) {
+    reloadSlideMeJs(jsonUrl);
+    },
+    destroyPlaylist: function(){
+      document.getElementById('slideme-playlist').remove();
+    }
+
+  };
 
   ///////////////////////////////////
   ///////////////////////////////////
