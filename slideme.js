@@ -1,5 +1,5 @@
-// SlideMe v0.03
-function slideMeJs(jsonUrl, reqJson) {
+// SlideMe v0.04
+function slideMe(jsonUrl, reqJson) {
 
   var slideMeContainer = document.querySelectorAll('[data-slidemejs]')[0];
   var getHead = document.getElementsByTagName('head')[0];
@@ -68,6 +68,10 @@ function slideMeJs(jsonUrl, reqJson) {
   // preloader
 ///////////////////////////////////
 ///////////////////////////////////
+
+  var inserSpiner = document.createElement('style');
+  inserSpiner.innerHTML = '#slideme-preloader{font-family: Helvetica, Arial, sans-serif;position:absolute;top:0;bottom:0;left:0;right:0;padding:15% 0 0;background:#fff;z-index:15;color:#000;text-align:center}#slideme-preloader:after{content:"Loading, please wait...";font-size:12px;font-weight:100;display:block}@keyframes slideMeSpinner{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@-webkit-keyframes slideMeSpinner{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}.icon-spinner{-webkit-animation:slideMeSpinner .75s linear infinite;animation:slideMeSpinner 2s linear infinite;font-size:20px;line-height:50px;width:50px;height:50px;cursor:default;text-align:center;color:#000}';
+  getHead.appendChild(inserSpiner);
 
   function addPreloader() {
 
@@ -453,16 +457,6 @@ function slideMeJs(jsonUrl, reqJson) {
       }
 
 
-
-      addAttributes(thisVideoPlayer, {
-
-        'class' : 'video-js vjs-default-skin',
-        'poster': data.poster,
-        'preload' : data.preload
-
-      });
-
-
     // player settings
 
       if (data.preload === undefined || '') {
@@ -471,80 +465,47 @@ function slideMeJs(jsonUrl, reqJson) {
 
       }
 
-      if (data.poster !== undefined || '') {
+      if (data.poster === undefined || '') {
 
-        data.poster = 'http://s3.amazonaws.com/production.hubs/images/sources/000/000/937/medium/road_small.jpg?1417623786';
+        data.poster = '';
 
       }
+
+      addAttributes(thisVideoPlayer, {
+
+        'class' : 'video-js vjs-default-skin',
+        'poster': data.poster,
+        'preload' : data.preload
+
+      });
       
+      thisPlayer = videojs('videojs');
 
-        thisPlayer = videojs('videojs');
+      // get ads if available
 
-        // get ads if available
+      if (data.adTagUrl !== undefined) {
 
-        if (data.adTagUrl !== undefined) {
+        var options = {
 
-          var options = {
+          id: 'videojs',
+          adTagUrl: data.adTagUrl
+        
+        };
 
-            id: 'videojs',
-            adTagUrl: data.adTagUrl
-          
-          };
+        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/ads/slidemeads.js', 'css');
 
-          var getSdkJs = document.createElement('script');
-          getSdkJs.type = 'text/javascript';
-          getSdkJs.src = '//imasdk.googleapis.com/js/sdkloader/ima3.js';
-          getHead.appendChild(getSdkJs);
+        slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script');
+        
+        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/ads/slidemeads.js', 'script', function(){
 
-          if (data.adJs !== undefined) {
-          
-            var getAdJs = document.createElement('script');
-            getAdJs.type = 'text/javascript';
-            getAdJs.src = data.adJs;
-            getHead.appendChild(getAdJs);
-            getAdJs.onload = function() {
-  
-              thisPlayer.ima(options);
-              thisPlayer.ima.initializeAdDisplayContainer();
-              thisPlayer.ima.requestAds();
-  
-            };
+          thisPlayer.ima(options);
+          thisPlayer.ima.initializeAdDisplayContainer();
+          thisPlayer.ima.requestAds();
+          console.log('ad script loaded');
 
-            getAdJs.onerror = function() {
-              console.log('cannot load ad js');
-            };
+        });
 
-
-            console.log('ad script loaded');
-
-          } else {
-
-            // get script from assets - hubs only
-
-            var getAdJs = document.createElement('script');
-            getAdJs.type = 'text/javascript';
-            getAdJs.src = '<%= asset_path("slidemeads.js") %>';
-            getHead.appendChild(getAdJs);
-            getAdJs.onload = function() {
-  
-              thisPlayer.ima(options);
-              thisPlayer.ima.initializeAdDisplayContainer();
-              thisPlayer.ima.requestAds();
-  
-            };
-
-            getAdJs.onerror = function() {
-              console.log('cannot load ad js');
-            };
-
-            console.log('ad script loaded');
-
-            // console.log('please define path to ad js!');
-
-          }
-
-
-        }
+      }
 
         thisPlayer.ready(function() {
 
@@ -582,17 +543,8 @@ function slideMeJs(jsonUrl, reqJson) {
   function loadVideoJs() {
 
     if (typeof vjs === 'undefined') {
-    
-      var getVideoJs = document.createElement('script');
-      getVideoJs.type = 'text/javascript';
-      getVideoJs.src = 'https://vjs.zencdn.net/4.11.2/video.js';
-      getHead.appendChild(getVideoJs);
 
-      getVideoJs.onload = function() {
-
-        fireVideJs();
-
-      };
+      slideMe.loadAssets('//vjs.zencdn.net/4.11.2/video.js', 'script', fireVideJs);
 
     } else {
 
@@ -613,7 +565,7 @@ function slideMeJs(jsonUrl, reqJson) {
 
     } else {
 
-      var createPlaylist = document.createElement('div');
+      createPlaylist = document.createElement('div');
       createPlaylist.setAttribute('id', 'slideme-playlist');
 
     }
@@ -633,9 +585,11 @@ function slideMeJs(jsonUrl, reqJson) {
 
     for (var i = 0; i < playListData.length; i++) {
 
+      var newElemnt;
+
       if (playListData[i].type === 'json'){
 
-        var newElemnt = document.createElement('p');
+        newElemnt = document.createElement('p');
         newElemnt.innerHTML = playListData[i].title;
         newElemnt.setAttribute('data-json', playListData[i].link);
 
@@ -650,7 +604,7 @@ function slideMeJs(jsonUrl, reqJson) {
 
       } else {
 
-        var newElemnt = document.createElement('a');
+        newElemnt = document.createElement('a');
         newElemnt.innerHTML = playListData[i].title;
         newElemnt.setAttribute('href', playListData[i].link);
 
@@ -700,7 +654,6 @@ function slideMeJs(jsonUrl, reqJson) {
         if (haveSource) {
           loadVideoJs();
         }
-        console.log(data.playlist);
         if (data.playlist !== 'destroy') {
           playList();
         } else {
@@ -749,9 +702,51 @@ function slideMeJs(jsonUrl, reqJson) {
     },
     destroyPlaylist: function(){
       document.getElementById('slideme-playlist').remove();
-    }
+    },
+    loadAssets: function (assetLink, type, fn) {
+        var getAssets;
+        console.log(type);
+        if (type === 'css') {
+
+          getAssets = document.createElement('link');
+          getAssets.href = assetLink;
+          getAssets.rel = 'stylesheet';
+          getAssets.type = 'text/css';
+
+          getHead.appendChild(getAssets);
+
+        } else {
+
+          getAssets = document.createElement('script');
+          getAssets.src = assetLink;
+          getAssets.type = 'text/javascript';
+
+          getHead.appendChild(getAssets);
+
+          if (fn !== undefined) {
+
+            getAssets.onload = function(){
+
+              fn();
+              
+            };
+
+          }
+
+        }
+
+      }
 
   };
+
+  ///////////////////////////////////
+  ///////////////////////////////////
+    // load base css
+  ///////////////////////////////////
+  ///////////////////////////////////
+
+  slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemecss.min.css', 'css');
+  slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/video-js.min.css', 'css');
 
   ///////////////////////////////////
   ///////////////////////////////////

@@ -16,8 +16,6 @@ As in example.html define
 ```
 Right after that load slideme.js if you wish you can include your own videojs.js file (right before slideme.js).
 
-Include css files video-js.css and slidemecss.css are mandatory if you would like to have ads add ads/slidemeads.css.
-
 Then call slideMeJs()
 
 json version
@@ -95,7 +93,13 @@ add a link to your playlist with type set to json or call
 slideMe.reload('jsonurl');
 ```
 
-### Changelog - v0.03 alpha
+### Changelog - v0.04 alpha
+
+v0.04
+
+* change slideMeJs to slideMe
+* add slideMe.loadAssets() - usage slideMeLoad('url', 'type', function); - type can be css or js
+* load css and js from cdn
 
 v0.03
 
