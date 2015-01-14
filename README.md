@@ -76,7 +76,7 @@ preload - metadata/none/auto - if doesn't exist will set as metadata
 videosources/videosourcesmobile - all accepted by videojs (slideme do not support flashfallabck)
 playlist - if exist loads playlist
 
-videoslidestype - images/text
+videoslidestype - images/html
 videoslides - if exitst loads images or any html/text from slidecontent
 If would like to load only video remove both.
 
@@ -93,7 +93,11 @@ add a link to your playlist with type set to json or call
 slideMe.reload('jsonurl');
 ```
 
-### Changelog - v0.04 alpha
+### Changelog - v0.05 alpha
+
+v0.05
+
+* change text slides to any html
 
 v0.04
 

@@ -8,6 +8,7 @@
   width: 1120px;
   position: relative;
   margin: auto;
+  overflow: hidden;
 }
 [data-slidemejs] * {
   box-sizing: border-box;
@@ -81,8 +82,7 @@
   width: 480px;
   height: 360px;
   background: #fff;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
   clear: none;
 }
 #slideme-list-wrapper.slideme-text #slideme-list {
@@ -96,10 +96,7 @@
 #slideme-list-wrapper.slideme-text #slideme-list [data-slideme-time] {
   position: relative;
   width: 100%;
-  border-bottom: 1px solid #F0F0F0;
-}
-#slideme-list-wrapper.slideme-text #slideme-list [data-slideme-time].slideme-img-active {
-  border-bottom: 1px solid #278bed;
+  height: 360px;
 }
 
 #slideme-list {
@@ -178,70 +175,32 @@
   padding: 20px;
 }
 
-.slideme-speaker {
-  display: inline-block;
-  position: relative;
-  clear: both;
+#slideme-html-nav {
+ z-index: 10;
+ position: absolute;
+ width: 50px;
+ height: 25px;
+ bottom: 0;
+ right: 0;
 }
-
-.slideme-speaker-picture {
-  height: 50px;
-  width: 50px;
-  overflow: hidden;
-  border-radius: 50px;
+#slideme-html-nav-left, #slideme-html-nav-right {
   float: left;
-}
-.slideme-speaker-picture img {
-  width: 50px;
-}
-
-.slideme-speaker-name {
-  font-size: 16px;
-  line-height: 20px;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  font-weight: 700;
-}
-
-.slideme-speaker-title {
-  font-size: 14px;
-  line-height: 20px;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 300;
-}
-
-.slideme-speaker-wrapper {
-  float: left;
-  padding: 5px 0 0 15px;
-}
-
-.slideme-speaker-abstract {
-  margin: 10px 0 25px 0;
-}
-
-.slideme-list-time {
-  height: 100%;
-  width: 50px;
-  font-size: 12px;
-  line-height: 12px;
-  font-size: 0.75rem;
-  line-height: 0.75rem;
-  position: absolute;
+  width: 25px;
+  line-height: 25px;
   text-align: center;
-  padding: 20px 0 0 0;
-  left: 0;
-  top: 0;
-  border-right: 1px solid #F0F0F0;
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+#slideme-html-nav-left:hover, #slideme-html-nav-right:hover {
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .slideme-list-content {
-  width: 415px;
+  width: 100%;
+  height: 100%;
   position: relative;
-  left: 50px;
-  padding: 20px;
-  top: 0;
-  word-wrap: break-word;
 }
 
 #videojs {

@@ -1,4 +1,4 @@
-// SlideMe v0.04
+// SlideMe v0.05
 function slideMe(jsonUrl, reqJson) {
 
   var slideMeContainer = document.querySelectorAll('[data-slidemejs]')[0];
@@ -16,9 +16,7 @@ function slideMe(jsonUrl, reqJson) {
   var firstImage;
   var preloaderWrapper;
   var playListData;
-
-  // fix later subtitles
-  var createSubtitleNode;
+  var createHtmlPresentationNode;
   var createImgContainerWrapper;
 
   function errorThat(thisError, thisContainer) {
@@ -69,9 +67,9 @@ function slideMe(jsonUrl, reqJson) {
 ///////////////////////////////////
 ///////////////////////////////////
 
-  var inserSpiner = document.createElement('style');
-  inserSpiner.innerHTML = '#slideme-preloader{font-family: Helvetica, Arial, sans-serif;position:absolute;top:0;bottom:0;left:0;right:0;padding:15% 0 0;background:#fff;z-index:15;color:#000;text-align:center}#slideme-preloader:after{content:"Loading, please wait...";font-size:12px;font-weight:100;display:block}@keyframes slideMeSpinner{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@-webkit-keyframes slideMeSpinner{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}.icon-spinner{-webkit-animation:slideMeSpinner .75s linear infinite;animation:slideMeSpinner 2s linear infinite;font-size:20px;line-height:50px;width:50px;height:50px;cursor:default;text-align:center;color:#000}';
-  getHead.appendChild(inserSpiner);
+  var insertSpiner = document.createElement('style');
+  insertSpiner.innerHTML = '#slideme-preloader{font-family: Helvetica, Arial, sans-serif;position:absolute;top:0;bottom:0;left:0;right:0;padding:15% 0 0;background:#fff;z-index:100;color:#000;text-align:center}#slideme-preloader:after{content:"Loading, please wait...";font-size:12px;font-weight:100;display:block}@keyframes slideMeSpinner{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@-webkit-keyframes slideMeSpinner{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}.icon-spinner{-webkit-animation:slideMeSpinner .75s linear infinite;animation:slideMeSpinner 2s linear infinite;font-size:20px;line-height:50px;width:50px;height:50px;cursor:default;text-align:center;color:#000}';
+  getHead.appendChild(insertSpiner);
 
   function addPreloader() {
 
@@ -122,6 +120,13 @@ function slideMe(jsonUrl, reqJson) {
       createImgContainerWrapper.innerHTML = createButtons;
 
     } else {
+
+      createImgContainerWrapper.setAttribute('class', 'slideme-text');
+
+      var createHtmlPresentationNav =  document.createElement('div');
+      createHtmlPresentationNav.setAttribute('id', 'slideme-html-nav');
+      createHtmlPresentationNav.innerHTML = '<div id="slideme-html-nav-left"><</div><div id="slideme-html-nav-right">></div>';
+      createImgContainerWrapper.appendChild(createHtmlPresentationNav);
 
       slideMeContainer.style.height = '360px';
 
@@ -199,9 +204,8 @@ function slideMe(jsonUrl, reqJson) {
 
         } else {
 
-          createImgContainerWrapper.setAttribute('class', 'slideme-text');
           createSlideNode = document.createElement('div');
-          createSlideNode.innerHTML = '<p class="slideme-list-time">' + videoSlides[i].timemin + ':' + videoSlides[i].timesec + '</p><p class="slideme-list-content">' + thisContent + '</p>';
+          createSlideNode.innerHTML = '<div class="slideme-list-content">' + thisContent + '</div>';
           createSlideNode.setAttribute('data-slideme-time', thisContentTime);
 
         }
@@ -222,20 +226,51 @@ function slideMe(jsonUrl, reqJson) {
         firstImage.setAttribute('src', getFirstImg);
         createPresentationContainer.appendChild(firstImage);
 
-      } else {
-
-        createSubtitleNode = document.createElement('div');
-        createSubtitleNode.setAttribute('id', 'slideme-subtitle');
-        document.getElementById('videojs').appendChild(createSubtitleNode);
-        var firstSubtitle = document.querySelectorAll('[data-slideme-time]')[0];
-        createSubtitleNode.innerHTML = firstSubtitle.getElementsByClassName('slideme-list-content')[0].innerHTML;
+        preloaderWrapper.remove();
+        slideMeContainer.style.overflow = 'visible';
 
       }
 
       console.log('slider content set');
 
+      var setSlideMeNav = true;
 
-      preloaderWrapper.remove();
+      document.getElementById('slideme-html-nav-left').addEventListener('click', function (){
+
+        var top = createImgContainer.offsetTop;
+
+        if (top < 0 && setSlideMeNav === true) {
+
+          createImgContainer.style.top = createImgContainer.offsetTop + 360 + 'px';
+
+          setSlideMeNav = false;
+
+          setTimeout(function(){
+            setSlideMeNav = true;
+          }, 350);
+
+        } 
+
+      });
+
+      document.getElementById('slideme-html-nav-right').addEventListener('click', function (){
+
+        var top = createImgContainer.offsetTop;
+        var height = createImgContainer.offsetHeight;
+
+        if (top > -height + 360 && setSlideMeNav === true) {
+
+          createImgContainer.style.top = createImgContainer.offsetTop - 360 + 'px';
+
+          setSlideMeNav = false;
+
+          setTimeout(function(){
+            setSlideMeNav = true;
+          }, 350);
+
+        }
+
+      });
 
 
     // add click to slides
@@ -363,8 +398,8 @@ function slideMe(jsonUrl, reqJson) {
 
         } else {
 
-          createImgContainerWrapper.scrollTop = getSlideFromDom.offsetTop;
-          createSubtitleNode.innerHTML = getSlideFromDom.getElementsByClassName('slideme-list-content')[0].innerHTML;
+          createImgContainer.style.top = - getSlideFromDom.offsetTop + 'px';
+          createHtmlPresentationNode.innerHTML = getSlideFromDom.getElementsByClassName('slideme-list-content')[0].innerHTML;
 
         }
 
@@ -508,15 +543,15 @@ function slideMe(jsonUrl, reqJson) {
       }
 
         thisPlayer.ready(function() {
-
           thisPlayer = this;
           thisPlayerEl = this.tag;
 
           console.log('player created');
 
-          if (isVideoSlide === undefined) {
+          if (data.videoslidestype === 'html') {
 
             preloaderWrapper.remove();
+            slideMeContainer.style.overflow = 'visible';
 
           } 
 
@@ -524,7 +559,7 @@ function slideMe(jsonUrl, reqJson) {
             thisPlayer.play();
           }
 
-          if (haveSource) {
+          if (data.videoslides !== undefined) {
 
             document.getElementsByTagName('video')[0].addEventListener('timeupdate', throttle(function () {
 
@@ -597,7 +632,7 @@ function slideMe(jsonUrl, reqJson) {
 
         newElemnt.addEventListener('click', function(){
 
-          reloadSlideMeJs(this.getAttribute('data-json'));
+          slideMe.reload(this.getAttribute('data-json'));
           return false;
 
         });
@@ -677,18 +712,6 @@ function slideMe(jsonUrl, reqJson) {
 
   }
 
-  function reloadSlideMeJs(jsonfile) {
-
-    thisPlayer.dispose();
-
-    while(slideMeContainer.firstChild) {
-      slideMeContainer.removeChild(slideMeContainer.firstChild);
-    }
-    addPreloader();
-    loadJson(jsonfile);
-
-  }
-
 ///////////////////////////////////
 ///////////////////////////////////
   // mini api
@@ -698,12 +721,24 @@ function slideMe(jsonUrl, reqJson) {
   slideMe = {
 
     reload: function (jsonUrl) {
-    reloadSlideMeJs(jsonUrl);
+
+      thisPlayer.dispose();
+
+      while(slideMeContainer.firstChild) {
+        slideMeContainer.removeChild(slideMeContainer.firstChild);
+      }
+
+      addPreloader();
+      loadJson(jsonUrl);
+
     },
     destroyPlaylist: function(){
+
       document.getElementById('slideme-playlist').remove();
+
     },
     loadAssets: function (assetLink, type, fn) {
+
         var getAssets;
         console.log(type);
         if (type === 'css') {
@@ -745,7 +780,7 @@ function slideMe(jsonUrl, reqJson) {
   ///////////////////////////////////
   ///////////////////////////////////
 
-  slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemecss.min.css', 'css');
+  slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemecss.css', 'css');
   slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/video-js.min.css', 'css');
 
   ///////////////////////////////////
@@ -757,7 +792,6 @@ function slideMe(jsonUrl, reqJson) {
     if (reqJson !== false) {
 
       loadJson(jsonUrl);
-
 
     } else {
 
