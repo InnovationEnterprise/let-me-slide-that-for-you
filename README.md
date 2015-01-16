@@ -93,7 +93,12 @@ add a link to your playlist with type set to json or call
 slideMe.reload('jsonurl');
 ```
 
-### Changelog - v0.06 alpha
+### Changelog - v0.07 alpha
+
+v0.07
+
+* autoload if data-slidemejs have json url
+* minor code cleanup 
 
 v0.06
 

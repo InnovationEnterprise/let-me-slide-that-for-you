@@ -1,4 +1,7 @@
-// SlideMe v0.06
+/**
+  SlideMe v0.07 - https://github.com/InnovationEnterprise/slideme
+**/
+
 function slideMe(jsonUrl, reqJson) {
 
   var slideMeContainer = document.querySelectorAll('[data-slidemejs]')[0];
@@ -29,15 +32,16 @@ function slideMe(jsonUrl, reqJson) {
   function addAttributes(element, attribute) {
 
     for (var value in attribute) {
+      if (attribute.hasOwnProperty(value)) {
        element.setAttribute(value, attribute[value]);
+      }
     }
 
   }
 
-// remy throttle fn
+// Remy throttle fn
 
   function throttle(fn, threshhold, scope) {
-    threshhold || (threshhold = 250);
     var last,
         deferTimer;
     return function () {
@@ -46,7 +50,6 @@ function slideMe(jsonUrl, reqJson) {
       var now = +new Date(),
           args = arguments;
       if (last && now < last + threshhold) {
-        // hold on to it
         clearTimeout(deferTimer);
         deferTimer = setTimeout(function () {
           last = now;
@@ -58,7 +61,6 @@ function slideMe(jsonUrl, reqJson) {
       }
     };
   }
-
 
 ///////////////////////////////////
 ///////////////////////////////////
@@ -232,77 +234,82 @@ function slideMe(jsonUrl, reqJson) {
 
       console.log('slider content set');
 
-      var setSlideMeNav = true;
+      if (data.videoslidestype === 'html') {
 
-      document.getElementById('slideme-html-nav-left').addEventListener('click', function (){
+        var setSlideMeNav = true;
 
-        var top = createImgContainer.offsetTop;
+        document.getElementById('slideme-html-nav-left').addEventListener('click', function (){
 
-        if (top < 0 && setSlideMeNav === true) {
+          var top = createImgContainer.offsetTop;
 
-          createImgContainer.style.top = createImgContainer.offsetTop + 360 + 'px';
+          if (top < 0 && setSlideMeNav === true) {
 
-          setSlideMeNav = false;
+            createImgContainer.style.top = createImgContainer.offsetTop + 360 + 'px';
 
-          setTimeout(function(){
-            setSlideMeNav = true;
-          }, 350);
+            setSlideMeNav = false;
 
-        } 
+            setTimeout(function(){
+              setSlideMeNav = true;
+            }, 350);
 
-      });
+          } 
 
-      document.getElementById('slideme-html-nav-right').addEventListener('click', function (){
+        });
 
-        var top = createImgContainer.offsetTop;
-        var height = createImgContainer.offsetHeight;
+        document.getElementById('slideme-html-nav-right').addEventListener('click', function (){
 
-        if (top > -height + 360 && setSlideMeNav === true) {
+          var top = createImgContainer.offsetTop;
+          var height = createImgContainer.offsetHeight;
 
-          createImgContainer.style.top = createImgContainer.offsetTop - 360 + 'px';
+          if (top > -height + 360 && setSlideMeNav === true) {
 
-          setSlideMeNav = false;
+            createImgContainer.style.top = createImgContainer.offsetTop - 360 + 'px';
 
-          setTimeout(function(){
-            setSlideMeNav = true;
-          }, 350);
+            setSlideMeNav = false;
 
-        }
+            setTimeout(function(){
+              setSlideMeNav = true;
+            }, 350);
 
-      });
+          }
 
+        });
+
+      }
 
     // add click to slides
 
       addClicks = document.querySelectorAll('[data-slideme-time]');
       addClicks[0].setAttribute('class', 'slideme-img-active');
 
-      for (var i = 0; i <  addClicks.length; i++) {
+      function addClicksFn() {
 
-          addClicks[i].addEventListener('click', function() {
+        if (haveSource) {
 
-            if (haveSource) {
+          var thisTime = this.getAttribute('data-slideme-time');
+          thisPlayer.currentTime(thisTime);
+          thisPlayer.play();
 
-              var thisTime = this.getAttribute('data-slideme-time');
-              thisPlayer.currentTime(thisTime);
-              thisPlayer.play();
+        } else {
 
-            } else {
+          firstImage.setAttribute('src', this.getAttribute('src'));
 
-              firstImage.setAttribute('src', this.getAttribute('src'));
+        }
 
-            }
+        if (data.videoslidestype === 'images' && this !== addClicks[0]) {
 
-            if (data.videoslidestype === 'images' && this !== addClicks[0]) {
+          createImgContainer.style.left = 150 - this.offsetLeft + 'px';
 
-              createImgContainer.style.left = 150 - this.offsetLeft + 'px';
+        }
 
-            }
+        document.getElementsByClassName('slideme-img-active')[0].classList.remove('slideme-img-active');
+        this.setAttribute('class', 'slideme-img-active');
 
-            document.getElementsByClassName('slideme-img-active')[0].classList.remove('slideme-img-active');
-            this.setAttribute('class', 'slideme-img-active');
+      }
 
-          }, false);
+      for (var g = 0; i <  addClicks.length; g++) {
+
+          addClicks[g].addEventListener('click', addClicksFn, false);
 
       }
       
@@ -496,16 +503,20 @@ function slideMe(jsonUrl, reqJson) {
 
       for (var value in videoSources) {
 
-        var createVideoSource = document.createElement("source");
+        if (videoSources.hasOwnProperty(value)) {
 
-        addAttributes(createVideoSource,
-          {
-            "src" : videoSources[value],
-            "type" : value
-          }
-        );
+          var createVideoSource = document.createElement("source");
 
-        thisVideoPlayer.appendChild(createVideoSource);
+          addAttributes(createVideoSource,
+            {
+              "src" : videoSources[value],
+              "type" : value
+            }
+          );
+
+          thisVideoPlayer.appendChild(createVideoSource);
+
+        }
 
       }
 
@@ -532,7 +543,7 @@ function slideMe(jsonUrl, reqJson) {
 
       });
       
-      thisPlayer = videojs('videojs');
+      thisPlayer = videojs(thisVideoPlayer);
 
       // get ads if available
 
@@ -563,7 +574,7 @@ function slideMe(jsonUrl, reqJson) {
         thisPlayer.ready(function() {
 
           thisPlayer = this;
-          thisPlayerEl = this.tag;
+          thisPlayerEl = document.getElementsByTagName('video')[0];
 
           console.log('player created');
 
@@ -580,11 +591,7 @@ function slideMe(jsonUrl, reqJson) {
 
           if (data.videoslides !== undefined) {
 
-            document.getElementsByTagName('video')[0].addEventListener('timeupdate', throttle(function () {
-
-              setNewSlide();
-
-            }, 1000));
+            document.getElementsByTagName('video')[0].addEventListener('timeupdate', throttle(setNewSlide, 1000));
 
           }
 
@@ -593,30 +600,30 @@ function slideMe(jsonUrl, reqJson) {
             var createQualityNode = document.createElement('div');
             createQualityNode.setAttribute('id', 'slideme-quality');
             var thisTypeUrl = thisPlayer.src();
-            var findThatType = document.getElementById('videojs_html5_api').querySelectorAll('[src="' + thisTypeUrl + '"]')[0];
+            var findThatType = thisPlayerEl.querySelectorAll('[src="' + thisTypeUrl + '"]')[0];
             findThatType = findThatType.getAttribute('type');
 
             var videoHigh;
             var videoLow;
 
-            for (var value in data.videosources) {
-              if (value === findThatType) {
-                videoHigh = data.videosources[value];
+            for (var sourceType in data.videosources) {
+              if (sourceType === findThatType) {
+                videoHigh = data.videosources[sourceType];
               }
             }
-            for (var value in data.videosourcesmobile) {
-              if (value === findThatType) {
-                videoLow = data.videosourcesmobile[value];
+            for (var sourceTypeMobile in data.videosourcesmobile) {
+              if (sourceTypeMobile === findThatType) {
+                videoLow = data.videosourcesmobile[sourceTypeMobile];
               }
             }
             
             createQualityNode.innerHTML = '<div id="slideme-change-quality">Auto</div><div id="slideme-change-quality-list"><p data-quality="' + videoHigh +'">High</p><p data-quality="' + videoLow +'">Low</p></div>';
-            var getControlBar = document.getElementsByClassName('vjs-control-bar')[0].appendChild(createQualityNode);
+            document.getElementsByClassName('vjs-control-bar')[0].appendChild(createQualityNode);
             
             var showHide = false;
             var showHideQualityNode = document.getElementById('slideme-change-quality-list');
 
-            function getNewSource() {
+            var getNewSource = function () {
 
                 var thisTime = thisPlayer.currentTime();
                 var src = this.getAttribute('data-quality');
@@ -628,7 +635,7 @@ function slideMe(jsonUrl, reqJson) {
                 showHide = false;
                 showHideQualityNode.style.display = 'none';
 
-            }
+            };
 
             document.querySelectorAll('[data-quality]')[0].addEventListener('click', getNewSource); 
 
@@ -646,7 +653,7 @@ function slideMe(jsonUrl, reqJson) {
 
             });
 
-            document.getElementById('videojs_html5_api').addEventListener('click', function(){
+            thisPlayerEl.addEventListener('click', function(){
 
               showHide = false;
               showHideQualityNode.style.display = 'none';
@@ -704,6 +711,13 @@ function slideMe(jsonUrl, reqJson) {
       playListData = data.playlist;
     }    
 
+    function playlistReloadClick(){
+
+      slideMe.reload(this.getAttribute('data-json'));
+      return false;
+
+    }
+
     for (var i = 0; i < playListData.length; i++) {
 
       var newElemnt;
@@ -716,12 +730,7 @@ function slideMe(jsonUrl, reqJson) {
 
         playListList.appendChild(newElemnt);
 
-        newElemnt.addEventListener('click', function(){
-
-          slideMe.reload(this.getAttribute('data-json'));
-          return false;
-
-        });
+        newElemnt.addEventListener('click', playlistReloadClick);
 
       } else {
 
@@ -818,9 +827,16 @@ function slideMe(jsonUrl, reqJson) {
       loadJson(jsonUrl);
 
     },
-    destroyPlaylist: function(){
+    destroyPlaylist: function() {
 
       document.getElementById('slideme-playlist').remove();
+
+    },
+    destroySlideMe: function() {
+
+      thisPlayer.dispose();
+      slideMeContainer.remove();
+      slideMe = undefined;
 
     },
     loadAssets: function (assetLink, type, fn) {
@@ -846,7 +862,7 @@ function slideMe(jsonUrl, reqJson) {
 
           if (fn !== undefined) {
 
-            getAssets.onload = function(){
+            getAssets.onload = function() {
 
               fn();
               
@@ -866,7 +882,7 @@ function slideMe(jsonUrl, reqJson) {
   ///////////////////////////////////
   ///////////////////////////////////
 
-  slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemecss.css', 'css');
+  slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemecss.min.css', 'css');
   slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/video-js.min.css', 'css');
 
   ///////////////////////////////////
@@ -911,3 +927,15 @@ function slideMe(jsonUrl, reqJson) {
     }
   
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  var checkIfSlideMe = document.querySelectorAll('[data-slidemejs]')[0];
+
+  if (checkIfSlideMe !== undefined && checkIfSlideMe.getAttribute('data-slidemejs') !== '') {
+
+    slideMe(checkIfSlideMe.getAttribute('data-slidemejs'));
+
+  }
+
+});
