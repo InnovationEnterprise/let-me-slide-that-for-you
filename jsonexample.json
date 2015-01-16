@@ -2,9 +2,22 @@
   "autoplay" : "false",
   "preload" : "metadata", 
   "videosources": {
+      "video/3gp" : "http://techslides.com/demos/sample-videos/small.3gp ",
       "video/mp4" : "https://ieondemand.com/merged_videos/AshSharma-FPA-London14.mp4"
   },
+    "videosourcesmobile": {
+      "video/3gp" : "http://techslides.com/demos/sample-videos/small.3gp ",
+      "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/production/12-2014/EdwinMillerCINONNY.mp4"
+  },
   "videoslidestype": "html",
+  "subtitles" : [
+    {
+      "src" : "subtitlesexample.vtt",
+      "label" : "English",
+      "srclang" : "en",
+      "default" : "true"
+    }
+  ],
   "playlist" : [
       {
         "link" : "http://0.0.0.0:3000/jsonexample.json",

@@ -1,4 +1,4 @@
-// SlideMe v0.05
+// SlideMe v0.06
 function slideMe(jsonUrl, reqJson) {
 
   var slideMeContainer = document.querySelectorAll('[data-slidemejs]')[0];
@@ -16,7 +16,6 @@ function slideMe(jsonUrl, reqJson) {
   var firstImage;
   var preloaderWrapper;
   var playListData;
-  var createHtmlPresentationNode;
   var createImgContainerWrapper;
 
   function errorThat(thisError, thisContainer) {
@@ -399,7 +398,6 @@ function slideMe(jsonUrl, reqJson) {
         } else {
 
           createImgContainer.style.top = - getSlideFromDom.offsetTop + 'px';
-          createHtmlPresentationNode.innerHTML = getSlideFromDom.getElementsByClassName('slideme-list-content')[0].innerHTML;
 
         }
 
@@ -444,8 +442,6 @@ function slideMe(jsonUrl, reqJson) {
 
       }
 
-
-
       if (haveSource) {
       
         createVideoPlayer.innerHTML = videoPlayerLayout;
@@ -453,6 +449,28 @@ function slideMe(jsonUrl, reqJson) {
   
         thisVideoPlayer = document.getElementById('videojs');
       
+      }
+
+      if (data.subtitles !== undefined) {
+
+        for (var i = 0; i < data.subtitles.length; i++) {
+
+          var createSubtitleNode = document.createElement('track');
+
+          addAttributes(createSubtitleNode, {
+            'src' : data.subtitles[i].src, 
+            'srclang' : data.subtitles[i].srclang,
+            'label' : data.subtitles[i].label
+          });          
+
+          if(data.subtitles[i].default === 'true') {
+            createSubtitleNode.setAttribute('default', '');
+          }
+
+          thisVideoPlayer.appendChild(createSubtitleNode);
+
+        }
+
       }
 
   }
@@ -543,6 +561,7 @@ function slideMe(jsonUrl, reqJson) {
       }
 
         thisPlayer.ready(function() {
+
           thisPlayer = this;
           thisPlayerEl = this.tag;
 
@@ -566,6 +585,73 @@ function slideMe(jsonUrl, reqJson) {
               setNewSlide();
 
             }, 1000));
+
+          }
+
+          if (data.videosources && data.videosourcesmobile !== undefined) {
+
+            var createQualityNode = document.createElement('div');
+            createQualityNode.setAttribute('id', 'slideme-quality');
+            var thisTypeUrl = thisPlayer.src();
+            var findThatType = document.getElementById('videojs_html5_api').querySelectorAll('[src="' + thisTypeUrl + '"]')[0];
+            findThatType = findThatType.getAttribute('type');
+
+            var videoHigh;
+            var videoLow;
+
+            for (var value in data.videosources) {
+              if (value === findThatType) {
+                videoHigh = data.videosources[value];
+              }
+            }
+            for (var value in data.videosourcesmobile) {
+              if (value === findThatType) {
+                videoLow = data.videosourcesmobile[value];
+              }
+            }
+            
+            createQualityNode.innerHTML = '<div id="slideme-change-quality">Auto</div><div id="slideme-change-quality-list"><p data-quality="' + videoHigh +'">High</p><p data-quality="' + videoLow +'">Low</p></div>';
+            var getControlBar = document.getElementsByClassName('vjs-control-bar')[0].appendChild(createQualityNode);
+            
+            var showHide = false;
+            var showHideQualityNode = document.getElementById('slideme-change-quality-list');
+
+            function getNewSource() {
+
+                var thisTime = thisPlayer.currentTime();
+                var src = this.getAttribute('data-quality');
+                document.getElementById('slideme-change-quality').innerHTML = this.innerHTML;
+                thisPlayer.src(src);
+                thisPlayer.currentTime(thisTime);
+                thisPlayer.play();
+
+                showHide = false;
+                showHideQualityNode.style.display = 'none';
+
+            }
+
+            document.querySelectorAll('[data-quality]')[0].addEventListener('click', getNewSource); 
+
+            document.querySelectorAll('[data-quality]')[1].addEventListener('click', getNewSource);
+
+            document.getElementById('slideme-change-quality').addEventListener('click', function(){
+
+              if (showHide === false) {
+                showHide = true;
+                showHideQualityNode.style.display = 'block';
+              } else {
+                showHide = false;
+                showHideQualityNode.style.display = 'none';
+              }
+
+            });
+
+            document.getElementById('videojs_html5_api').addEventListener('click', function(){
+
+              showHide = false;
+              showHideQualityNode.style.display = 'none';
+
+            });
 
           }
         

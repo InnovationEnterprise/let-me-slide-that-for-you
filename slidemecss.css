@@ -271,6 +271,30 @@
   background: #fff;
 }
 
+#slideme-quality {
+  line-height: 3em;
+  height: 3em;
+  float: left;
+  cursor: pointer;
+}
+#slideme-change-quality {
+  padding: 0 7px;
+}
+#slideme-change-quality:hover {
+  text-shadow: 0 0 1em #fff;
+}
+
+#slideme-change-quality-list {
+  display: none;
+  position: absolute;
+  top: -60px;
+  padding: 0 7px;
+  background: rgba(7,20,30,.7);
+}
+[data-quality]:hover {
+  text-shadow: 0 0 1em #fff;
+}
+
 @media screen and (max-width: 1024px) {
   #videojs {
     width: 530px !important;

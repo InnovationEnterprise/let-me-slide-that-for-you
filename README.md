@@ -93,7 +93,12 @@ add a link to your playlist with type set to json or call
 slideMe.reload('jsonurl');
 ```
 
-### Changelog - v0.05 alpha
+### Changelog - v0.06 alpha
+
+v0.06
+
+* ability to load closed captions
+* option to switch between low/high quality - videosources for high and videosourcesmobile for low
 
 v0.05
 
@@ -102,12 +107,12 @@ v0.05
 v0.04
 
 * change slideMeJs to slideMe
-* add slideMe.loadAssets() - usage slideMeLoad('url', 'type', function); - type can be css or js
+* slideMe.loadAssets() - usage slideMeLoad('url', 'type', function); - type can be css or js
 * load css and js from cdn
 
 v0.03
 
-* add mini api
+* mini api
  * slideMe.reload('youJSONurl') load new player
  * slideMe.destroyPlaylist() that will remove playlist
 
