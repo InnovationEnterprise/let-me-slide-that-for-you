@@ -492,58 +492,79 @@ function slideMe(jsonUrl, reqJson) {
   function fireVideJs() {
 
    //player source
+      if (data.youtube !== undefined) {
 
-      var videoSources;
+        var videoSources;      
+        if (data.videosourcesmobile !== undefined && ismobile !== null) {
+          videoSources = data.videosourcesmobile;
+        } else {
+          videoSources = data.videosources;
+        }
 
-      if (data.videosourcesmobile !== undefined && ismobile !== null) {
-        videoSources = data.videosourcesmobile;
-      } else {
-        videoSources = data.videosources;
-      }
+        for (var value in videoSources) {
 
-      for (var value in videoSources) {
+          if (videoSources.hasOwnProperty(value)) {
 
-        if (videoSources.hasOwnProperty(value)) {
+            var createVideoSource = document.createElement("source");
 
-          var createVideoSource = document.createElement("source");
+            addAttributes(createVideoSource,
+              {
+                "src" : videoSources[value],
+                "type" : value
+              }
+            );
 
-          addAttributes(createVideoSource,
-            {
-              "src" : videoSources[value],
-              "type" : value
-            }
-          );
+            thisVideoPlayer.appendChild(createVideoSource);
 
-          thisVideoPlayer.appendChild(createVideoSource);
+          }
 
         }
 
+      // player settings
+
+        if (data.preload === undefined || '') {
+
+          data.preload = 'metadata';
+
+        }
+
+        if (data.poster === undefined || '') {
+
+          data.poster = '';
+
+        }
+
+        addAttributes(thisVideoPlayer, {
+
+          'class' : 'video-js vjs-default-skin',
+          'poster': data.poster,
+          'preload' : data.preload
+
+        });
       }
 
+      if (typeof vjs === 'undefined') {
 
-    // player settings
+        slideMe.loadAssets('//vjs.zencdn.net/4.11.2/video.js', 'script', fireVideJs);
 
-      if (data.preload === undefined || '') {
+      } else {
 
-        data.preload = 'metadata';
-
-      }
-
-      if (data.poster === undefined || '') {
-
-        data.poster = '';
+        fireVideJs();
 
       }
 
-      addAttributes(thisVideoPlayer, {
+      if (data.youtube !== undefined) {
 
-        'class' : 'video-js vjs-default-skin',
-        'poster': data.poster,
-        'preload' : data.preload
+        slideMe.loadAssets('plugins/youtube.js', 'script');
 
-      });
+      }
+
+      if (data.youtube === undefined) {
+        thisPlayer = videojs(thisVideoPlayer);
+      } else {
+        thisPlayer = videojs(thisVideoPlayer, { "techOrder": ["youtube"], "src": "http://www.youtube.com/watch?v=xjS6SftYQaQ" });
+      }
       
-      thisPlayer = videojs(thisVideoPlayer);
 
       // get ads if available
 
@@ -595,7 +616,7 @@ function slideMe(jsonUrl, reqJson) {
 
           }
 
-          if (data.videosources && data.videosourcesmobile !== undefined) {
+          if (data.videosources && data.videosourcesmobile !== undefined && data.youtube === undefined) {
 
             var createQualityNode = document.createElement('div');
             createQualityNode.setAttribute('id', 'slideme-quality');
@@ -666,21 +687,6 @@ function slideMe(jsonUrl, reqJson) {
         });
 
       }
-
-
-  function loadVideoJs() {
-
-    if (typeof vjs === 'undefined') {
-
-      slideMe.loadAssets('//vjs.zencdn.net/4.11.2/video.js', 'script', fireVideJs);
-
-    } else {
-
-      fireVideJs();
-
-    }
-
-  }
 
 
   function playList() {
@@ -778,16 +784,19 @@ function slideMe(jsonUrl, reqJson) {
         data = JSON.parse(request.responseText); 
         console.log('json fetched');
         createPlayer();
+
         if (isVideoSlide !== undefined) {
           slideMePresentation();
         }
-        if (haveSource) {
-          loadVideoJs();
-        }
+
         if (data.playlist !== 'destroy') {
           playList();
         } else {
           slideMe.destroyPlaylist();
+        }
+
+        if (haveSource || data.youtube) {
+          fireVideJs();
         }
         
 
@@ -882,8 +891,8 @@ function slideMe(jsonUrl, reqJson) {
   ///////////////////////////////////
   ///////////////////////////////////
 
-  slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemecss.min.css', 'css');
-  slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/video-js.min.css', 'css');
+  slideMe.loadAssets('slidemecss.min.css', 'css');
+  slideMe.loadAssets('video-js.min.css', 'css');
 
   ///////////////////////////////////
   ///////////////////////////////////
@@ -912,8 +921,9 @@ function slideMe(jsonUrl, reqJson) {
         if (isVideoSlide !== undefined) {
           slideMePresentation();
         }
-        if (haveSource) {
-          loadVideoJs();
+
+        if (haveSource || data.youtube) {
+          fireVideJs();
         }
 
         playList();

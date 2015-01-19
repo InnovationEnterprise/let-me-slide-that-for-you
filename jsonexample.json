@@ -9,6 +9,7 @@
       "video/3gp" : "http://techslides.com/demos/sample-videos/small.3gp ",
       "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/production/12-2014/EdwinMillerCINONNY.mp4"
   },
+  "youtube" : "http://www.youtube.com/watch?v=PWgvGjAhvIw&list=RDdZLfasMPOU4",
   "videoslidestype": "html",
   "subtitles" : [
     {
