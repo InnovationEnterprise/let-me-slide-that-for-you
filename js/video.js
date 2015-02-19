@@ -36,18 +36,22 @@ slideMe.fireVideJs = function () {
 
     };
 
-    slideMe.loadAssets('/ads/slidemeads.css', 'css');
+    slideMe.loadAssets('../build/slidemeads.css', 'css');
 
-    slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script');
+    slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
 
-    slideMe.loadAssets('/ads/slidemeads.js', 'script', function() {
+      slideMe.loadAssets('../build/slidemeads.js', 'script', function() {
 
-      thisPlayer.ima(options);
-      thisPlayer.ima.initializeAdDisplayContainer();
-      thisPlayer.ima.requestAds();
-      console.log('ad script loaded');
+        thisPlayer.ima(options);
+        thisPlayer.ima.initializeAdDisplayContainer();
+        thisPlayer.ima.requestAds();
+        console.log('ad script loaded');
 
+      });
+      
     });
+
+
 
   }
 
@@ -70,6 +74,7 @@ slideMe.fireVideJs = function () {
 
     if (slideMe.data.autoplay !== undefined && slideMe.data.autoplay !== 'false') {
       thisPlayer.play();
+
     }
 
     // if (slideMe.data.videoslides !== undefined) {

@@ -1,5 +1,5 @@
 {
-  "autoplay" : "false",
+  "autoplay" : "true",
   "preload" : "metadata", 
   "videosources": {
       "video/3gp" : "http://techslides.com/demos/sample-videos/small.3gp ",

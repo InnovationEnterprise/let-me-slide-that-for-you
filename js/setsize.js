@@ -1,5 +1,5 @@
 slideMe.setSize = function() {
-    console.log('dupa');
+
     var sW = slideMeContainer.parentNode.offsetWidth;
     var sH;
 
@@ -31,6 +31,8 @@ slideMe.setSize = function() {
 
       slideMe.presentationNode.style.width = sW + 'px';
       slideMe.presentationNode.style.height = sH + 'px';
+
+      slideMeContainer.style.height = vH + 75 + 'px';
 
     }
 

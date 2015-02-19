@@ -1,14 +1,11 @@
 slideMe.createDOM = function () {
 
-  isVideoSlide = slideMe.data.videoslides !== undefined;
-  haveSource = slideMe.data.videosourcesmobile !== undefined || slideMe.data.videosources !== undefined;
-
   // create video dom
 
     var createVideoPlayer = document.createElement('div');
     createVideoPlayer.setAttribute('id', 'slideme-wrapper');   
 
-    if (haveSource) {
+    if (slideMe.data.videosourcesmobile !== undefined || slideMe.data.videosources !== undefined) {
 
       slideMe.thisVideoPlayer = document.createElement('video');
 
