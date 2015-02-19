@@ -1,5 +1,5 @@
 {
-  "autoplay" : "false",
+  "autoplay" : "true",
   "preload" : "metadata", 
   "videosources": {
       "video/3gp" : "http://techslides.com/demos/sample-videos/small.3gp ",
@@ -9,7 +9,7 @@
       "video/3gp" : "http://techslides.com/demos/sample-videos/small.3gp ",
       "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/production/12-2014/EdwinMillerCINONNY.mp4"
   },
-  "videoslidestype": "html",
+  "videoslidestype": "images",
   "subtitles" : [
     {
       "src" : "subtitlesexample.vtt",
@@ -31,7 +31,7 @@
   ],
   "videoslides" : [
       {
-        "slidecontent" : "<p>some title</p>",
+        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/004/143/original/Tom_Hjelm_DigiPub_NY_201320140411-18475-upage4.pdf001.jpg?1397215078",
         "timemin" : "0",
         "timesec" : "0"
       },
