@@ -1,15 +1,16 @@
 {
-  "autoplay" : "false",
+  "autoplay" : "true",
   "preload" : "metadata", 
   "videosources": {
       "video/3gp" : "http://techslides.com/demos/sample-videos/small.3gp ",
-      "video/mp4" : "https://ieondemand.com/merged_videos/AshSharma-FPA-London14.mp4"
+      "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/production/12-2014/SPINYElliotRawls.mp4"
   },
     "videosourcesmobile": {
       "video/3gp" : "http://techslides.com/demos/sample-videos/small.3gp ",
-      "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/production/12-2014/EdwinMillerCINONNY.mp4"
+      "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/production/12-2014/SPINYElliotRawls.mp4"
   },
-  "videoslidestype": "html",
+  "videoslidestype": "images",
+  "adTagUrl" : "http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/422581008/test_video&ciu_szs&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]",
   "subtitles" : [
     {
       "src" : "subtitlesexample.vtt",
@@ -31,7 +32,7 @@
   ],
   "videoslides" : [
       {
-        "slidecontent" : "<p>some title</p>",
+        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/004/143/original/Tom_Hjelm_DigiPub_NY_201320140411-18475-upage4.pdf001.jpg?1397215078",
         "timemin" : "0",
         "timesec" : "0"
       },
