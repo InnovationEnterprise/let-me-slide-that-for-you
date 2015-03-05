@@ -10,7 +10,7 @@ slideMe.loadJson = function (jsonUrl) {
       slideMe.data = JSON.parse(request.responseText); 
 
       if (slideMe.data.videosourcesmobile !== undefined || slideMe.data.videosources !== undefined) {
-        slideMe.loadAssets('//vjs.zencdn.net/4.11.2/video.js', 'script', function(){
+        slideMe.loadAssets('//vjs.zencdn.net/4.12/video.js', 'script', function(){
           slideMe.createDOM();
         });
       }

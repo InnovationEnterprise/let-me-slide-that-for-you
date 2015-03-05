@@ -1,6 +1,5 @@
 slideMe.setNewSlide = function() {
 
-  var currentArrayNr = '00';
 
   var getCurrentTime = Math.round(thisPlayer.currentTime());
   var arrayNr;
@@ -13,17 +12,15 @@ slideMe.setNewSlide = function() {
 
   }
 
+  if (slideMe.currentArrayNr !== arrayNr) {
 
-
-  if (currentArrayNr !== arrayNr) {
-
-    currentArrayNr = arrayNr;
+    slideMe.currentArrayNr = arrayNr;
 
     var getSlideFromDom = document.querySelectorAll('[data-slideme-time="' + arrayNr + '"]')[0];
 
     if (slideMe.data.videoslidestype === 'images') {
       
-      if (getSlideFromDom !== slideMe.addClicks[0]) {
+      if (getSlideFromDom !== getSlideFromDom) {
 
         slideMe.createImgContainer.style.left =  150 - getSlideFromDom.offsetLeft + 'px';
 

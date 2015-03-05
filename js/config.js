@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   slideMe.addPreloader();
 
-  slideMe.loadAssets('../build/slidemecss.min.css', 'css', function(){
+  slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemecss.min.css', 'css', function(){
   
     if (slideMeContainer !== undefined && slideMeContainer.getAttribute('data-slidemejs') !== '') {
       slideMe.loadJson(slideMeContainer.getAttribute('data-slidemejs'));

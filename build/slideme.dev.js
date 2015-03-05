@@ -4,6 +4,7 @@ var getHead = document.getElementsByTagName('head')[0];
 var isMobile = navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/Android/i);
 var thisVideoPlayer;
 slideMe.timeList = [];
+slideMe.currentArrayNr = '00';
 
 
 // var thisPlayerEl;
@@ -158,7 +159,7 @@ slideMe.loadJson = function (jsonUrl) {
       slideMe.data = JSON.parse(request.responseText); 
 
       if (slideMe.data.videosourcesmobile !== undefined || slideMe.data.videosources !== undefined) {
-        slideMe.loadAssets('//vjs.zencdn.net/4.11.2/video.js', 'script', function(){
+        slideMe.loadAssets('//vjs.zencdn.net/4.12/video.js', 'script', function(){
           slideMe.createDOM();
         });
       }
@@ -339,11 +340,11 @@ slideMe.fireVideJs = function () {
 
     };
 
-    slideMe.loadAssets('../build/slidemeads.css', 'css');
+    slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeads.css', 'css');
 
     slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
 
-      slideMe.loadAssets('../build/slidemeads.js', 'script', function() {
+      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeads.js', 'script', function() {
 
         thisPlayer.ima(options);
         thisPlayer.ima.initializeAdDisplayContainer();
@@ -364,6 +365,10 @@ slideMe.fireVideJs = function () {
 
     window.onresize = slideMe.throttle(slideMe.setSize, 200);
 
+    document.addEventListener('orientationchange', function() {
+      slideMe.setSize();
+    });
+
     console.log('player created');
 
     if (slideMe.data.videoslidestype === 'html') {
@@ -379,8 +384,24 @@ slideMe.fireVideJs = function () {
 
     if (slideMe.data.autoplay !== undefined && slideMe.data.autoplay !== 'false') {
       thisPlayer.play();
+    }
+
+    slideMe.embed();
+    if (slideMeContainer.parentNode.offsetWidth <= 900) {
+      slideMe.fullscreen();
+    }
+
+    if (document.getElementById('slideme-h1') === null) {
+
+      var getJsonUrl = document.querySelectorAll('[data-slidemejs]')[0].getAttribute('data-slidemejs');
+
+      slidemeVjstitle = thisPlayer.addChild('button');
+      slidemeVjstitle.addClass('slideme-vjs-title');
+      document.getElementsByClassName('slideme-vjs-title')[0].innerHTML = slideMe.data.title;
 
     }
+
+
 
     // if (slideMe.data.videoslides !== undefined) {
 
@@ -506,7 +527,6 @@ slideMe.getSlides = function () {
 };
 slideMe.setNewSlide = function() {
 
-  var currentArrayNr = '00';
 
   var getCurrentTime = Math.round(thisPlayer.currentTime());
   var arrayNr;
@@ -519,17 +539,15 @@ slideMe.setNewSlide = function() {
 
   }
 
+  if (slideMe.currentArrayNr !== arrayNr) {
 
-
-  if (currentArrayNr !== arrayNr) {
-
-    currentArrayNr = arrayNr;
+    slideMe.currentArrayNr = arrayNr;
 
     var getSlideFromDom = document.querySelectorAll('[data-slideme-time="' + arrayNr + '"]')[0];
 
     if (slideMe.data.videoslidestype === 'images') {
       
-      if (getSlideFromDom !== slideMe.addClicks[0]) {
+      if (getSlideFromDom !== getSlideFromDom) {
 
         slideMe.createImgContainer.style.left =  150 - getSlideFromDom.offsetLeft + 'px';
 
@@ -557,9 +575,15 @@ slideMe.setNewSlide = function() {
 slideMe.setSize = function() {
 
     var sW = slideMeContainer.parentNode.offsetWidth;
-    var sH;
 
+
+    if (slideMeContainer.classList.contains('this-fixed')) {
+      sW = window.innerWidth;
+    }
+
+    var sH;
     var vW = sW;
+
     var vH;
 
     if (slideMe.data.videosourcesmobile === undefined && slideMe.data.videosources === undefined) {
@@ -581,9 +605,23 @@ slideMe.setSize = function() {
 
     if (slideMe.data.videoslides === undefined) {
 
-      vH = vW / 1.78;
+      vH = vW  / 1.78;
 
     } else {
+
+      var adsContainer = document.getElementById('ima-ad-container');
+
+      if (adsContainer !== null) {
+
+        adsContainer.style.width = vW + 'px';
+        adsContainer.style.height = vH + 'px';
+
+        document.getElementById('ima-seek-bar-div').style.width = vW + 'px';
+
+        adsContainer.getElementsByTagName('iframe')[0].style.width = vW + 'px';
+        adsContainer.getElementsByTagName('iframe')[0].style.height = vH + 'px';
+
+      }
 
       slideMe.presentationNode.style.width = sW + 'px';
       slideMe.presentationNode.style.height = sH + 'px';
@@ -591,10 +629,73 @@ slideMe.setSize = function() {
       slideMeContainer.style.height = vH + 75 + 'px';
 
     }
-
-    slideMe.thisPlayer.dimensions(vW, vH);
     
     slideMeContainer.style.width = vW + sW + 'px';
+
+    if (slideMe.data.videoslides === undefined && slideMeContainer.parentNode.offsetWidth >= 900) {
+
+      vW = vW * 1.2;
+      vH = vW / 1.78;
+      if (document.getElementById('slideme-h1') !== null) {
+        document.getElementById('slideme-h1').style.maxWidth = vW + 'px';
+      }
+      
+    } else {
+      if (document.getElementById('slideme-h1') !== null) {
+        document.getElementById('slideme-h1').style.maxWidth = vW + sW + 'px';
+      }
+    }
+    if (slideMeContainer.parentNode.offsetWidth <= 900) {
+      
+      if (!slideMeContainer.classList.contains('this-fixed')) {
+        if (document.getElementById('slideme-container') !== null) {
+          document.getElementById('slideme-container').style.display = 'none';
+          document.getElementById('slideme-list-wrapper').style.display = 'none';
+        }
+        vW = slideMeContainer.offsetWidth;
+        vH = vW / 1.78;
+        slideMeContainer.style.height = vH + 'px';
+        slideMeContainer.classList.remove('full-mobile');
+      } else {
+
+        if (document.getElementById('slideme-container') !== null) {
+          document.getElementById('slideme-container').style.display = 'block';
+          document.getElementById('slideme-list-wrapper').style.display = 'block';
+        }
+
+        slideMeContainer.style.height = vH + 75 + 'px';
+        if (window.innerWidth <= 900) {
+         slideMeContainer.classList.add('full-mobile');
+        }
+
+        if (document.getElementById('slideme-fakediv') === null && !slideMeContainer.classList.contains('full-mobile')) {
+
+          var slideMeFakeDiv = document.createElement('div');
+          slideMeFakeDiv.setAttribute('id', 'slideme-fakediv');
+          slideMeContainer.parentNode.insertBefore(slideMeFakeDiv, slideMeContainer.nextSibling);
+          if (slideMeContainer.parentNode.offsetWidth <= 415) {
+            slideMeFakeDiv.style.height = vH + 105 + 'px';
+          } else {
+            slideMeFakeDiv.style.height = vH + 75 + 'px';
+          }
+          
+
+        }
+
+      }
+
+    } else {
+      if (document.getElementById('slideme-container') !== null) {
+        document.getElementById('slideme-container').style.display = 'block';
+        document.getElementById('slideme-list-wrapper').style.display = 'block';
+      }
+    }
+
+    if (!slideMeContainer.classList.contains('full-mobile')) {
+      slideMe.thisPlayer.dimensions(vW, vH);
+    }
+   
+
 
 };
 
@@ -670,6 +771,72 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
     slideMe.addClicks[g].addEventListener('click', addClicksFn, false);
 
   }
+
+  var animated = false;
+  var imgContainerWidth = 100 * slideMe.data.videoslides.length;
+
+  document.getElementById('slideme-btn-next').addEventListener('click', function() {
+
+    var imgContainerPosition = slideMe.createImgContainer.offsetLeft;
+
+    if (animated === false && imgContainerPosition > - imgContainerWidth + 500) {
+
+      animated = true;        
+      slideMe.createImgContainer.style.left = imgContainerPosition - 200 + 'px';
+
+      setTimeout(function(){
+        animated = false;
+      }, 325);
+
+    }
+
+  }, false);
+
+  document.getElementById('slideme-btn-prev').addEventListener('click', function() {
+    
+    var imgContainerPosition = slideMe.createImgContainer.offsetLeft;
+
+    if (animated === false && imgContainerPosition < 50) {
+
+      animated = true; 
+      var slideThatMuch;
+
+      if (imgContainerPosition < -50) {
+        slideThatMuch = 200;
+      } else {
+        slideThatMuch = 100;
+      }
+      slideMe.createImgContainer.style.left = imgContainerPosition + slideThatMuch + 'px';
+      setTimeout(function(){
+        animated = false;
+      }, 325);
+
+    }
+
+  }, false);   
+
+};
+slideMe.embed = function() {
+
+    var embedNode = document.createElement('div');
+    embedNode.setAttribute('id', 'slideme-share');
+    var getJsonUrl = document.querySelectorAll('[data-slidemejs]')[0].getAttribute('data-slidemejs');
+    var embedCode = document.createTextNode('<div data-slidemejs="' + getJsonUrl + '"></div> <script src="//d3gr29hczmiozh.cloudfront.net/slideme.min.js"></script>');
+    embedNode.innerHTML = '<div id="slideme-embed-close">x</div><div id="slideme-title">Embed<p>Copy and paste the code below into your website</p></div><textarea id="slideme-code"></textarea>';
+    slideMeContainer.appendChild(embedNode);
+    document.getElementById('slideme-code').appendChild(embedCode);
+
+    document.getElementById('slideme-embed-close').addEventListener('click', function() {
+      embedNode.style.display = "none";
+    });
+
+    button = thisPlayer.addChild('button', {
+      text: 'Embed'
+    });
+    button.addClass('slideme-emebed-btn');
+    button.on('click', function() {
+      embedNode.style.display = "block";
+    });
 
 };
 slideMe.setContent = function (isImg) {
@@ -755,7 +922,7 @@ slideMe.setContent = function (isImg) {
     });
 
     document.getElementById('slideme-html-nav-right').addEventListener('click', function() {
-
+      
       var top = slideMe.createImgContainer.offsetTop;
       var height = slideMe.createImgContainer.offsetHeight;
 
@@ -785,13 +952,64 @@ slideMe.setContent = function (isImg) {
   
 
 };
+slideMe.fullscreen = function() {
+
+  slidemefullscreen = thisPlayer.controlBar.addChild('button', {
+    text: 'Full screen'
+  });
+  slidemefullscreen.addClass('slideme-fullscreen-btn');
+  slidemefullscreen.on('click', function() {
+
+    document.querySelectorAll('[data-slidemejs]')[0].classList.add('this-fixed');
+
+
+
+    var fullScreen = document.createElement('div');
+    fullScreen.setAttribute('id', 'slideme-fullscreen');
+    fullScreen.innerHTML = '<div id="slideme-close-popup">x</div>';
+    document.querySelectorAll('[data-slidemejs]')[0].appendChild(fullScreen);
+
+    document.getElementById('slideme-container').style.display = 'block';
+    document.getElementById('slideme-list-wrapper').style.display = 'block';
+    slideMe.setSize();
+
+    var thatH = parseFloat(document.querySelectorAll('[data-slidemejs]')[0].style.height);
+    var thatW = parseFloat(document.querySelectorAll('[data-slidemejs]')[0].style.width);
+
+    var sHeight =  (window.innerHeight - thatH) / 2;
+    var sWidth = (window.innerWidth - thatW) / 2;
+    document.querySelectorAll('[data-slidemejs]')[0].style.marginTop = sHeight + 'px';
+    document.querySelectorAll('[data-slidemejs]')[0].style.marginLeft = sWidth + 'px';
+
+    function removeFullScr() {
+      fullScreen.remove();
+      document.querySelectorAll('[data-slidemejs]')[0].classList.remove('this-fixed');
+
+      document.querySelectorAll('[data-slidemejs]')[0].style.marginTop = 0 + 'px';
+      document.querySelectorAll('[data-slidemejs]')[0].style.marginLeft = 'auto';
+
+      document.getElementById('slideme-fakediv').remove();
+
+      if (slideMeContainer.classList.contains('full-mobile')) {
+        slideMeContainer.classList.remove('full-mobile');
+      }
+
+      slideMe.setSize();
+    }
+
+    document.getElementById('slideme-close-popup').addEventListener('click', removeFullScr, false);
+    document.getElementById('slideme-fullscreen').addEventListener('click', removeFullScr, false);
+
+  });
+
+};
 document.addEventListener('DOMContentLoaded', function() {
 
   slideMeContainer = document.querySelectorAll('[data-slidemejs]')[0];
 
   slideMe.addPreloader();
 
-  slideMe.loadAssets('../build/slidemecss.min.css', 'css', function(){
+  slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemecss.min.css', 'css', function(){
   
     if (slideMeContainer !== undefined && slideMeContainer.getAttribute('data-slidemejs') !== '') {
       slideMe.loadJson(slideMeContainer.getAttribute('data-slidemejs'));

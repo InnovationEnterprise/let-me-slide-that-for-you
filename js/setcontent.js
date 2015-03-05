@@ -81,7 +81,7 @@ slideMe.setContent = function (isImg) {
     });
 
     document.getElementById('slideme-html-nav-right').addEventListener('click', function() {
-
+      
       var top = slideMe.createImgContainer.offsetTop;
       var height = slideMe.createImgContainer.offsetHeight;
 
