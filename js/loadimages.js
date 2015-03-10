@@ -17,6 +17,7 @@ slideMe.loadImages = function () {
 
         ajaxImgCount = ajaxImgCount + 1;
 
+
         if (ajaxImgCount === videoSlidesLength) {
 
           slideMe.setContent(true);
@@ -27,7 +28,7 @@ slideMe.loadImages = function () {
 
       reqImg.onerror = function() {
 
-        errorThat('cannot load image', slideMeContainer);
+        errorThat('cannot load image', slideMe.slideMeContainer);
 
       };
 

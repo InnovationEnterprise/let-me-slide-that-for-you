@@ -2,7 +2,7 @@ slideMe.getSlides = function () {
 
   slideMe.presentationNode = document.createElement('div');
   slideMe.presentationNode.setAttribute('id', 'slideme-container');
-  slideMeContainer.appendChild(slideMe.presentationNode);
+  slideMe.slideMeContainer.appendChild(slideMe.presentationNode);
 
   slideMe.createImgContainer = document.createElement('div');
   slideMe.createImgContainer.setAttribute('id', 'slideme-list');
@@ -11,7 +11,7 @@ slideMe.getSlides = function () {
   var createImgContainerWrapper = document.createElement('div');
   createImgContainerWrapper.setAttribute('id', 'slideme-list-wrapper');
 
-  slideMeContainer.appendChild(createImgContainerWrapper);
+  slideMe.slideMeContainer.appendChild(createImgContainerWrapper);
 
   if (slideMe.data.videoslidestype === 'images') {
 
@@ -19,9 +19,9 @@ slideMe.getSlides = function () {
     createImgContainerWrapper.innerHTML = createButtons;
 
     if (slideMe.data.videosourcesmobile !== undefined || slideMe.data.videosources !== undefined) {
-      slideMeContainer.setAttribute('class', 'slideme-images');
+      slideMe.slideMeContainer.setAttribute('class', 'slideme-images');
     } else {
-      slideMeContainer.setAttribute('class', 'slideme-images-only');
+      slideMe.slideMeContainer.setAttribute('class', 'slideme-images-only');
     }
     
 
@@ -36,7 +36,7 @@ slideMe.getSlides = function () {
     createHtmlPresentationNav.innerHTML = '<div id="slideme-html-nav-left"><</div><div id="slideme-html-nav-right">></div>';
     createImgContainerWrapper.appendChild(createHtmlPresentationNav);
 
-    slideMeContainer.setAttribute('class', 'slideme-html');
+    slideMe.slideMeContainer.setAttribute('class', 'slideme-html');
 
   }
 

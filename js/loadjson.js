@@ -23,14 +23,31 @@ slideMe.loadJson = function (jsonUrl) {
       
     } else {
 
-      slideMe.errorThat('cannot connect', slideMeContainer);
+      slideMe.errorThat('cannot connect', slideMe.slideMeContainer);
 
     }
+
+    var readyPlayer = setInterval(function(){
+
+      if (slideMe.data.videosourcesmobile !== undefined || slideMe.data.videosources !== undefined){
+        if (slideMe.thisPlayer !== undefined && slideMe.contentReady === true){
+          slideMe.preloaderWrapper.remove();
+          clearInterval(readyPlayer);
+        }
+      } else {
+        if (slideMe.contentReady === true) {
+          slideMe.preloaderWrapper.remove();
+          clearInterval(readyPlayer);
+        }
+      }
+
+    }, 50);
+
 
   };
 
   request.onerror = function() {
-    slideMe.errorThat('cannot connect', slideMeContainer);
+    slideMe.errorThat('cannot connect', slideMe.slideMeContainer);
   };
 
   request.send();
@@ -41,8 +58,8 @@ slideMe.reload = function (jsonUrl) {
 
     videojs.dispose();
 
-    while(slideMeContainer.firstChild) {
-      slideMeContainer.removeChild(slideMeContainer.firstChild);
+    while(slideMe.slideMeContainer.firstChild) {
+      slideMe.slideMeContainer.removeChild(slideMe.slideMeContainer.firstChild);
     }
 
     addPreloader();

@@ -1,9 +1,10 @@
 slideMe.setSize = function() {
 
-    var sW = slideMeContainer.parentNode.offsetWidth;
+    var sW = slideMe.slideMeContainer.parentNode.offsetWidth;
 
+    var isThisFixed = slideMe.slideMeContainer.classList.contains('this-fixed');
 
-    if (slideMeContainer.classList.contains('this-fixed')) {
+    if (isThisFixed) {
       sW = window.innerWidth;
     }
 
@@ -52,75 +53,55 @@ slideMe.setSize = function() {
       slideMe.presentationNode.style.width = sW + 'px';
       slideMe.presentationNode.style.height = sH + 'px';
 
-      slideMeContainer.style.height = vH + 75 + 'px';
+      slideMe.slideMeContainer.style.height = vH + 75 + 'px';
 
     }
     
-    slideMeContainer.style.width = vW + sW + 'px';
+    slideMe.slideMeContainer.style.width = vW + sW + 'px';
 
-    if (slideMe.data.videoslides === undefined && slideMeContainer.parentNode.offsetWidth >= 900) {
+    var slideMeHeaderOne = document.getElementById('slideme-h1');
+
+    if (slideMe.data.videoslides === undefined && slideMe.slideMeContainer.parentNode.offsetWidth >= 900) {
 
       vW = vW * 1.2;
       vH = vW / 1.78;
-      if (document.getElementById('slideme-h1') !== null) {
-        document.getElementById('slideme-h1').style.maxWidth = vW + 'px';
+      if (slideMeHeaderOne !== null) {
+        slideMeHeaderOne.style.maxWidth = vW + 'px';
       }
       
     } else {
-      if (document.getElementById('slideme-h1') !== null) {
-        document.getElementById('slideme-h1').style.maxWidth = vW + sW + 'px';
+      if (slideMeHeaderOne !== null) {
+        slideMeHeaderOne.style.maxWidth = vW + sW + 'px';
       }
     }
-    if (slideMeContainer.parentNode.offsetWidth <= 900) {
+
+    if (slideMe.slideMeContainer.parentNode.offsetWidth <= 900) {
       
-      if (!slideMeContainer.classList.contains('this-fixed')) {
-        if (document.getElementById('slideme-container') !== null) {
-          document.getElementById('slideme-container').style.display = 'none';
+      if (!isThisFixed) {
+        if (slideMe.presentationNode) {
+          slideMe.presentationNode.style.display = 'none';
           document.getElementById('slideme-list-wrapper').style.display = 'none';
         }
-        vW = slideMeContainer.offsetWidth;
+        vW = slideMe.slideMeContainer.offsetWidth;
         vH = vW / 1.78;
-        slideMeContainer.style.height = vH + 'px';
-        slideMeContainer.classList.remove('full-mobile');
-      } else {
-
-        if (document.getElementById('slideme-container') !== null) {
-          document.getElementById('slideme-container').style.display = 'block';
-          document.getElementById('slideme-list-wrapper').style.display = 'block';
-        }
-
-        slideMeContainer.style.height = vH + 75 + 'px';
-        if (window.innerWidth <= 900) {
-         slideMeContainer.classList.add('full-mobile');
-        }
-
-        if (document.getElementById('slideme-fakediv') === null && !slideMeContainer.classList.contains('full-mobile')) {
-
-          var slideMeFakeDiv = document.createElement('div');
-          slideMeFakeDiv.setAttribute('id', 'slideme-fakediv');
-          slideMeContainer.parentNode.insertBefore(slideMeFakeDiv, slideMeContainer.nextSibling);
-          if (slideMeContainer.parentNode.offsetWidth <= 415) {
-            slideMeFakeDiv.style.height = vH + 105 + 'px';
-          } else {
-            slideMeFakeDiv.style.height = vH + 75 + 'px';
-          }
-          
-
-        }
-
       }
+
+      slideMe.slideMeContainer.style.height = vH + 'px';
 
     } else {
-      if (document.getElementById('slideme-container') !== null) {
-        document.getElementById('slideme-container').style.display = 'block';
+
+      if (slideMe.presentationNode) {
+        slideMe.presentationNode.style.display = 'block';
         document.getElementById('slideme-list-wrapper').style.display = 'block';
+        document.getElementById('slideme-list-wrapper').style.bottom = '0px';
       }
+
     }
 
-    if (!slideMeContainer.classList.contains('full-mobile')) {
-      slideMe.thisPlayer.dimensions(vW, vH);
+    if (slideMe.data.videoslides === undefined) {
+      slideMe.slideMeContainer.style.height = vH + 'px';
     }
-   
+    slideMe.thisPlayer.dimensions(vW, vH);
 
 
 };

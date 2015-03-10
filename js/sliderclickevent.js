@@ -6,11 +6,11 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
   function addClicksFn() {
 
     if (ready === true) {
-      var duration = thisPlayer.duration();
+      var duration = slideMe.thisPlayer.duration();
       if (slideMe.data.videosourcesmobile && duration > 10 || slideMe.data.videosources && duration > 10) {
         var thisTime = this.getAttribute('data-slideme-time');
-        thisPlayer.currentTime(thisTime);
-        thisPlayer.play();
+        slideMe.thisPlayer.currentTime(thisTime);
+        slideMe.thisPlayer.play();
       }
     }
 

@@ -8,6 +8,6 @@ slideMe.addPreloader = function () {
   slideMe.preloaderWrapper = document.createElement('div');
   slideMe.preloaderWrapper.setAttribute('id', 'slideme-preloader');
   slideMe.preloaderWrapper.innerHTML = preloaderDom;
-  slideMeContainer.appendChild(slideMe.preloaderWrapper);
+  slideMe.slideMeContainer.appendChild(slideMe.preloaderWrapper);
 
 };

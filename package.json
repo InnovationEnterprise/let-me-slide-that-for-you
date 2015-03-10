@@ -21,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/xoxoxo/slideme/issues"
   },
-  "homepage": "https://github.com/xoxoxo/slideme"
+  "homepage": "https://github.com/xoxoxo/slideme",
+  "devDependencies": {
+    "gulp-closure-compiler": "^0.2.17",
+    "gulp-recursive-concat": "0.0.7",
+    "gulp-wrap-amd": "^0.4.1"
+  }
 }

@@ -15,9 +15,9 @@ slideMe.playList = function () {
   }
 
   createPlaylist.innerHTML = '<div id="slideme-playlist-title">Playlist<div id="slideme-playlist-drop">></div></div><div id="slideme-playlist-list"></div>';
-  slideMeContainer.appendChild(createPlaylist);
+  slideMe.slideMeContainer.appendChild(createPlaylist);
 
-  slideMeContainer.style.margin = '0 auto 50px auto';
+  slideMe.slideMeContainer.style.margin = '0 auto 50px auto';
 
 
   var playListTitle = document.getElementById('slideme-playlist-title');

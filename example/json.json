@@ -10,6 +10,7 @@
       "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/production/12-2014/SPINYElliotRawls.mp4"
   },
   "title" : "Stuff Ttitle",
+  "adTagUrl" : "http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/422581008/test_video&ciu_szs&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]",
   "videoslidestype": "images",
   "subtitles" : [
     {

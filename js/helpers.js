@@ -14,6 +14,14 @@ slideMe.addAttributes = function (element, attribute) {
   }
 };
 
+slideMe.destroy = function() {
+
+    slideMe.thisPlayer.dispose();
+    slideMe.slideMeContainer.remove();
+    slideMe = undefined;
+
+};
+
 // Remy throttle fn
 
 slideMe.throttle = function (fn, threshhold, scope) {

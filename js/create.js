@@ -20,7 +20,7 @@ slideMe.createDOM = function () {
         videoSources = slideMe.data.videosources;
       }
     
-      slideMeContainer.appendChild(slideMe.thisVideoPlayer);
+      slideMe.slideMeContainer.appendChild(slideMe.thisVideoPlayer);
 
       for (var value in videoSources) {
         if (videoSources.hasOwnProperty(value)) {
