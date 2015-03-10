@@ -92,36 +92,37 @@ add a link to your playlist with type set to json or call
 ```
 slideMe.reload('jsonurl');
 ```
+________________________________
 
-### Changelog - v0.07 alpha
+<!--### Changelog - v0.07 alpha-->
 
-v0.07
+<!--v0.07-->
 
-* autoload if data-slidemejs have json url
-* minor code cleanup 
+<!--* autoload if data-slidemejs have json url-->
+<!--* minor code cleanup -->
 
-v0.06
+<!--v0.06-->
 
-* ability to load closed captions
-* option to switch between low/high quality - videosources for high and videosourcesmobile for low
+<!--* ability to load closed captions-->
+<!--* option to switch between low/high quality - videosources for high and videosourcesmobile for low-->
 
-v0.05
+<!--v0.05-->
 
-* change text slides to any html
+<!--* change text slides to any html-->
 
-v0.04
+<!--v0.04-->
 
-* change slideMeJs to slideMe
-* slideMe.loadAssets() - usage slideMeLoad('url', 'type', function); - type can be css or js
-* load css and js from cdn
+<!--* change slideMeJs to slideMe-->
+<!--* slideMe.loadAssets() - usage slideMeLoad('url', 'type', function); - type can be css or js-->
+<!--* load css and js from cdn-->
 
-v0.03
+<!--v0.03-->
 
-* mini api
- * slideMe.reload('youJSONurl') load new player
- * slideMe.destroyPlaylist() that will remove playlist
+<!--* mini api-->
+<!-- * slideMe.reload('youJSONurl') load new player-->
+<!-- * slideMe.destroyPlaylist() that will remove playlist-->
 
 
-v0.02
+<!--v0.02-->
 
-* added option to use playlist as a way to update player via json
+<!--* added option to use playlist as a way to update player via json-->
