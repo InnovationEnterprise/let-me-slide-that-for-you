@@ -23,48 +23,53 @@ slideMe.fireVideJs = function () {
 
   });
 
-  slideMe.thisPlayer = videojs(slideMe.thisVideoPlayer);
 
-  // get ads if available
-
-  var thisChannel = slideMe.slideMeContainer.getAttribute('data-adtag');
-
-  if (slideMe.data.adTagUrl !== undefined || thisChannel) {
-
-    var options;
-    if (thisChannel === null) {
-      options = {
-
-        id: 'videojs',
-        adTagUrl: slideMe.data.adTagUrl
-
-      };
-    } else {
-      options = {
-
-        id: 'videojs',
-        adTagUrl: thisChannel
-
-      };
-    }
-
-    slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeads.css', 'css');
-
-    slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
-
-      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeads.js', 'script', function() {
-
-        slideMe.thisPlayer.ima(options);
-        slideMe.thisPlayer.ima.initializeAdDisplayContainer();
-        slideMe.thisPlayer.ima.requestAds();
-        console.log('ad script loaded');
-
-      });
-      
-    });
-
+  if (slideMe.data.youtube === 'true') {
+    slideMe.thisPlayer = videojs(slideMe.thisVideoPlayer, { "techOrder": ["youtube"], "src": "" + slideMe.data.videosources + ""});
+  } else {
+    slideMe.thisPlayer = videojs(slideMe.thisVideoPlayer);
   }
 
+  // get ads if available
+  if (slideMe.data.youtube !== 'true' && !document.all && window.atob) {
+    var thisChannel = slideMe.slideMeContainer.getAttribute('data-adtag');
+  
+    if (slideMe.data.adTagUrl !== undefined || thisChannel) {
+  
+      var options;
+      if (thisChannel === null || thisChannel === '') {
+        options = {
+  
+          id: 'videojs',
+          adTagUrl: slideMe.data.adTagUrl
+  
+        };
+      } else {
+        options = {
+  
+          id: 'videojs',
+          adTagUrl: thisChannel
+  
+        };
+      }
+
+      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeads.css', 'css');
+  
+      slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
+  
+        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeads.js', 'script', function() {
+  
+          slideMe.thisPlayer.ima(options);
+          slideMe.thisPlayer.ima.initializeAdDisplayContainer();
+          slideMe.thisPlayer.ima.requestAds();
+          console.log('ad script loaded');
+  
+        });
+        
+      });
+  
+    }
+  }
   slideMe.thisPlayer.ready(function() {
 
     slideMe.setSize();
@@ -77,15 +82,17 @@ slideMe.fireVideJs = function () {
 
     console.log('player created');
 
-    if (slideMe.data.videoslidestype === 'html') {
-      slideMe.preloaderWrapper.remove();
+    if (slideMe.data.videoslidestype === 'html' && slideMe.slideMeContainer.getAttribute('data-interview') !== 'true') {
+      document.getElementById('slideme-preloader').style.display = 'none';
       slideMe.slideMeContainer.style.overflow = 'visible';
     }
 
-    if (slideMe.data.videoslides === undefined) {
-      slideMe.preloaderWrapper.remove();
-    } else {
-      document.getElementsByTagName('video')[0].addEventListener('timeupdate', slideMe.throttle(slideMe.setNewSlide, 500));
+    if (slideMe.data.videoslides === undefined && slideMe.slideMeContainer.getAttribute('data-interview') !== 'true') {
+      document.getElementById('slideme-preloader').style.display = 'none';
+    }
+
+    if (slideMe.data.videoslides !== undefined){
+        document.getElementsByTagName('video')[0].addEventListener('timeupdate', slideMe.throttle(slideMe.setNewSlide, 500));
     }
 
     if (slideMe.data.autoplay !== undefined && slideMe.data.autoplay !== 'false') {
@@ -93,18 +100,30 @@ slideMe.fireVideJs = function () {
     }
 
     var checkifready = setInterval(function(){
-      if (slideMe.contentReady === true) {
-        slideMe.sliderClickEvent(slideMe.firstImage, true);
+      if (typeof slideMe === 'undefined') {
         clearInterval(checkifready);
+      } else {
+        if (slideMe.contentReady === true) {
+          slideMe.sliderClickEvent(slideMe.firstImage, true);
+          clearInterval(checkifready);
+        }
       }
     }, 100);
 
-    slideMe.embed();
-    if (slideMe.slideMeContainer.parentNode.offsetWidth <= 900) {
+    if (slideMe.data.autoplay !== 'false' && slideMe.slideMeContainer.parentNode.offsetWidth >= 400) {
+      slideMe.embed();
+    }
+
+    if (slideMe.slideMeContainer.parentNode.offsetWidth <= 900 && slideMe.data.videoslides !== undefined) {
       slideMe.fullscreen();
     }
 
-    if (document.getElementById('slideme-h1') === null) {
+    if (slideMe.slideMeContainer.parentNode.offsetWidth <= 400) {
+      document.getElementsByClassName('vjs-big-play-button')[0].style.top = '25%';
+      document.getElementsByClassName('vjs-big-play-button')[0].style.left = '0';
+    }
+
+    if (document.getElementById('slideme-h1') === null && slideMe.slideMeContainer.getAttribute('data-interview') !== 'true' && slideMe.data.youtube !== 'true') {
 
       slidemeVjstitle = slideMe.thisPlayer.addChild('button');
       slidemeVjstitle.addClass('slideme-vjs-title');

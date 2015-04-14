@@ -49,9 +49,6 @@ slideMe.fullscreen = function() {
       }
 
 
-
-
-
       document.getElementById('slideme-close-popup').addEventListener('click', removeFullScr, false);
       document.getElementById('slideme-fullscreen').addEventListener('click', removeFullScr, false);
 

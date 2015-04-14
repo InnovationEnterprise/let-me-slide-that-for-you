@@ -45,7 +45,6 @@ slideMe.throttle = function (fn, threshhold, scope) {
   };
 };
 
-
 slideMe.loadAssets = function (url, type, fn) {
 
   var getBody = document.getElementsByTagName('body')[0];
@@ -56,19 +55,45 @@ slideMe.loadAssets = function (url, type, fn) {
     getAssets.href = url;
     getAssets.rel = 'stylesheet';
     getAssets.type = 'text/css';
+    getBody.appendChild(getAssets);
+    if (fn !== undefined) {
+      getAssets.onload = function(){
+        fn();
+      };
+    }
   } else {
-    getAssets = document.createElement('script');
-    getAssets.src = url;
-    getAssets.async = true;
-    getAssets.type = 'text/javascript';
-  }
 
-  getBody.appendChild(getAssets);
+    if (document.all && !window.atob) {
+      getAssets = document.createElement('script');
+      getAssets.src = url;
+      getAssets.async = true;
+      getAssets.type = 'text/javascript';
+      getBody.appendChild(getAssets);
 
-  if (fn !== undefined) {
-    getAssets.onload = function(){
-      fn();
-    };
+      if (fn !== undefined) {
+        getAssets.onload = function(){
+          fn();
+        };
+      }
+      
+    } else {
+      var getAssets = new XMLHttpRequest();
+
+      getAssets.open("GET", url);
+      getAssets.onreadystatechange=function() {
+        if (getAssets.readyState==4 && getAssets.status==200) {
+          eval(getAssets.responseText);
+          if (fn !== undefined) {
+            fn();
+
+          }
+        }
+      };
+      getAssets.send();
+
+    }
+
+
   }
 
 };

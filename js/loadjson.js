@@ -1,16 +1,31 @@
 slideMe.loadJson = function (jsonUrl) {
 
-  var request = new XMLHttpRequest();
-  request.open('GET', jsonUrl, true);
+  var request;
+  if (document.all && !window.atob) {
+    request = new XDomainRequest();
+  } else {
+    request = new XMLHttpRequest();
+  }
 
+  request.open('GET', jsonUrl);
   request.onload = function() {
 
-    if (request.status >= 200 && request.status < 400) {
+    if (request.readyState == 4 && request.status == 200) {
 
       slideMe.data = JSON.parse(request.responseText); 
-
+      
+    
       if (slideMe.data.videosourcesmobile !== undefined || slideMe.data.videosources !== undefined) {
-        slideMe.loadAssets('//vjs.zencdn.net/4.12/video.js', 'script', function(){
+        
+        var videojsurl;
+        if (slideMe.data.youtube === 'true') {
+          videojsurl = '//vjs.zencdn.net/4.5/video.js';
+        } else {
+          videojsurl = '//vjs.zencdn.net/4.12.5/video.js';
+        }
+
+        slideMe.loadAssets(videojsurl, 'script', function() {
+          console.log("videojsurl");
           slideMe.createDOM();
         });
       }
@@ -27,19 +42,26 @@ slideMe.loadJson = function (jsonUrl) {
 
     }
 
-    var readyPlayer = setInterval(function(){
+    var readyPlayer = setInterval(function() {
 
-      if (slideMe.data.videosourcesmobile !== undefined || slideMe.data.videosources !== undefined){
-        if (slideMe.thisPlayer !== undefined && slideMe.contentReady === true){
-          slideMe.preloaderWrapper.remove();
-          clearInterval(readyPlayer);
+      if (document.getElementById('slideme-preloader') !== null) {
+
+        if (slideMe.data.videosourcesmobile !== undefined || slideMe.data.videosources !== undefined){
+          if (slideMe.thisPlayer !== undefined && slideMe.contentReady === true){
+            document.getElementById('slideme-preloader').style.display = 'none';
+            clearInterval(readyPlayer);
+          }
+        } else {
+          if (slideMe.contentReady === true) {
+            document.getElementById('slideme-preloader').style.display = 'none';
+            clearInterval(readyPlayer);
+          }
         }
+
       } else {
-        if (slideMe.contentReady === true) {
-          slideMe.preloaderWrapper.remove();
-          clearInterval(readyPlayer);
-        }
+        clearInterval(readyPlayer);
       }
+
 
     }, 50);
 
@@ -47,6 +69,7 @@ slideMe.loadJson = function (jsonUrl) {
   };
 
   request.onerror = function() {
+
     slideMe.errorThat('cannot connect', slideMe.slideMeContainer);
   };
 

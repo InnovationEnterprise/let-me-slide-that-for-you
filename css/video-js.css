@@ -20,8 +20,8 @@ The control icons are from a custom font. Each icon corresponds to a character
 */
 @font-face {
   font-family: 'VideoJS';
-  src: url('http://d3gr29hczmiozh.cloudfront.net/font/vjs.eot');
-  src: url('http://d3gr29hczmiozh.cloudfront.net/font/vjs.eot?#iefix') format('embedded-opentype'), url('http://d3gr29hczmiozh.cloudfront.net/font/vjs.woff') format('woff'), url('http://d3gr29hczmiozh.cloudfront.net/font/vjs.ttf') format('truetype'), url('http://d3gr29hczmiozh.cloudfront.net/font/vjs.svg#icomoon') format('svg');
+  src: url('//d3gr29hczmiozh.cloudfront.net/font/vjs.eot');
+  src: url('//d3gr29hczmiozh.cloudfront.net/font/vjs.eot?#iefix') format('embedded-opentype'), url('//d3gr29hczmiozh.cloudfront.net/font/vjs.woff') format('woff'), url('//d3gr29hczmiozh.cloudfront.net/font/vjs.ttf') format('truetype'), url('//d3gr29hczmiozh.cloudfront.net/font/vjs.svg#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
