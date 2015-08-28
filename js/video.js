@@ -56,20 +56,48 @@ slideMe.fireVideJs = function () {
       slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeads.css', 'css');
   
       slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
-  
+        
         slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeads.js', 'script', function() {
   
           slideMe.thisPlayer.ima(options);
           slideMe.thisPlayer.ima.initializeAdDisplayContainer();
           slideMe.thisPlayer.ima.requestAds();
           console.log('ad script loaded');
-  
+
+          if (slideMe.inarticle === 'true') {
+
+            slideMe.thisPlayer.play();
+            var checIfAdRdy = setInterval(pauseAd, 10);
+
+            var pauseAd =function () {
+                slideMe.thisPlayer.ima.pauseAd();
+            };
+
+            slideMe.thisPlayer.on("adsready", function(){ 
+              setTimeout(function(){
+                clearInterval(checIfAdRdy);
+              }, 1500);
+            });
+
+            slideMe.thisPlayer.on("ended", function(){ 
+              slideMe.thisPlayer.play();
+              slideMe.thisPlayer.ima.requestAds();
+              slideMe.thisPlayer.ima.start();
+              var checIfAdRdy = setInterval(pauseAd, 10);
+              slideMe.thisPlayer.on("adsready", function(){ 
+                setTimeout(function(){
+                  clearInterval(checIfAdRdy);
+                }, 1500);
+              });
+            });
+
+          }
         });
-        
+
       });
-  
     }
   }
+
   slideMe.thisPlayer.ready(function() {
 
     slideMe.setSize();
@@ -114,7 +142,7 @@ slideMe.fireVideJs = function () {
       slideMe.embed();
     }
 
-    if (slideMe.slideMeContainer.parentNode.offsetWidth <= 900 && slideMe.data.videoslides !== undefined) {
+    if (slideMe.slideMeContainer.parentNode.offsetWidth <= 900 && slideMe.data.videoslides || slideMe.slideMeContainer.parentNode.offsetWidth <= 900 && slideMe.data.slideshare) {
       slideMe.fullscreen();
     }
 

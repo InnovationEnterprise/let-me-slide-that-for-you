@@ -13,7 +13,7 @@ slideMe.setSize = function() {
 
     var vH;
 
-    if (slideMe.data.videosourcesmobile === undefined && slideMe.data.videosources === undefined) {
+    if (!slideMe.data.videosourcesmobile && !slideMe.data.videosources) {
 
       sH = 480;
 
@@ -30,7 +30,7 @@ slideMe.setSize = function() {
     }
 
 
-    if (slideMe.data.videoslides === undefined) {
+    if (!slideMe.data.videoslides && !slideMe.data.slideshare) {
 
       vH = vW  / 1.78;
 
@@ -61,7 +61,7 @@ slideMe.setSize = function() {
 
     var slideMeHeaderOne = document.getElementById('slideme-h1');
 
-    if (slideMe.data.videoslides === undefined && slideMe.slideMeContainer.parentNode.offsetWidth >= 900) {
+    if (!slideMe.data.videoslides && !slideMe.data.slideshare && slideMe.slideMeContainer.parentNode.offsetWidth >= 900) {
 
       vW = vW * 1.2;
       vH = vW / 1.78;
@@ -75,12 +75,14 @@ slideMe.setSize = function() {
       }
     }
 
-    if (slideMe.slideMeContainer.parentNode.offsetWidth <= 900) {
+    if (slideMe.slideMeContainer.parentNode.offsetWidth <= 770) {
       
       if (!isThisFixed) {
         if (slideMe.presentationNode) {
           slideMe.presentationNode.style.display = 'none';
-          document.getElementById('slideme-list-wrapper').style.display = 'none';
+          if (!slideMe.data.slideshare) {
+            document.getElementById('slideme-list-wrapper').style.display = 'none';
+          }
         }
         vW = slideMe.slideMeContainer.offsetWidth;
         vH = vW / 1.78;
@@ -92,13 +94,15 @@ slideMe.setSize = function() {
 
       if (slideMe.presentationNode) {
         slideMe.presentationNode.style.display = 'block';
-        document.getElementById('slideme-list-wrapper').style.display = 'block';
-        document.getElementById('slideme-list-wrapper').style.bottom = '0px';
+        if (!slideMe.data.slideshare) {
+          document.getElementById('slideme-list-wrapper').style.display = 'block';
+          document.getElementById('slideme-list-wrapper').style.bottom = '0px';
+        }
       }
 
     }
 
-    if (slideMe.data.videoslides === undefined) {
+    if (!slideMe.data.videoslides && !slideMe.data.slideshare) {
       slideMe.slideMeContainer.style.height = vH + 'px';
     }
     slideMe.thisPlayer.dimensions(vW, vH);

@@ -1,12 +1,12 @@
   {
   "autoplay" : "true",
   "preload" : "metadata", 
-  "title" :  "&quot;Stars&quot;,&quot;Platforms&quot; and Data",
+  "title" :  "Agile and Lean Approaches to Strategic Planning",
   "videosources": {
-    "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/production/02-2015/TimMooreBartonCSOMelb15.mp4"
+    "video/mp4" : "https://arcticfoxtv.s3.amazonaws.com/79/d9426067e511e3aa5ca19ec76f247f/Preston-Smalley.mp4"
   },
   "videosourcesmobile": {
-    "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/production/02-2015/TimMooreBartonCSOMelb15.mp4"
-  },
-  "adTagUrl" : "http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/422581008/test_video&ciu_szs&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]"
+    "video/mp4" : "https://arcticfoxtv.s3.amazonaws.com/79/d9426067e511e3aa5ca19ec76f247f/Preston-Smalley.mp4"
+  }
+    
   }

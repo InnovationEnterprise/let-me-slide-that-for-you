@@ -1,11 +1,11 @@
 slideMe.sliderClickEvent = function (firstImage, ready) {
 
   slideMe.addClicks = document.querySelectorAll('[data-slideme-time]');
-  slideMe.addClicks[0].setAttribute('class', 'slideme-img-active');
+  slideMe.addClicks[0].classList.add('slideme-img-active');
 
   function addClicksFn() {
 
-    if (ready === true) {
+    if (ready) {
       var duration = slideMe.thisPlayer.duration();
       if (slideMe.data.videosourcesmobile && duration > 10 || slideMe.data.videosources && duration > 10) {
         var thisTime = this.getAttribute('data-slideme-time');
@@ -23,7 +23,7 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
     }
 
     document.getElementsByClassName('slideme-img-active')[0].classList.remove('slideme-img-active');
-    this.setAttribute('class', 'slideme-img-active');
+    this.classList.add('slideme-img-active');
 
   }
 
@@ -57,7 +57,7 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
     
     var imgContainerPosition = slideMe.createImgContainer.offsetLeft;
 
-    if (animated === false && imgContainerPosition < 50) {
+    if (!animated && imgContainerPosition < 50) {
 
       animated = true; 
       var slideThatMuch;

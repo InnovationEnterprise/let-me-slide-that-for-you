@@ -9,7 +9,7 @@ slideMe.fullscreen = function() {
 
   slidemefullscreen.on('click', function() {
 
-    if (fullscreenon === false) {
+    if (!fullscreenon) {
 
       fullscreenon = true;
 
@@ -22,20 +22,26 @@ slideMe.fullscreen = function() {
       slideMe.slideMeContainer.appendChild(fullScreen);
 
       slideMe.presentationNode.style.display = 'block';
-      document.getElementById('slideme-list-wrapper').style.display = 'block';
 
-      slideMe.presentationNode.style.height = parseFloat(slideMe.slideMeContainer.style.height) + 'px';
-      document.getElementById('slideme-list-wrapper').style.bottom = - 75 + 'px';
+      if (!slideMe.data.slideshare) {
+        document.getElementById('slideme-list-wrapper').style.display = 'block';
+        slideMe.presentationNode.style.height = parseFloat(slideMe.slideMeContainer.style.height) + 'px';
+        document.getElementById('slideme-list-wrapper').style.bottom = - 75 + 'px';
+      } else {
+        slideMe.presentationNode.style.height = '100%';
+      }
 
       var removeFullScr = function() {
         fullScreen.remove();
         slideMe.slideMeContainer.classList.remove('this-fixed');
         slideMe.slideMeContainer.classList.remove('full-mobile');
-        if (slideMe.slideMeContainer.parentNode.offsetWidth <= 900) {
-          document.getElementById('slideme-list-wrapper').style.display = 'none';
-        } else {
-          document.getElementById('slideme-list-wrapper').style.display = 'block';
-        }
+        if (!slideMe.data.slideshare) {
+          if (slideMe.slideMeContainer.parentNode.offsetWidth <= 770) {
+              document.getElementById('slideme-list-wrapper').style.display = 'none';
+            } else {
+              document.getElementById('slideme-list-wrapper').style.display = 'block';
+            }
+          }
         slideMe.slideMeContainer.style.marginTop = 0 + 'px';
         slideMe.slideMeContainer.style.marginLeft = 'auto';
 
@@ -45,7 +51,9 @@ slideMe.fullscreen = function() {
 
       if (slideMe.presentationNode) {
         slideMe.presentationNode.style.display = 'block';
-        document.getElementById('slideme-list-wrapper').style.display = 'block';
+        if (!slideMe.data.slideshare) {
+          document.getElementById('slideme-list-wrapper').style.display = 'block';
+        }
       }
 
 

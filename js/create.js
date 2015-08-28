@@ -5,12 +5,17 @@ slideMe.createDOM = function () {
     var createVideoPlayer = document.createElement('div');
     createVideoPlayer.setAttribute('id', 'slideme-wrapper');   
 
-    if (slideMe.data.videosourcesmobile !== undefined || slideMe.data.videosources !== undefined) {
+    if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
 
       slideMe.thisVideoPlayer = document.createElement('video');
 
-      
-      slideMe.addAttributes(slideMe.thisVideoPlayer, {'id': 'videojs', 'controls': ''});
+      slideMe.inarticle = slideMe.slideMeContainer.getAttribute('data-inarticle');
+
+      if (slideMe.inarticle === 'true') {
+        slideMe.addAttributes(slideMe.thisVideoPlayer, {'id': 'videojs'});
+      } else {
+        slideMe.addAttributes(slideMe.thisVideoPlayer, {'id': 'videojs', 'controls': ''});
+      }
 
       var videoSources;
 

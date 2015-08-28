@@ -20,14 +20,6 @@
 }
 
 
-#slideme-abstract {
-  font-size: 16px;
-  line-height: 20px;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  padding: 0 50px 25px 0;
-}
-
 #slideme-wrapper {
   float: left;
 }
@@ -279,7 +271,6 @@
   top: 0;
   right: 0;
   position: absolute;
-  background: red;
   overflow: hidden;
 }
 

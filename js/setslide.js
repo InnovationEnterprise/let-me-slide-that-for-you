@@ -1,6 +1,6 @@
 slideMe.setNewSlide = function() {
 
-  if (slideMe.imagesReady === true) {
+  if (slideMe.imagesReady) {
     
     var getCurrentTime = Math.round(slideMe.thisPlayer.currentTime());
     var arrayNr;
@@ -40,7 +40,7 @@ slideMe.setNewSlide = function() {
       }
   
       document.getElementsByClassName('slideme-img-active')[0].classList.remove('slideme-img-active');
-      getSlideFromDom.setAttribute('class', 'slideme-img-active');
+      getSlideFromDom.classList.add('slideme-img-active');
   
     }
 

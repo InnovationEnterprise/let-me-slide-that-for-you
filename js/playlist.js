@@ -23,7 +23,7 @@ slideMe.playList = function () {
   var playListTitle = document.getElementById('slideme-playlist-title');
   var playListList = document.getElementById('slideme-playlist-list');
 
-  if (data.playlist !== undefined) {
+  if (data.playlist) {
     playListData = data.playlist;
   }
 
@@ -63,7 +63,7 @@ slideMe.playList = function () {
   var open = false;
   playListTitle.addEventListener('click', function() {
 
-    if (open === false) {
+    if (!open) {
 
       open = true;
       playListList.style.display = 'block';

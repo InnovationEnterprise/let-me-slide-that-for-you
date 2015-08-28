@@ -1,6 +1,6 @@
 slideMe.errorThat = function (thisError, thisContainer) {
   var errorDiv = 'Player error:<br>' + thisError + '';
-  thisContainer.setAttribute('class', 'slideme-error');
+  thisContainer.classList.add('slideme-error');
   thisContainer.innerHTML = errorDiv;
   slideMe = null;
 };
@@ -56,36 +56,36 @@ slideMe.loadAssets = function (url, type, fn) {
     getAssets.rel = 'stylesheet';
     getAssets.type = 'text/css';
     getBody.appendChild(getAssets);
-    if (fn !== undefined) {
+    if (fn) {
       getAssets.onload = function(){
         fn();
       };
     }
   } else {
 
-    if (document.all && !window.atob) {
+    if (navigator.appVersion.indexOf("MSIE 10") === -1) {
+      
       getAssets = document.createElement('script');
       getAssets.src = url;
       getAssets.async = true;
       getAssets.type = 'text/javascript';
       getBody.appendChild(getAssets);
 
-      if (fn !== undefined) {
+      if (fn) {
         getAssets.onload = function(){
           fn();
         };
       }
       
     } else {
-      var getAssets = new XMLHttpRequest();
 
+      getAssets = new XMLHttpRequest();
       getAssets.open("GET", url);
       getAssets.onreadystatechange=function() {
         if (getAssets.readyState==4 && getAssets.status==200) {
-          eval(getAssets.responseText);
-          if (fn !== undefined) {
+          JSON.parse(getAssets.responseText);
+          if (fn) {
             fn();
-
           }
         }
       };
