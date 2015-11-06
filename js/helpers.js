@@ -2,7 +2,8 @@ slideMe.errorThat = function (thisError, thisContainer) {
   var errorDiv = 'Player error:<br>' + thisError + '';
   thisContainer.classList.add('slideme-error');
   thisContainer.innerHTML = errorDiv;
-  slideMe = null;
+  slideMe.checkifready = null;
+  slideMe.error = true;
 };
 
 
@@ -96,4 +97,31 @@ slideMe.loadAssets = function (url, type, fn) {
 
   }
 
+};
+
+
+slideMe.checkifready = function(){
+ var slideMeInterval =  setInterval(function(){
+    if (slideMe.error === true || typeof slideMe === 'undefined') {
+      clearInterval(slideMeInterval);
+      if (slideMe.error === true) {
+        console.log(slideMe);
+      }
+    } else {
+      if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
+        if (slideMe.contentReady && slideMe.videoready) {
+          if (slideMe.data.videoslides && !slideMe.data.syncoff){
+            document.getElementsByTagName('video')[0].addEventListener('timeupdate', slideMe.throttle(slideMe.setNewSlide, 500));
+          }
+          slideMe.sliderClickEvent(slideMe.firstImage, true);
+          clearInterval(slideMeInterval);
+        }
+      } else {
+        if (slideMe.contentReady) {
+          slideMe.preloaderWrapper.remove()
+        }
+      }
+    }
+
+  }, 100);
 };

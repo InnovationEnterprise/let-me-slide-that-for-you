@@ -1,15 +1,18 @@
 slideMe.getSlides = function () {
 
-  slideMe.presentationNode = document.createElement('div');
-  slideMe.presentationNode.setAttribute('id', 'slideme-container');
-  slideMe.slideMeContainer.appendChild(slideMe.presentationNode);
-  var createImgContainerWrapper;
+  if (slideMe.data.videoslidestype === 'images' || slideMe.data.slideshare) {
+    slideMe.presentationNode = document.createElement('div');
+    slideMe.presentationNode.setAttribute('id', 'slideme-container');
+    slideMe.slideMeContainer.appendChild(slideMe.presentationNode);
+  }
+
+  slideMe.createImgContainerWrapper;
   if (!slideMe.data.slideshare) {
     slideMe.createImgContainer = document.createElement('div');
     slideMe.createImgContainer.setAttribute('id', 'slideme-list');
-    createImgContainerWrapper = document.createElement('div');
-    createImgContainerWrapper.setAttribute('id', 'slideme-list-wrapper');
-    slideMe.slideMeContainer.appendChild(createImgContainerWrapper);
+    slideMe.createImgContainerWrapper = document.createElement('div');
+    slideMe.createImgContainerWrapper.setAttribute('id', 'slideme-list-wrapper');
+    slideMe.slideMeContainer.appendChild(slideMe.createImgContainerWrapper);
   }
 
   if (slideMe.data.videoslidestype === 'images' || slideMe.data.slideshare) {
@@ -22,26 +25,29 @@ slideMe.getSlides = function () {
 
     if (!slideMe.data.slideshare) {
       var createButtons = '<div id="slideme-btn-prev"><i class="icon-prevslide"><</i></div><div id="slideme-btn-next"><i class="icon-nextslide">></i></div>';
-      createImgContainerWrapper.innerHTML = createButtons;
+      slideMe.createImgContainerWrapper.innerHTML = createButtons;
       slideMe.loadImages();
+    } else {
+      if (!slideMe.data.videosources || !slideMe.data.videosourcesmobile) {
+        slideMe.contentReady = true;
+      }
     }
-    
 
   } else {
-
-    createImgContainerWrapper.appendChild('slideme-text');
 
     var createHtmlPresentationNav = document.createElement('div');
     createHtmlPresentationNav.setAttribute('id', 'slideme-html-nav');
     createHtmlPresentationNav.innerHTML = '<div id="slideme-html-nav-left"><</div><div id="slideme-html-nav-right">></div>';
-    createImgContainerWrapper.appendChild(createHtmlPresentationNav);
+    slideMe.createImgContainerWrapper.appendChild(createHtmlPresentationNav);
 
     slideMe.slideMeContainer.classList.add('slideme-html');
+    slideMe.presentationNode = slideMe.createImgContainerWrapper;
+    slideMe.setContent(false);
 
   }
 
   if (!slideMe.data.slideshare) {
-    createImgContainerWrapper.appendChild(slideMe.createImgContainer);
+    slideMe.createImgContainerWrapper.appendChild(slideMe.createImgContainer);
   }
 
   if (slideMe.data.slideshare) {

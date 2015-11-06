@@ -1,0 +1,43 @@
+  {
+    "autoplay" : "true",
+    "preload" : "metadata", 
+    "title" :  "sueprduper2017",
+    "subtitles" : [
+      {
+      "src" : "/subtitle.vtt",
+      "srclang" : "pl",
+      "label" : "label"
+      }
+    ],  
+    "playlist" : [
+        {
+          "link" : "/example/json/videoandslides.json",
+          "title" : "Video and imageslides",
+          "type" : "json"
+        },
+        {
+          "link" : "/example/json/videoandsubtitles.json",
+          "title" : "Just video",
+          "type" : "json"
+        },   
+        {
+          "link" : "/example/json/images.json",
+          "title" : "Just images",
+          "type" : "json"
+        },
+        {
+          "link" : "/example/json/videoslideshare.json",
+          "title" : "Video with slideshare",
+          "type" : "json"
+        }, 
+        {
+          "link" : "/example/json/youtubeandhtml.json",
+          "title" : "Youtube with html",
+          "type" : "json"
+        }, 
+        {
+          "link" : "http://theinnovationenterprise.com/",
+          "title" : "Just a link"
+        }
+    ]
+  }

@@ -3,22 +3,17 @@ slideMe.loadJson = function (jsonUrl) {
   var request = new XMLHttpRequest();
 
   request.open('GET', jsonUrl);
+
   request.onload = function() {
+
+    slideMe.checkifready();
 
     if (request.readyState == 4 && request.status == 200) {
 
       slideMe.data = JSON.parse(request.responseText); 
-      
     
       if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
-        
-        var videojsurl;
-        if (slideMe.data.youtube === 'true') {
-          videojsurl = '//vjs.zencdn.net/4.5/video.js';
-        } else {
-          videojsurl = '//vjs.zencdn.net/4.12.5/video.js';
-        }
-
+        var videojsurl = '//vjs.zencdn.net/4.12.11/video.js';
         slideMe.loadAssets(videojsurl, 'script', function() {
           console.log("videojsurl");
           slideMe.createDOM();
@@ -32,9 +27,7 @@ slideMe.loadJson = function (jsonUrl) {
       console.log('json fetched');
       
     } else {
-
       slideMe.errorThat('cannot connect', slideMe.slideMeContainer);
-
     }
 
     var readyPlayer = setInterval(function() {
@@ -58,7 +51,7 @@ slideMe.loadJson = function (jsonUrl) {
       }
 
 
-    }, 50);
+    }, 5);
 
 
   };
@@ -74,13 +67,15 @@ slideMe.loadJson = function (jsonUrl) {
 
 slideMe.reload = function (jsonUrl) {
 
-    videojs.dispose();
+  if (slideMe.thisPlayer) {
+    slideMe.thisPlayer.dispose();
+  }
+    
+  while(slideMe.slideMeContainer.firstChild) {
+    slideMe.slideMeContainer.removeChild(slideMe.slideMeContainer.firstChild);
+  }
 
-    while(slideMe.slideMeContainer.firstChild) {
-      slideMe.slideMeContainer.removeChild(slideMe.slideMeContainer.firstChild);
-    }
-
-    addPreloader();
-    loadJson(jsonUrl);
+  slideMe.addPreloader();
+  slideMe.loadJson(jsonUrl);
 
 };

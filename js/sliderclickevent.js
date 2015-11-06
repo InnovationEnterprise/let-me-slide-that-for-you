@@ -5,7 +5,7 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
 
   function addClicksFn() {
 
-    if (ready) {
+    if (ready && !slideMe.data.syncoff) {
       var duration = slideMe.thisPlayer.duration();
       if (slideMe.data.videosourcesmobile && duration > 10 || slideMe.data.videosources && duration > 10) {
         var thisTime = this.getAttribute('data-slideme-time');
@@ -28,52 +28,44 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
   }
 
   for (var g = 0; g < slideMe.addClicks.length; g++) {
-
     slideMe.addClicks[g].addEventListener('click', addClicksFn, false);
-
   }
 
-  var animated = false;
-  var imgContainerWidth = 100 * slideMe.data.videoslides.length;
-
-  document.getElementById('slideme-btn-next').addEventListener('click', function() {
-
-    var imgContainerPosition = slideMe.createImgContainer.offsetLeft;
-
-    if (animated === false && imgContainerPosition > - imgContainerWidth + 500) {
-
-      animated = true;        
-      slideMe.createImgContainer.style.left = imgContainerPosition - 200 + 'px';
-
-      setTimeout(function(){
-        animated = false;
-      }, 325);
-
-    }
-
-  }, false);
-
-  document.getElementById('slideme-btn-prev').addEventListener('click', function() {
-    
-    var imgContainerPosition = slideMe.createImgContainer.offsetLeft;
-
-    if (!animated && imgContainerPosition < 50) {
-
-      animated = true; 
-      var slideThatMuch;
-
-      if (imgContainerPosition < -50) {
-        slideThatMuch = 200;
-      } else {
-        slideThatMuch = 100;
+  if (slideMe.data.videoslidestype === 'images') {
+  console.log('dupa');
+    var animated = false;
+    var imgContainerWidth = 100 * slideMe.data.videoslides.length;
+  
+    document.getElementById('slideme-btn-next').addEventListener('click', function() {
+      console.log('dupa');
+      var imgContainerPosition = slideMe.createImgContainer.offsetLeft;
+      if (animated === false && imgContainerPosition > - imgContainerWidth + 500) {
+        animated = true;        
+        slideMe.createImgContainer.style.left = imgContainerPosition - 200 + 'px';
+        setTimeout(function(){
+          animated = false;
+        }, 325);
       }
-      slideMe.createImgContainer.style.left = imgContainerPosition + slideThatMuch + 'px';
-      setTimeout(function(){
-        animated = false;
-      }, 325);
-
-    }
-
-  }, false);   
+    }, false);
+  
+    document.getElementById('slideme-btn-prev').addEventListener('click', function() {
+      console.log('dupa');
+      var imgContainerPosition = slideMe.createImgContainer.offsetLeft;
+      if (!animated && imgContainerPosition < 50) {
+        animated = true; 
+        var slideThatMuch;
+        if (imgContainerPosition < -50) {
+          slideThatMuch = 200;
+        } else {
+          slideThatMuch = 100;
+        }
+        slideMe.createImgContainer.style.left = imgContainerPosition + slideThatMuch + 'px';
+        setTimeout(function(){
+          animated = false;
+        }, 325);
+      }
+    }, false);   
+    
+  }
 
 };

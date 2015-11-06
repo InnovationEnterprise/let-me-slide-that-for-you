@@ -13,19 +13,34 @@ slideMe.setSize = function() {
 
     var vH;
 
+    var slideMeParent = slideMe.slideMeContainer.parentNode;
+    var slideMeParentWidth = slideMeParent.offsetWidth;
+
     if (!slideMe.data.videosourcesmobile && !slideMe.data.videosources) {
 
       sH = 480;
 
     } else {
 
-      sW = sW / 2;
-      sH = sW / 1.78;
+      if (slideMe.slideMeContainer.getAttribute('data-wide') === 'true') {
 
-      vW = sW;
-      vH = sH;
+        sW = slideMeParentWidth / 2;
+        sH = sW * 0.67;
 
-      sW = sH * 1.33;
+        vW = sW;
+        vH = sW * 0.67;
+
+      } else {
+
+        sW = sW / 2;
+        sH = sW / 1.78;
+
+        vW = sW;
+        vH = sH;
+
+        sW = sH * 1.33;
+      }
+
 
     }
 
@@ -53,7 +68,11 @@ slideMe.setSize = function() {
       slideMe.presentationNode.style.width = sW + 'px';
       slideMe.presentationNode.style.height = sH + 'px';
 
-      slideMe.slideMeContainer.style.height = vH + 75 + 'px';
+      if (slideMe.data.videoslidestype === 'images') {
+        slideMe.slideMeContainer.style.height = vH + 75 + 'px';
+      } else {
+        slideMe.slideMeContainer.style.height = vH + 'px';
+      }
 
     }
     
@@ -105,7 +124,10 @@ slideMe.setSize = function() {
     if (!slideMe.data.videoslides && !slideMe.data.slideshare) {
       slideMe.slideMeContainer.style.height = vH + 'px';
     }
-    slideMe.thisPlayer.dimensions(vW, vH);
+
+    if (slideMe.thisPlayer) {
+      slideMe.thisPlayer.dimensions(vW, vH);
+    }
 
 
 };

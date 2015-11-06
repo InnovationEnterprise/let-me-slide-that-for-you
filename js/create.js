@@ -19,33 +19,34 @@ slideMe.createDOM = function () {
 
       var videoSources;
 
-      // if (slideMe.data.subtitles !== undefined) {
-
-      //   for (var i = 0; i < slideMe.data.subtitles.length; i++) {
-
-      //     var createSubtitleNode = document.createElement('track');
-
-      //     slideMe.addAttributes(createSubtitleNode, {
-      //       'src' : slideMe.data.subtitles[i].src, 
-      //       'srclang' : slideMe.data.subtitles[i].srclang,
-      //       'label' : slideMe.data.subtitles[i].label
-      //     });          
-
-      //     if (slideMe.data.subtitles[i].default === 'true') {
-      //       createSubtitleNode.setAttribute('default', '');
-      //     }
-
-      //     slideMe.thisVideoPlayer.appendChild(createSubtitleNode);
-
-      //   }
-
-      // }
-
-      if (isMobile !== null) {
+      if (slideMe.data.videosourcesmobile) {
         videoSources = slideMe.data.videosourcesmobile;
       } else {
         videoSources = slideMe.data.videosources;
       }
+
+      if (slideMe.data.subtitles) {
+
+        for (var i = 0; i < slideMe.data.subtitles.length; i++) {
+
+          var createSubtitleNode = document.createElement('track');
+
+          slideMe.addAttributes(createSubtitleNode, {
+            'src' : slideMe.data.subtitles[i].src, 
+            'srclang' : slideMe.data.subtitles[i].srclang,
+            'label' : slideMe.data.subtitles[i].label
+          });       
+
+          if (slideMe.data.subtitles[i].default === 'true') {
+            createSubtitleNode.setAttribute('default', '');
+          }
+
+          slideMe.thisVideoPlayer.appendChild(createSubtitleNode);
+
+        }
+
+      }
+
 
       slideMe.slideMeContainer.appendChild(slideMe.thisVideoPlayer);
 

@@ -1,10 +1,9 @@
 var slideMe = slideMe || {};
 var getHead = document.getElementsByTagName('head')[0];
-var isMobile = navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/Android/i);
 slideMe.timeList = [];
 slideMe.currentArrayNr = '00';
-slideMe.imagesReady = false;
 slideMe.contentReady = false;
+slideMe.videoready = false;
 
 if (document.all && !window.atob) {
     "document"in self&&("classList"in document.createElement("_")?function(){var a=document.createElement("_");a.classList.add("c1","c2");if(!a.classList.contains("c2")){var c=function(a){var e=DOMTokenList.prototype[a];DOMTokenList.prototype[a]=function(a){var c,d=arguments.length;for(c=0;c<d;c++)a=arguments[c],e.call(this,a)}};c("add");c("remove")}a.classList.toggle("c3",!1);if(a.classList.contains("c3")){var k=DOMTokenList.prototype.toggle;DOMTokenList.prototype.toggle=function(a,c){return 1 in arguments&&

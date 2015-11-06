@@ -1,8 +1,7 @@
 slideMe.embed = function() {
   var embedNode = document.createElement('div');
   embedNode.setAttribute('id', 'slideme-share');
-  var getJsonUrl = document.querySelectorAll('[data-slidemejs]')[0].getAttribute('data-slidemejs');
-  var embedCode = document.createTextNode('<div data-slidemejs="' + getJsonUrl + '"></div> <script src="//d3gr29hczmiozh.cloudfront.net/slideme.min.js" async></script>');
+  var embedCode = document.createTextNode('<div data-slidemejs="' + slideMe.getSlideMeUrl + '"></div> <script src="//d3gr29hczmiozh.cloudfront.net/slideme.min.js" async></script>');
   embedNode.innerHTML = '<div id="slideme-embed-close">x</div><div id="slideme-title">Embed<p>Copy and paste the code below into your website</p></div><textarea id="slideme-code"></textarea>';
   slideMe.slideMeContainer.appendChild(embedNode);
   document.getElementById('slideme-code').appendChild(embedCode);
@@ -15,7 +14,7 @@ slideMe.embed = function() {
     embedNode.style.display = "none";
   });
 
-  button = slideMe.thisPlayer.addChild('button', {
+  var button = slideMe.thisPlayer.addChild('button', {
     text: 'Embed'
   });
   document.getElementById('slideme-code').addEventListener('click', function(e){
@@ -25,7 +24,6 @@ slideMe.embed = function() {
   button.on('click', function(e) {
     e.stopPropagation();
     embedNode.style.display = "block";
-
   });
 
 };
