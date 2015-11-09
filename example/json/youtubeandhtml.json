@@ -12,12 +12,12 @@
         "timesec" : "0"
       },
       {
-        "slidecontent" : "<p>some html</p>",
+        "slidecontent" : "<p>some html 2</p>",
         "timemin" : "0",
         "timesec" : "5"
       },
       {
-        "slidecontent" : "<p>some html</p>",
+        "slidecontent" : "<p>some html 3</p>",
         "timemin" : "0",
         "timesec" : "10"
       }

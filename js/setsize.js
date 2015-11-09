@@ -65,8 +65,8 @@ slideMe.setSize = function() {
 
       }
 
-      slideMe.presentationNode.style.width = sW + 'px';
-      slideMe.presentationNode.style.height = sH + 'px';
+      slideMe.DOM.presentationNode.style.width = sW + 'px';
+      slideMe.DOM.presentationNode.style.height = sH + 'px';
 
       if (slideMe.data.videoslidestype === 'images') {
         slideMe.slideMeContainer.style.height = vH + 75 + 'px';
@@ -97,8 +97,8 @@ slideMe.setSize = function() {
     if (slideMe.slideMeContainer.parentNode.offsetWidth <= 770) {
       
       if (!isThisFixed) {
-        if (slideMe.presentationNode) {
-          slideMe.presentationNode.style.display = 'none';
+        if (slideMe.DOM.presentationNode) {
+          slideMe.DOM.presentationNode.style.display = 'none';
           if (!slideMe.data.slideshare) {
             document.getElementById('slideme-list-wrapper').style.display = 'none';
           }
@@ -111,8 +111,8 @@ slideMe.setSize = function() {
 
     } else {
 
-      if (slideMe.presentationNode) {
-        slideMe.presentationNode.style.display = 'block';
+      if (slideMe.DOM.presentationNode) {
+        slideMe.DOM.presentationNode.style.display = 'block';
         if (!slideMe.data.slideshare) {
           document.getElementById('slideme-list-wrapper').style.display = 'block';
           document.getElementById('slideme-list-wrapper').style.bottom = '0px';

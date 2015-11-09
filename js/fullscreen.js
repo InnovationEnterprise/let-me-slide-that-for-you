@@ -24,18 +24,18 @@ slideMe.fullscreen = function() {
       slideMe.slideMeContainer.appendChild(fullScreen);
       slideMe.slideMeContainer.appendChild(fullScreenClose);
 
-      slideMe.presentationNode.style.display = 'block';
+      slideMe.DOM.presentationNode.style.display = 'block';
 
       if (!slideMe.data.slideshare) {
         document.getElementById('slideme-list-wrapper').style.display = 'block';
-        slideMe.presentationNode.style.height = parseFloat(slideMe.slideMeContainer.style.height) + 'px';
+        slideMe.DOM.presentationNode.style.height = parseFloat(slideMe.slideMeContainer.style.height) + 'px';
         document.getElementById('slideme-list-wrapper').style.bottom = - 75 + 'px';
       } else {
-        slideMe.presentationNode.style.height = '100%';
+        slideMe.DOM.presentationNode.style.height = '100%';
       }
 
-      if (slideMe.presentationNode) {
-        slideMe.presentationNode.style.display = 'block';
+      if (slideMe.DOM.presentationNode) {
+        slideMe.DOM.presentationNode.style.display = 'block';
         if (!slideMe.data.slideshare) {
           document.getElementById('slideme-list-wrapper').style.display = 'block';
         }

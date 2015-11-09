@@ -65,14 +65,18 @@ slideMe.createDOM = function () {
       slideMe.fireVideJs();
         
       } else {
-        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeyt.js', 'script', function() {
 
-          slideMe.fireVideJs();
+          slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeyt.js', 'script', function() {
+            slideMe.fireVideJs();
+          });
 
-        });
+
       }
 
     }
 
+  if (slideMe.data.playlist) {
+    slideMe.playList();
+  }
 
 };

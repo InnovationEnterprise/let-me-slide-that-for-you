@@ -18,9 +18,9 @@ slideMe.setNewSlide = function() {
 
     if (slideMe.data.videoslidestype === 'images') {
       if (getSlideFromDom !== getSlideFromDom) {
-        slideMe.createImgContainer.style.left =  150 - getSlideFromDom.offsetLeft + 'px';
+        slideMe.DOM.createImgContainer.style.left =  150 - getSlideFromDom.offsetLeft + 'px';
       } else { 
-        slideMe.createImgContainer.style.left =  50 - getSlideFromDom.offsetLeft + 'px' ;
+        slideMe.DOM.createImgContainer.style.left =  50 - getSlideFromDom.offsetLeft + 'px' ;
       }
       slideMe.firstImage.setAttribute('src', getSlideFromDom.getAttribute('src'));
     } else {

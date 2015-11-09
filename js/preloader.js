@@ -5,9 +5,9 @@ getHead.appendChild(insertSpiner);
 slideMe.addPreloader = function () {
 
   var preloaderDom = '<i class="icon-spinner">.</i>';
-  slideMe.preloaderWrapper = document.createElement('div');
-  slideMe.preloaderWrapper.setAttribute('id', 'slideme-preloader');
-  slideMe.preloaderWrapper.innerHTML = preloaderDom;
-  slideMe.slideMeContainer.appendChild(slideMe.preloaderWrapper);
+  slideMe.DOM.preloaderWrapper = document.createElement('div');
+  slideMe.DOM.preloaderWrapper.setAttribute('id', 'slideme-preloader');
+  slideMe.DOM.preloaderWrapper.innerHTML = preloaderDom;
+  slideMe.slideMeContainer.appendChild(slideMe.DOM.preloaderWrapper);
 
 };

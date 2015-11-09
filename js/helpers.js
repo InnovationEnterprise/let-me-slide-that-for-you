@@ -1,3 +1,7 @@
+// Get Helpers here
+
+// display errors
+
 slideMe.errorThat = function (thisError, thisContainer) {
   var errorDiv = 'Player error:<br>' + thisError + '';
   thisContainer.classList.add('slideme-error');
@@ -6,6 +10,7 @@ slideMe.errorThat = function (thisError, thisContainer) {
   slideMe.error = true;
 };
 
+// Helper for adding elements attributes
 
 slideMe.addAttributes = function (element, attribute) {
   for (var value in attribute) {
@@ -14,6 +19,8 @@ slideMe.addAttributes = function (element, attribute) {
     }
   }
 };
+
+// Remove slideme
 
 slideMe.destroy = function() {
 
@@ -45,6 +52,9 @@ slideMe.throttle = function (fn, threshhold, scope) {
     }
   };
 };
+
+
+// function for loading assets
 
 slideMe.loadAssets = function (url, type, fn) {
 
@@ -99,9 +109,37 @@ slideMe.loadAssets = function (url, type, fn) {
 
 };
 
+// Reload slideme with new config json
+
+slideMe.reload = function (jsonUrl) {
+
+  if (slideMe.thisPlayer) {
+    slideMe.thisPlayer.dispose();
+  }
+    
+  while(slideMe.slideMeContainer.firstChild) {
+    slideMe.slideMeContainer.removeChild(slideMe.slideMeContainer.firstChild);
+  }
+  
+  slideMe.isreloading = true;
+  slideMe.contentReady = false;
+  slideMe.videoready = false;
+  
+  slideMe.DOM = [];
+
+  slideMe.checkifready();
+
+  slideMe.addPreloader();
+  slideMe.loadJson(jsonUrl);
+
+};
+
+
+// Check if slideme is ready
 
 slideMe.checkifready = function(){
  var slideMeInterval =  setInterval(function(){
+    console.log(slideMe.contentReady + ' - ' + slideMe.videoready);
     if (slideMe.error === true || typeof slideMe === 'undefined') {
       clearInterval(slideMeInterval);
       if (slideMe.error === true) {
@@ -109,18 +147,28 @@ slideMe.checkifready = function(){
       }
     } else {
       if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
+        if (!slideMe.data.videoslides) {
+          slideMe.contentReady = true;
+        }
         if (slideMe.contentReady && slideMe.videoready) {
           if (slideMe.data.videoslides && !slideMe.data.syncoff){
-            document.getElementsByTagName('video')[0].addEventListener('timeupdate', slideMe.throttle(slideMe.setNewSlide, 500));
+            slideMe.thisPlayer.on('timeupdate', slideMe.throttle(slideMe.setNewSlide, 500));
           }
-          slideMe.sliderClickEvent(slideMe.firstImage, true);
+          // if (!slideMe.data.videoslides || slideMe.data.slideshare) {
+            slideMe.slideMeContainer.style.overflow = 'visible';
+          // }
+          if (slideMe.data.videoslides) {
+            slideMe.sliderClickEvent(slideMe.firstImage, true);
+          }
+          slideMe.DOM.preloaderWrapper.remove();
           clearInterval(slideMeInterval);
         }
       } else {
         if (slideMe.contentReady) {
-          slideMe.preloaderWrapper.remove()
+          slideMe.DOM.preloaderWrapper.remove();
         }
       }
+
     }
 
   }, 100);

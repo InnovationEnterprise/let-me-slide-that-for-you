@@ -25,7 +25,7 @@ slideMe.setContent = function (isImg) {
           'src': thisContent,
           'data-slideme-time': thisContentTime
         });
-        slideMe.createImgContainer.style.width = 100 * slideMe.data.videoslides.length + 'px';
+        slideMe.DOM.createImgContainer.style.width = 100 * slideMe.data.videoslides.length + 'px';
       } else {
         createSlideNode = document.createElement('div');
         createSlideNode.innerHTML = '<div class="slideme-list-content">' + thisContent + '</div>';
@@ -33,7 +33,7 @@ slideMe.setContent = function (isImg) {
       }
   
       slideMe.timeList.push(thisContentTime);
-      slideMe.createImgContainer.appendChild(createSlideNode);
+      slideMe.DOM.createImgContainer.appendChild(createSlideNode);
       contentNumber = contentNumber + 1;
 
       if (contentNumber === videoSlides.length) {
@@ -49,7 +49,7 @@ slideMe.setContent = function (isImg) {
   if (isImg) {
     slideMe.firstImage = new Image();
     slideMe.firstImage.src = videoSlides[0].slidecontent;
-    slideMe.presentationNode.appendChild(slideMe.firstImage);
+    slideMe.DOM.presentationNode.appendChild(slideMe.firstImage);
     slideMe.slideMeContainer.style.overflow = 'visible';
   }
 
@@ -93,10 +93,5 @@ slideMe.setContent = function (isImg) {
   }
 
   slideMe.contentReady = true;
-
-
-  if (slideMe.data.playlist) {
-    slideMe.playList();
-  }
 
 };

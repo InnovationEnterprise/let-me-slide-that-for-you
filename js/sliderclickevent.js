@@ -15,7 +15,7 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
     }
 
     if (slideMe.data.videoslidestype === 'images' && this !== slideMe.addClicks[0]) {
-      slideMe.createImgContainer.style.left = 150 - this.offsetLeft + 'px';
+      slideMe.DOM.createImgContainer.style.left = 150 - this.offsetLeft + 'px';
     }
 
     if (slideMe.data.videoslidestype === 'images') {
@@ -32,16 +32,14 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
   }
 
   if (slideMe.data.videoslidestype === 'images') {
-  console.log('dupa');
     var animated = false;
     var imgContainerWidth = 100 * slideMe.data.videoslides.length;
   
     document.getElementById('slideme-btn-next').addEventListener('click', function() {
-      console.log('dupa');
-      var imgContainerPosition = slideMe.createImgContainer.offsetLeft;
+      var imgContainerPosition = slideMe.DOM.createImgContainer.offsetLeft;
       if (animated === false && imgContainerPosition > - imgContainerWidth + 500) {
         animated = true;        
-        slideMe.createImgContainer.style.left = imgContainerPosition - 200 + 'px';
+        slideMe.DOM.createImgContainer.style.left = imgContainerPosition - 200 + 'px';
         setTimeout(function(){
           animated = false;
         }, 325);
@@ -49,8 +47,7 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
     }, false);
   
     document.getElementById('slideme-btn-prev').addEventListener('click', function() {
-      console.log('dupa');
-      var imgContainerPosition = slideMe.createImgContainer.offsetLeft;
+      var imgContainerPosition = slideMe.DOM.createImgContainer.offsetLeft;
       if (!animated && imgContainerPosition < 50) {
         animated = true; 
         var slideThatMuch;
@@ -59,7 +56,7 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
         } else {
           slideThatMuch = 100;
         }
-        slideMe.createImgContainer.style.left = imgContainerPosition + slideThatMuch + 'px';
+        slideMe.DOM.createImgContainer.style.left = imgContainerPosition + slideThatMuch + 'px';
         setTimeout(function(){
           animated = false;
         }, 325);
