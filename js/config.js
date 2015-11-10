@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (!slideMe.firstLoad) {
-    slideMe.loadAssets('http://127.0.0.1:8080/build/slidemecss.min.css', 'css', function(){
+    slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemecss.min.css', 'css', function(){
       slideMe.firstLoad = true;
       startupLoop();
     });

@@ -1,5 +1,5 @@
 slideMe.fireVideJs = function () {
-  
+
   // player settings
 
   if (slideMe.data.preload === undefined || '') {
@@ -14,7 +14,7 @@ slideMe.fireVideJs = function () {
 
   }
 
-  slideMe.addAttributes(slideMe.thisVideoPlayer, {
+  slideMe.addAttributes(slideMe.DOM.thisVideoPlayer, {
 
     'class': 'video-js vjs-default-skin',
     'poster': slideMe.data.poster,
@@ -24,9 +24,9 @@ slideMe.fireVideJs = function () {
 
 
   if (slideMe.data.youtube === 'true') {
-    slideMe.thisPlayer = videojs(slideMe.thisVideoPlayer, { "techOrder": ["youtube"], "src": "" + slideMe.data.videosources + ""});
+    slideMe.thisPlayer = videojs(slideMe.DOM.thisVideoPlayer, { "techOrder": ["youtube"], "src": "" + slideMe.data.videosources + ""});
   } else {
-    slideMe.thisPlayer = videojs(slideMe.thisVideoPlayer);
+    slideMe.thisPlayer = videojs(slideMe.DOM.thisVideoPlayer);
   }
 
   // get ads if available
@@ -106,15 +106,16 @@ slideMe.fireVideJs = function () {
 
     console.log('player created');
 
+    // fix for double play button on iphone
     if (navigator.userAgent.match(/iPhone/i)) {
       document.getElementsByClassName('vjs-big-play-button')[0].style.display = 'none';
     }
 
-    if (slideMe.data.autoplay !== undefined && slideMe.data.autoplay !== 'false') {
+    if (slideMe.data.autoplay) {
       slideMe.thisPlayer.play();
     }
 
-    if (slideMe.data.autoplay !== 'false' && slideMe.slideMeContainer.parentNode.offsetWidth >= 400) {
+    if (slideMe.slideMeContainer.parentNode.offsetWidth >= 400) {
       slideMe.embed();
     }
 

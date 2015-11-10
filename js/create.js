@@ -7,14 +7,14 @@ slideMe.createDOM = function () {
 
     if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
 
-      slideMe.thisVideoPlayer = document.createElement('video');
+      slideMe.DOM.thisVideoPlayer = document.createElement('video');
 
       slideMe.inarticle = slideMe.slideMeContainer.getAttribute('data-inarticle');
 
       if (slideMe.inarticle === 'true') {
-        slideMe.addAttributes(slideMe.thisVideoPlayer, {'id': 'videojs'});
+        slideMe.addAttributes(slideMe.DOM.thisVideoPlayer, {'id': 'videojs'});
       } else {
-        slideMe.addAttributes(slideMe.thisVideoPlayer, {'id': 'videojs', 'controls': ''});
+        slideMe.addAttributes(slideMe.DOM.thisVideoPlayer, {'id': 'videojs', 'controls': ''});
       }
 
       var videoSources;
@@ -41,14 +41,14 @@ slideMe.createDOM = function () {
             createSubtitleNode.setAttribute('default', '');
           }
 
-          slideMe.thisVideoPlayer.appendChild(createSubtitleNode);
+          slideMe.DOM.thisVideoPlayer.appendChild(createSubtitleNode);
 
         }
 
       }
 
 
-      slideMe.slideMeContainer.appendChild(slideMe.thisVideoPlayer);
+      slideMe.slideMeContainer.appendChild(slideMe.DOM.thisVideoPlayer);
 
       if (slideMe.data.youtube !== 'true') {
         for (var value in videoSources) {
@@ -58,7 +58,7 @@ slideMe.createDOM = function () {
               "src": videoSources[value],
               "type": value
             });
-            slideMe.thisVideoPlayer.appendChild(createVideoSource);
+            slideMe.DOM.thisVideoPlayer.appendChild(createVideoSource);
           }
         }
 
@@ -74,9 +74,5 @@ slideMe.createDOM = function () {
       }
 
     }
-
-  if (slideMe.data.playlist) {
-    slideMe.playList();
-  }
 
 };

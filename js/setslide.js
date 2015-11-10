@@ -1,5 +1,7 @@
 slideMe.setNewSlide = function() {
-    
+  if (slideMe.isreloading) {
+    return false;
+  }
   var getCurrentTime = Math.round(slideMe.thisPlayer.currentTime());
   var arrayNr;
 

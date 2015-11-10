@@ -189,11 +189,13 @@
   width: 100%;
   height: 40px;
   position: absolute;
-  z-index: 999;
+  z-index: 99;
   bottom: -40px;
   left: 0;
 }
-
+.this-fixed #slideme-playlist {
+  visibility: hidden;
+}
 .slideme-images-only #slideme-playlist {
   bottom: -115px;
 }

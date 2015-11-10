@@ -5,24 +5,7 @@
       "videosourcesmobile": {
         "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/development/10-2015/sueprtest2015_mobile.mp4"
       },
-      "videoslidestype": "images",
-      "videoslides": [
-          {
-            "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/985/original/temporary_276820140320-98367-azcrn4.pdf000.jpg?1395328739",
-            "timemin" : "0",
-            "timesec" : "0"
-          },
-          {
-            "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/986/original/temporary_276820140320-98367-azcrn4.pdf001.jpg?1395328739",
-            "timemin" : "0",
-            "timesec" : "5"
-          },
-          {
-            "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/987/original/temporary_276820140320-98367-azcrn4.pdf002.jpg?1395328739",
-            "timemin" : "0",
-            "timesec" : "10"
-          }
-      ],
+      "adTagUrl" : "http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/422581008/test_video&ciu_szs&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]",
       "playlist" : [
           {
             "link" : "/example/json/videoandslides.json",

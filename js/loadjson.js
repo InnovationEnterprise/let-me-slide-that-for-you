@@ -24,6 +24,10 @@ slideMe.loadJson = function (jsonUrl) {
         slideMe.getSlides();
       }
 
+      if (slideMe.data.playlist) {
+        slideMe.playList();
+      }
+
       console.log('json fetched');
       
     } else {

@@ -113,19 +113,27 @@ slideMe.loadAssets = function (url, type, fn) {
 
 slideMe.reload = function (jsonUrl) {
 
+  slideMe.isreloading = true;
+
   if (slideMe.thisPlayer) {
+    slideMe.thisPlayer.pause();
     slideMe.thisPlayer.dispose();
+    videojs = null;
+    slideMe.thisPlayer = null;
   }
     
   while(slideMe.slideMeContainer.firstChild) {
     slideMe.slideMeContainer.removeChild(slideMe.slideMeContainer.firstChild);
   }
   
-  slideMe.isreloading = true;
+  
   slideMe.contentReady = false;
   slideMe.videoready = false;
-  
+
   slideMe.DOM = [];
+
+  slideMe.slideMeContainer.className = '';
+  slideMe.slideMeContainer.style.overflow = 'hidden';
 
   slideMe.checkifready();
 
@@ -139,7 +147,6 @@ slideMe.reload = function (jsonUrl) {
 
 slideMe.checkifready = function(){
  var slideMeInterval =  setInterval(function(){
-    console.log(slideMe.contentReady + ' - ' + slideMe.videoready);
     if (slideMe.error === true || typeof slideMe === 'undefined') {
       clearInterval(slideMeInterval);
       if (slideMe.error === true) {
@@ -151,21 +158,26 @@ slideMe.checkifready = function(){
           slideMe.contentReady = true;
         }
         if (slideMe.contentReady && slideMe.videoready) {
-          if (slideMe.data.videoslides && !slideMe.data.syncoff){
+          if (slideMe.data.videoslides && !slideMe.data.syncoff && !slideMe.data.slideshare){
             slideMe.thisPlayer.on('timeupdate', slideMe.throttle(slideMe.setNewSlide, 500));
           }
-          // if (!slideMe.data.videoslides || slideMe.data.slideshare) {
+          if (!slideMe.data.videoslides === 'images' && (slideMe.data.videosourcesmobile || slideMe.data.videosources)) {
+            slideMe.slideMeContainer.style.overflow = 'hidden';
+          } else {
             slideMe.slideMeContainer.style.overflow = 'visible';
-          // }
+          }
+
           if (slideMe.data.videoslides) {
             slideMe.sliderClickEvent(slideMe.firstImage, true);
           }
           slideMe.DOM.preloaderWrapper.remove();
           clearInterval(slideMeInterval);
+          slideMe.isreloading = false;
         }
       } else {
         if (slideMe.contentReady) {
           slideMe.DOM.preloaderWrapper.remove();
+          slideMe.isreloading = false;
         }
       }
 

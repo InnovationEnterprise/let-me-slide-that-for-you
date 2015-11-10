@@ -1,18 +1,8 @@
 {
   "name": "slideMe",
-  "version": "0.1",
-  "description": "Simple js plugin to roll presentations. ",
+  "version": "0.1.0",
+  "description": "Simple js plugin to roll presentations.",
   "main": "build/slideme.min.js",
-  "dependencies": {
-    "gulp": "*",
-    "gulp-concat": "*",
-    "gulp-cssmin": "*",
-    "gulp-jshint": "*",
-    "gulp-minify-css": "^1.2.1",
-    "gulp-rename": "*",
-    "gulp-uglify": "*",
-    "node-sass": "*"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/InnovationEnterprise/slideme-ie.git"
@@ -24,10 +14,20 @@
   },
   "homepage": "https://slidemejs.com",
   "devDependencies": {
+    "gulp-install": "^0.6.0",
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-cssmin": "*",
+    "gulp-jshint": "*",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-rename": "*",
+    "gulp-uglify": "*",
+    "node-sass": "*",
     "gulp-closure-compiler": "^0.3.1",
     "gulp-recursive-concat": "0.0.9",
     "gulp-sass": "*",
     "gulp-shell": "*",
+    "gulp-wrap": "^0.11.0",
     "gulp-wrap-amd": "^0.5.0",
     "http-server": "*"
   }
