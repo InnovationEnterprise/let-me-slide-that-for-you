@@ -50,7 +50,7 @@ example:
      "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/development/10-2015/sueprtest2015.mp4"
   }
  ```
-<b>videosources / videosourcesmobile</b> – type : src – you can use various video formats but recommended one is mp4. If you have both it defualts to  videosourcesmobile with added HD button in menu.
+<b>videosources / videosourcesmobile</b> – type : src – you can use various video formats but recommended one is mp4. If you have both it defualts to  videosourcesmobile with added HD button in menu. (if does not exist it will load images only)
  
 example:
  ```
@@ -88,6 +88,17 @@ without times:
     "slidecontent" : "<div>some text</div>"
   },
  ```
+
+ <b>slideshare</b> - instead of images or html list you can use it to pass slideshare iframe or any other html.
+ ```
+"slideshare": "\u003ciframe src='//www.slideshare.net/slideshow/embed_code/key/fWtwkJWq5dERLK' width='425' height='355' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;' allowfullscreen\u003e \u003c/iframe\u003e \u003cdiv style='margin-bottom:5px'\u003e \u003cstrong\u003e \u003ca href='//www.slideshare.net/ThoughtWorks/strategy-to-execution-by-jonny-schneider-thoughtworks' title='Strategy to Execution by Jonny Schneider - ThoughtWorks' target='_blank'\u003eStrategy to Execution by Jonny Schneider - ThoughtWorks\u003c/a\u003e \u003c/strong\u003e from \u003cstrong\u003e\u003ca href='//www.slideshare.net/ThoughtWorks' target='_blank'\u003eThoughtWorks\u003c/a\u003e\u003c/strong\u003e \u003c/div\u003e"
+```
+
+ <b>youtube</b> - "true" - if exist and set to true with videosource as youtube will wrap yt wideo into slideme.
+```
+"videosources": "https://www.youtube.com/watch?v=C0DPdy98e4c",
+"youtube": "true"
+```
 
 #### Extras
 
