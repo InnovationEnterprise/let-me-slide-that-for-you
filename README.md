@@ -1,66 +1,63 @@
-## SlideMe
-Simple js plugin to roll presentations. You can use it as a video presentation slider, image presentation, text presentation or just a video player.
+# SlideMe
+Simple JS plugin to roll presentations. You can use it as a video presentation slider, image presentation, text presentation or just a video player.
 
 
-#### Installation
-Add to your html
+## Installation
+Add to your HTML
+
 ```
 <div data-slidemejs="LINK_TO_JSON_FILE"></div>
 <script src="//d3gr29hczmiozh.cloudfront.net/slideme.min.js" async></script>
 ```
 
-##### Develpoment
-install
-```
-sudo npm install
-```
-build
-```
-gulp
-```
+### Configuration
 
-#### Configuration
+You can configure your SlideMe inside your JSON file (all values are strings):
 
-You can configure you slideme inside you json file (all values are string):
-
-<b>autoplay</b> – false/true - bolean – if none set to false
+**autoplay** - boolean – default to false
 
 example:
 ```
   "autoplay" : true
  ```
-<b>preload</b> - metadata/none/auto  - default metadata
+ 
+**preload** - metadata/none/auto  - default metadata
+
 example:
 ```
   "preload" : "metadata"
  ```
-<b>title</b> – just your title
+ 
+**title** – Your Title
+
 example:
+
  ```
-"title" :  “you title”
+"title" :  “my title”
  ```
- <b>adTagUrl</b> – your dfp vast tag (you can aslo add this as data-adtag to your slideme container)
+ 
+**adTagUrl** – your DFP vast tag (you can also add this as data-adtag to your SlideMe container)
+ 
  example:
+ 
  ```
 "adTagUrl" : "http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/422581008/test_video&ciu_szs&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]"
  ```
-example:
- ```
-  "videosources": {
-     "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/development/10-2015/sueprtest2015.mp4"
-  }
- ```
-<b>videosources / videosourcesmobile</b> – type : src – you can use various video formats but recommended one is mp4. If you have both it defualts to  videosourcesmobile with added HD button in menu. (if does not exist it will load images only)
+ 
+**videosources / videosourcesmobile** – type : src – you can use various video formats but the recommended one is MP4. If you have both it defaults to  videosourcesmobile with added HD button in menu. (if does not exist it will load images only)
  
 example:
+
  ```
   "videosources": {
      "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/development/10-2015/sueprtest2015.mp4"
   }
  ```
-<b>videoslidestype</b> - images/html - if exitst loads images or any html/text from slidecontent If would like to load only video do not add it. HTML type have to have companion video.
+ 
+**videoslidestype** - images/html - if this exists we load images or any html/text from slidecontent If you would like to load only video do not add it. HTML type have to have companion video.
 
 example:
+
  ```
 "videoslidestype": "images"
 videoslides – if you use any videslidetype:
@@ -74,7 +71,9 @@ example with images:
     }
   ]
  ```
+ 
 with html content:
+
  ```
   {
     "slidecontent" : "<div>some text</div>",
@@ -83,60 +82,71 @@ with html content:
   }
  ```
 without times:
+
  ```
   {
     "slidecontent" : "<div>some text</div>"
   },
  ```
 
- <b>slideshare</b> - instead of images or html list you can use it to pass slideshare iframe or any other html.
- ```
+**slideshare** - instead of images or html list you can use it to pass slideshare iframe or any other html.
+
+example:
+
+```
 "slideshare": "\u003ciframe src='//www.slideshare.net/slideshow/embed_code/key/fWtwkJWq5dERLK' width='425' height='355' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;' allowfullscreen\u003e \u003c/iframe\u003e \u003cdiv style='margin-bottom:5px'\u003e \u003cstrong\u003e \u003ca href='//www.slideshare.net/ThoughtWorks/strategy-to-execution-by-jonny-schneider-thoughtworks' title='Strategy to Execution by Jonny Schneider - ThoughtWorks' target='_blank'\u003eStrategy to Execution by Jonny Schneider - ThoughtWorks\u003c/a\u003e \u003c/strong\u003e from \u003cstrong\u003e\u003ca href='//www.slideshare.net/ThoughtWorks' target='_blank'\u003eThoughtWorks\u003c/a\u003e\u003c/strong\u003e \u003c/div\u003e"
 ```
 
- <b>youtube</b> - "true" - if exist and set to true with videosource as youtube will wrap yt wideo into slideme.
+**youtube** - boolean - if exist and set to true with videosource as youtube will wrap your video into SlideMe.
+
 ```
 "videosources": "https://www.youtube.com/watch?v=C0DPdy98e4c",
 "youtube": "true"
 ```
 
-#### Extras
+## Extras
 
-You can find here few usefull options
+Here are some useful functions
 
-###### SlideMe container options
+### SlideMe container options
 
 
-<b>ad player</b> - add this to slideme container to use it as just video ads player.
+**ad player** - add this to SlideMe container to use it as just video ads player.
+
  ```
 data-inarticle="true"
  ```
 
-<b>no title/interview mode</b> - allows to not to add title into top of video
+**no title/interview mode** - allows to not to add title into top of video
+
  ```
 data-interview="true"
  ```
 
-<b>wide mode</b> - set this if instead hainvg 16:9 ratio to use full with of container
+**wide mode** - set this if instead having 16:9 ratio to use full width of container
+
  ```
  data-wide="true"
  ```
 
 
 
-###### title somwhere else
+### Grab title from somewhere else
 
-Just add somwhere on the website
+Just add somewhere on the website
+
  ```
 <div id="slideme-h1"></div>
  ```
 
-###### Playlist
+### Playlist
 
-Use as in example just do not define type if you want to use it as a url.
-Add id="slideme-playlist" somwhere on your website if u would like to change default position.
+Use as in example just do not define type if you want to use it as a URL
+.
+Add id="slideme-playlist" somewhere on your website if you would like to change default position.
 
 example:
+
  ```
   "playlist" : [
     {
@@ -151,8 +161,9 @@ example:
   ]
  ```
 
-<b>subtitles</b> – you can add subtitles as specified in subtitle iso 
+**subtitles** – you can add subtitles as specified in subtitle iso 
 example:
+
  ```
   "subtitles" : [
     {
@@ -163,33 +174,52 @@ example:
   ]
  ```
  
-###### Load New Player
-add a link to your playlist with type set to json or call
+### Load New Player
+
+Add a link to your playlist with type set to JSON or call
+
  ```
 slideMe.reload('jsonurl');
  ```
  
-#### usefull helpers
+## Useful Helpers
 
-remove slideme
+Remove SlideMe
+
 ```
  slideMe.destroy();
 ```
  
-display error
+Display Error
+
 ```
  slideMe.destroy('error text', container);
 ```
 
-load assets
+Load Assets
+
 ```
 slideMe.loadAssets("url", "css/script", function(){
   alert('assets loaded');
 });
 ```
 
-### Changelog - v0.1
+## Development
+To install all the development dependencies run;
 
-##### 0.1
+```
+sudo npm install
+```
 
-- first beta release 
+To build SlideMe locally run;
+
+```
+gulp
+```
+
+
+## Changelog - v0.1
+
+### 0.1
+
+- First Beta Release 
