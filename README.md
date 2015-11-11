@@ -208,7 +208,7 @@ slideMe.loadAssets("url", "css/script", function(){
 To install all the development dependencies run;
 
 ```
-sudo npm install
+npm install
 ```
 
 To build SlideMe locally run;
