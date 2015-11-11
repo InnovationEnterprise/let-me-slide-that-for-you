@@ -193,3 +193,15 @@ slideMe.loadAssets("url", "css/script", function(){
 ##### 0.1
 
 - first beta release 
+
+
+## Code of Conduct
+
+In order to have an inclusive and welcoming community around the open source code
+we produce we have decided to adhere to this [code of conduct](CONDUCT.md).
+
+Please adhere to this code of conduct in any interactions you have in this
+community. It is strictly enforced on all official Innovation Enterprise
+repositories, websites, and resources. If you encounter someone violating
+these terms, please let a maintainer (@xoxoxo) know
+and we will address it as soon as possible.
