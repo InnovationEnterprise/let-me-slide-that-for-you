@@ -1,15 +1,18 @@
 slideMe.getSlides = function () {
 
-  slideMe.presentationNode = document.createElement('div');
-  slideMe.presentationNode.setAttribute('id', 'slideme-container');
-  slideMe.slideMeContainer.appendChild(slideMe.presentationNode);
-  var createImgContainerWrapper;
+  if (slideMe.data.videoslidestype === 'images' || slideMe.data.slideshare) {
+    slideMe.DOM.presentationNode = document.createElement('div');
+    slideMe.DOM.presentationNode.setAttribute('id', 'slideme-container');
+    slideMe.slideMeContainer.appendChild(slideMe.DOM.presentationNode);
+  }
+
+  slideMe.DOM.createImgContainerWrapper;
   if (!slideMe.data.slideshare) {
-    slideMe.createImgContainer = document.createElement('div');
-    slideMe.createImgContainer.setAttribute('id', 'slideme-list');
-    createImgContainerWrapper = document.createElement('div');
-    createImgContainerWrapper.setAttribute('id', 'slideme-list-wrapper');
-    slideMe.slideMeContainer.appendChild(createImgContainerWrapper);
+    slideMe.DOM.createImgContainer = document.createElement('div');
+    slideMe.DOM.createImgContainer.setAttribute('id', 'slideme-list');
+    slideMe.DOM.createImgContainerWrapper = document.createElement('div');
+    slideMe.DOM.createImgContainerWrapper.setAttribute('id', 'slideme-list-wrapper');
+    slideMe.slideMeContainer.appendChild(slideMe.DOM.createImgContainerWrapper);
   }
 
   if (slideMe.data.videoslidestype === 'images' || slideMe.data.slideshare) {
@@ -22,34 +25,38 @@ slideMe.getSlides = function () {
 
     if (!slideMe.data.slideshare) {
       var createButtons = '<div id="slideme-btn-prev"><i class="icon-prevslide"><</i></div><div id="slideme-btn-next"><i class="icon-nextslide">></i></div>';
-      createImgContainerWrapper.innerHTML = createButtons;
+      slideMe.DOM.createImgContainerWrapper.innerHTML = createButtons;
       slideMe.loadImages();
+    } else {
+      if (!slideMe.data.videosources || !slideMe.data.videosourcesmobile) {
+        slideMe.contentReady = true;
+      }
     }
-    
 
   } else {
-
-    createImgContainerWrapper.appendChild('slideme-text');
 
     var createHtmlPresentationNav = document.createElement('div');
     createHtmlPresentationNav.setAttribute('id', 'slideme-html-nav');
     createHtmlPresentationNav.innerHTML = '<div id="slideme-html-nav-left"><</div><div id="slideme-html-nav-right">></div>';
-    createImgContainerWrapper.appendChild(createHtmlPresentationNav);
+    slideMe.DOM.createImgContainerWrapper.appendChild(createHtmlPresentationNav);
 
     slideMe.slideMeContainer.classList.add('slideme-html');
+    slideMe.DOM.presentationNode = slideMe.DOM.createImgContainerWrapper;
+    slideMe.setContent(false);
 
   }
 
   if (!slideMe.data.slideshare) {
-    createImgContainerWrapper.appendChild(slideMe.createImgContainer);
+    slideMe.DOM.createImgContainerWrapper.appendChild(slideMe.DOM.createImgContainer);
   }
 
   if (slideMe.data.slideshare) {
-    slideMe.presentationNode.innerHTML = slideMe.data.slideshare;
-    var getSlideShareIframe = slideMe.presentationNode.getElementsByTagName('iframe')[0];
+    slideMe.DOM.presentationNode.innerHTML = slideMe.data.slideshare;
+    var getSlideShareIframe = slideMe.DOM.presentationNode.getElementsByTagName('iframe')[0];
     getSlideShareIframe.style.width = '100%';
     getSlideShareIframe.style.height = '100%';
-    slideMe.presentationNode.style.overflow = 'hidden';
+    slideMe.DOM.presentationNode.style.overflow = 'hidden';
+    slideMe.contentReady = true;
   }
 
 };

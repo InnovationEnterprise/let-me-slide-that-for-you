@@ -13,19 +13,34 @@ slideMe.setSize = function() {
 
     var vH;
 
+    var slideMeParent = slideMe.slideMeContainer.parentNode;
+    var slideMeParentWidth = slideMeParent.offsetWidth;
+
     if (!slideMe.data.videosourcesmobile && !slideMe.data.videosources) {
 
       sH = 480;
 
     } else {
 
-      sW = sW / 2;
-      sH = sW / 1.78;
+      if (slideMe.slideMeContainer.getAttribute('data-wide') === 'true') {
 
-      vW = sW;
-      vH = sH;
+        sW = slideMeParentWidth / 2;
+        sH = sW * 0.67;
 
-      sW = sH * 1.33;
+        vW = sW;
+        vH = sW * 0.67;
+
+      } else {
+
+        sW = sW / 2;
+        sH = sW / 1.78;
+
+        vW = sW;
+        vH = sH;
+
+        sW = sH * 1.33;
+      }
+
 
     }
 
@@ -50,10 +65,14 @@ slideMe.setSize = function() {
 
       }
 
-      slideMe.presentationNode.style.width = sW + 'px';
-      slideMe.presentationNode.style.height = sH + 'px';
+      slideMe.DOM.presentationNode.style.width = sW + 'px';
+      slideMe.DOM.presentationNode.style.height = sH + 'px';
 
-      slideMe.slideMeContainer.style.height = vH + 75 + 'px';
+      if (slideMe.data.videoslidestype === 'images') {
+        slideMe.slideMeContainer.style.height = vH + 75 + 'px';
+      } else {
+        slideMe.slideMeContainer.style.height = vH + 'px';
+      }
 
     }
     
@@ -78,8 +97,8 @@ slideMe.setSize = function() {
     if (slideMe.slideMeContainer.parentNode.offsetWidth <= 770) {
       
       if (!isThisFixed) {
-        if (slideMe.presentationNode) {
-          slideMe.presentationNode.style.display = 'none';
+        if (slideMe.DOM.presentationNode) {
+          slideMe.DOM.presentationNode.style.display = 'none';
           if (!slideMe.data.slideshare) {
             document.getElementById('slideme-list-wrapper').style.display = 'none';
           }
@@ -92,8 +111,8 @@ slideMe.setSize = function() {
 
     } else {
 
-      if (slideMe.presentationNode) {
-        slideMe.presentationNode.style.display = 'block';
+      if (slideMe.DOM.presentationNode) {
+        slideMe.DOM.presentationNode.style.display = 'block';
         if (!slideMe.data.slideshare) {
           document.getElementById('slideme-list-wrapper').style.display = 'block';
           document.getElementById('slideme-list-wrapper').style.bottom = '0px';
@@ -105,7 +124,10 @@ slideMe.setSize = function() {
     if (!slideMe.data.videoslides && !slideMe.data.slideshare) {
       slideMe.slideMeContainer.style.height = vH + 'px';
     }
-    slideMe.thisPlayer.dimensions(vW, vH);
+
+    if (slideMe.thisPlayer) {
+      slideMe.thisPlayer.dimensions(vW, vH);
+    }
 
 
 };

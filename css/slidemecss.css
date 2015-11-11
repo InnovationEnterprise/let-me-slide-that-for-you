@@ -45,26 +45,28 @@
   left: 20px;
 }
 
-#slideme-list-wrapper.slideme-text {
-  float: left;
-  width: 480px;
-  height: 360px;
+.slideme-html #slideme-list-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
   background: #fff;
-  overflow: hidden;
-  clear: none;
 }
-#slideme-list-wrapper.slideme-text #slideme-list {
-  height: auto;
+.slideme-html #slideme-list {
+  position: absolute;
   top: 0;
   left: 0;
-  color: #000;
-  background: #fff;
-  transition: top 300ms linear;
-}
-#slideme-list-wrapper.slideme-text #slideme-list [data-slideme-time] {
-  position: relative;
   width: 100%;
-  height: 360px;
+}
+.slideme-html #slideme-list, .slideme-html [data-slideme-time] {
+  height: 100%;
+  width: 100%;
+}
+
+.slideme-html [data-slideme-time] {
+  display: none;
+}
+.slideme-html [data-slideme-time].slideme-img-active {
+  display: block;
 }
 
 #slideme-list {
@@ -187,17 +189,23 @@
   width: 100%;
   height: 40px;
   position: absolute;
-  z-index: 999;
-  bottom: -50px;
-  right: 0;
+  z-index: 99;
+  bottom: -40px;
+  left: 0;
+}
+.this-fixed #slideme-playlist {
+  visibility: hidden;
+}
+.slideme-images-only #slideme-playlist {
+  bottom: -115px;
 }
 
 #slideme-playlist-title {
   font-size: 12px;
   line-height: 40px;
-  right: 0;
+  left: 0;
   position: absolute;
-  top: 0;
+  bottom: 0;
   width: 120px;
   text-align: center;
   background: #000;
@@ -224,8 +232,8 @@
   overflow-y: auto;
   background: #EDEDED;
   position: absolute;
-  right: 0;
-  top: 40px;
+  left: 0;
+  bottom: 40px;
   display: none;
   font-size: 14px;
 }
@@ -309,7 +317,6 @@
 
 [data-slidemejs].slideme-images-only {
   width: 100%;
-  height: auto;
 }
 
 .slideme-images-only #slideme-list-wrapper {
@@ -318,6 +325,10 @@
 
 .slideme-images-only {
   max-width: 980px;
+}
+
+[data-slidemejs].slideme-images-only #slideme-container {
+  height: 100%;
 }
 
 #slideme-share {
@@ -397,6 +408,10 @@
   left: 2em;
 }
 
+.vjs-default-skin .vjs-control.vjs-live-controls {
+  display: none;
+}
+
 .slideme-emebed-btn {
   opacity: 0;
   transition: opacity 500ms linear;
@@ -428,14 +443,23 @@
 }
 .vjs-default-skin .vjs-control.slideme-fullscreen-btn:after {
   content : 'View Slides';
+}
+.vjs-default-skin .vjs-control.slideme-hd-btn:after {
+  font-weight: 700;
+  content : 'HD';
+}
+.vjs-default-skin .vjs-control.slideme-fullscreen-btn:after, .vjs-default-skin .vjs-control.slideme-hd-btn:after {
   display: block;
   line-height: 3em;
   color: #ccc;
+  cursor: pointer;
 }
-.vjs-default-skin .vjs-control.slideme-fullscreen-btn:hover:after {
+.vjs-default-skin .vjs-control.slideme-fullscreen-btn:hover:after, .vjs-default-skin .vjs-control.slideme-hd-btn:hover:after {
   text-shadow: 0 0 1em #fff;
 }
-
+.vjs-default-skin .vjs-control.slideme-hd-btn {
+  opacity: 0.5;
+}
 [data-slidemejs].this-fixed {
   position: fixed;
   margin: auto;
@@ -511,6 +535,9 @@
 
   .vjs-default-skin .vjs-control.slideme-fullscreen-btn {
     background: #000;
+  }
+  .vjs-default-skin .vjs-control.slideme-hd-btn {
+    display: none;
   }
   .vjs-subtitles-button.vjs-menu-button.vjs-control {
     display: none;

@@ -1,30 +1,34 @@
 {
   "name": "slideMe",
-  "version": "0.0.8",
-  "description": "Simple js plugin to roll presentations. ",
+  "version": "0.1.0",
+  "description": "Simple js plugin to roll presentations.",
   "main": "build/slideme.min.js",
-  "dependencies": {
-    "gulp-concat": "^2.4.3",
-    "gulp-jshint": "^1.9.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^1.1.0",
-    "gulp-minify-css": "^0.4.3",
-    "gulp": "^3.8.10",
-    "gulp-cssmin": "^0.1.6"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/xoxoxo/slideme.git"
+    "url": "https://github.com/InnovationEnterprise/slideme-ie.git"
   },
-  "author": "Radoslaw Wroblewski",
+  "author": "Radoslaw Wroblewski - The Innovation Enterprise",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xoxoxo/slideme/issues"
+    "url": "https://github.com/InnovationEnterprise/slideme-ie/issues"
   },
-  "homepage": "https://github.com/xoxoxo/slideme",
+  "homepage": "https://slidemejs.com",
   "devDependencies": {
-    "gulp-closure-compiler": "^0.2.17",
-    "gulp-recursive-concat": "0.0.7",
-    "gulp-wrap-amd": "^0.4.1"
+    "gulp-install": "^0.6.0",
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-cssmin": "*",
+    "gulp-jshint": "*",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-rename": "*",
+    "gulp-uglify": "*",
+    "node-sass": "*",
+    "gulp-closure-compiler": "^0.3.1",
+    "gulp-recursive-concat": "0.0.9",
+    "gulp-sass": "*",
+    "gulp-shell": "*",
+    "gulp-wrap": "^0.11.0",
+    "gulp-wrap-amd": "^0.5.0",
+    "http-server": "*"
   }
 }

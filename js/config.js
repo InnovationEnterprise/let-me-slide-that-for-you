@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
     thiSlideme.classList.add('slideme-loaded');
     slideMe.slideMeContainer = thiSlideme;
     slideMe.addPreloader();
-    var getSlideMeUrl = slideMe.slideMeContainer.getAttribute('data-slidemejs');
-    if (/^http?:\/\//.test(getSlideMeUrl)) {
-      getSlideMeUrl = getSlideMeUrl.replace(/^https?:\/\//,'https://');
+    slideMe.getSlideMeUrl = slideMe.slideMeContainer.getAttribute('data-slidemejs');
+    if (/^http?:\/\//.test(slideMe.getSlideMeUrl)) {
+      slideMe.getSlideMeUrl = slideMe.getSlideMeUrl.replace(/^https?:\/\//,'https://');
     }
-    slideMe.loadJson(getSlideMeUrl);
+    slideMe.loadJson(slideMe.getSlideMeUrl);
   };
 
 
@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!slideMe.firstLoad) {
     slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemecss.min.css', 'css', function(){
       slideMe.firstLoad = true;
-
       startupLoop();
     });
   } else {

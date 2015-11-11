@@ -1,6 +1,6 @@
 slideMe.fullscreen = function() {
 
-  slidemefullscreen = slideMe.thisPlayer.controlBar.addChild('button', {
+  var slidemefullscreen = slideMe.thisPlayer.controlBar.addChild('button', {
     text: 'Full screen'
   });
   slidemefullscreen.addClass('slideme-fullscreen-btn');
@@ -18,21 +18,33 @@ slideMe.fullscreen = function() {
 
       var fullScreen = document.createElement('div');
       fullScreen.setAttribute('id', 'slideme-fullscreen');
-      fullScreen.innerHTML = '<div id="slideme-close-popup">x</div>';
+      var fullScreenClose = document.createElement('div');
+      fullScreenClose.setAttribute('id', 'slideme-close-popup');
+      fullScreenClose.innerHTML = 'x';
       slideMe.slideMeContainer.appendChild(fullScreen);
+      slideMe.slideMeContainer.appendChild(fullScreenClose);
 
-      slideMe.presentationNode.style.display = 'block';
+      slideMe.DOM.presentationNode.style.display = 'block';
 
       if (!slideMe.data.slideshare) {
         document.getElementById('slideme-list-wrapper').style.display = 'block';
-        slideMe.presentationNode.style.height = parseFloat(slideMe.slideMeContainer.style.height) + 'px';
+        slideMe.DOM.presentationNode.style.height = parseFloat(slideMe.slideMeContainer.style.height) + 'px';
         document.getElementById('slideme-list-wrapper').style.bottom = - 75 + 'px';
       } else {
-        slideMe.presentationNode.style.height = '100%';
+        slideMe.DOM.presentationNode.style.height = '100%';
       }
+
+      if (slideMe.DOM.presentationNode) {
+        slideMe.DOM.presentationNode.style.display = 'block';
+        if (!slideMe.data.slideshare) {
+          document.getElementById('slideme-list-wrapper').style.display = 'block';
+        }
+      }
+
 
       var removeFullScr = function() {
         fullScreen.remove();
+        fullScreenClose.remove();
         slideMe.slideMeContainer.classList.remove('this-fixed');
         slideMe.slideMeContainer.classList.remove('full-mobile');
         if (!slideMe.data.slideshare) {
@@ -46,15 +58,9 @@ slideMe.fullscreen = function() {
         slideMe.slideMeContainer.style.marginLeft = 'auto';
 
         fullscreenon = false;
+        slideMe.setSize();
       };
 
-
-      if (slideMe.presentationNode) {
-        slideMe.presentationNode.style.display = 'block';
-        if (!slideMe.data.slideshare) {
-          document.getElementById('slideme-list-wrapper').style.display = 'block';
-        }
-      }
 
 
       document.getElementById('slideme-close-popup').addEventListener('click', removeFullScr, false);
