@@ -9,7 +9,7 @@ Add to your HTML
 
 ```
 <div data-slidemejs="LINK_TO_JSON_FILE"></div>
-<script src="//d3gr29hczmiozh.cloudfront.net/slideme.min.js" async></script>
+<script src="//d3gr29hczmiozh.cloudfront.net/0.1.0/slideme.min.js" async></script>
 ```
 
 ### Configuration
