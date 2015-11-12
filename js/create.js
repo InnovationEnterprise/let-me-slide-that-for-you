@@ -3,7 +3,7 @@ slideMe.createDOM = function () {
   // create video dom
 
     var createVideoPlayer = document.createElement('div');
-    createVideoPlayer.setAttribute('id', 'slideme-wrapper');   
+    createVideoPlayer.setAttribute('id', 'slideme-wrapper');
 
     if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
 
@@ -32,12 +32,12 @@ slideMe.createDOM = function () {
           var createSubtitleNode = document.createElement('track');
 
           slideMe.addAttributes(createSubtitleNode, {
-            'src' : slideMe.data.subtitles[i].src, 
+            'src' : slideMe.data.subtitles[i].src,
             'srclang' : slideMe.data.subtitles[i].srclang,
             'label' : slideMe.data.subtitles[i].label
-          });       
+          });
 
-          if (slideMe.data.subtitles[i].default === 'true') {
+          if (slideMe.data.subtitles[i].default === true) {
             createSubtitleNode.setAttribute('default', '');
           }
 
@@ -63,10 +63,10 @@ slideMe.createDOM = function () {
         }
 
       slideMe.fireVideJs();
-        
+
       } else {
 
-          slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeyt.js', 'script', function() {
+          slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.0/slidemeyt.js', 'script', function() {
             slideMe.fireVideJs();
           });
 

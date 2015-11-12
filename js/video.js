@@ -33,9 +33,9 @@ slideMe.fireVideJs = function () {
   if (slideMe.data.youtube !== 'true' && !document.all && window.atob) {
 
     var thisChannel = slideMe.slideMeContainer.getAttribute('data-adtag');
-  
+
     if (slideMe.data.adTagUrl !== undefined || thisChannel) {
-  
+
       var options;
       if (thisChannel === null || thisChannel === '') {
         options = {
@@ -49,11 +49,11 @@ slideMe.fireVideJs = function () {
         };
       }
 
-      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeads.css', 'css');
-  
+      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.0/slidemeads.css', 'css');
+
       slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
-        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/slidemeads.js', 'script', function() {
-  
+        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.0/slidemeads.js', 'script', function() {
+
           slideMe.thisPlayer.ima(options);
           slideMe.thisPlayer.ima.initializeAdDisplayContainer();
           slideMe.thisPlayer.ima.requestAds();
@@ -68,18 +68,18 @@ slideMe.fireVideJs = function () {
                 slideMe.thisPlayer.ima.pauseAd();
             };
 
-            slideMe.thisPlayer.on("adsready", function(){ 
+            slideMe.thisPlayer.on("adsready", function(){
               setTimeout(function(){
                 clearInterval(checIfAdRdy);
               }, 1500);
             });
 
-            slideMe.thisPlayer.on("ended", function(){ 
+            slideMe.thisPlayer.on("ended", function(){
               slideMe.thisPlayer.play();
               slideMe.thisPlayer.ima.requestAds();
               slideMe.thisPlayer.ima.start();
               var checIfAdRdy = setInterval(pauseAd, 10);
-              slideMe.thisPlayer.on("adsready", function(){ 
+              slideMe.thisPlayer.on("adsready", function(){
                 setTimeout(function(){
                   clearInterval(checIfAdRdy);
                 }, 1500);

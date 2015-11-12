@@ -1,33 +1,13 @@
 WEBVTT FILE
 
 1
-00:00:03.500 --> 00:00:05.000 D:vertical A:start
+00:00:00.000 --> 00:00:03.000 D:vertical A:start
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 2
-00:00:06.000 --> 00:00:09.000 A:start
+00:00:05.000 --> 00:00:08.000 A:start
 Vivamus semper, sem quis vulputate congue, leo ipsum suscipit lectus, id volutpat turpis ante sed sapien.
 
 3
-00:00:11.000 --> 00:00:14.000 A:end
+00:00:09.000 --> 00:00:12.000 A:end
 Duis tincidunt venenatis molestie. Duis ullamcorper pulvinar ligula at molestie.
-
-4
-00:00:14.500 --> 00:00:18.000
-Nunc feugiat mi tellus, nec congue justo gravida in. Sed auctor,
-
-5
-00:00:19.000 --> 00:00:24.000
-elit quis tempor semper, nulla velit eleifend arcu, id vestibulum nulla nisi vel diam.
-
-6
-00:00:24.500 --> 00:00:26.000
-Cras vitae erat magna. Sed eu diam auctor magna tempus placerat sit amet rhoncus libero.
-
-7
-00:00:26.500 --> 00:00:27.500 L:12%
-Donec mattis hendrerit dui eu rutrum. Cras a risus facilisis, finibus urna rhoncus, placerat sapien.
-
-8
-00:00:28.000 --> 00:00:30.000 L:75%
-Praesent sit amet maximus urna, eget ullamcorper magna.

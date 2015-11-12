@@ -75,7 +75,7 @@ slideMe.loadAssets = function (url, type, fn) {
   } else {
 
     if (navigator.appVersion.indexOf("MSIE 10") === -1) {
-      
+
       getAssets = document.createElement('script');
       getAssets.src = url;
       getAssets.async = true;
@@ -87,7 +87,7 @@ slideMe.loadAssets = function (url, type, fn) {
           fn();
         };
       }
-      
+
     } else {
 
       getAssets = new XMLHttpRequest();
@@ -121,12 +121,12 @@ slideMe.reload = function (jsonUrl) {
     videojs = null;
     slideMe.thisPlayer = null;
   }
-    
+
   while(slideMe.slideMeContainer.firstChild) {
     slideMe.slideMeContainer.removeChild(slideMe.slideMeContainer.firstChild);
   }
-  
-  
+
+
   slideMe.contentReady = false;
   slideMe.videoready = false;
 
@@ -149,9 +149,6 @@ slideMe.checkifready = function(){
  var slideMeInterval =  setInterval(function(){
     if (slideMe.error === true || typeof slideMe === 'undefined') {
       clearInterval(slideMeInterval);
-      if (slideMe.error === true) {
-        console.log(slideMe);
-      }
     } else {
       if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
         if (!slideMe.data.videoslides) {

@@ -1,6 +1,8 @@
 # SlideMe
 Simple JS plugin to roll presentations. You can use it as a video presentation slider, image presentation, text presentation or just a video player.
 
+#### View online
+http://slidemejs.com/
 
 ## Installation
 Add to your HTML
@@ -20,14 +22,14 @@ example:
 ```
   "autoplay" : true
  ```
- 
+
 **preload** - metadata/none/auto  - default metadata
 
 example:
 ```
   "preload" : "metadata"
  ```
- 
+
 **title** – Your Title
 
 example:
@@ -35,17 +37,17 @@ example:
  ```
 "title" :  “my title”
  ```
- 
+
 **adTagUrl** – your DFP vast tag (you can also add this as data-adtag to your SlideMe container)
- 
+
  example:
- 
+
  ```
 "adTagUrl" : "http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/422581008/test_video&ciu_szs&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]"
  ```
- 
+
 **videosources / videosourcesmobile** – type : src – you can use various video formats but the recommended one is MP4. If you have both it defaults to  videosourcesmobile with added HD button in menu. (if does not exist it will load images only)
- 
+
 example:
 
  ```
@@ -53,7 +55,7 @@ example:
      "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/development/10-2015/sueprtest2015.mp4"
   }
  ```
- 
+
 **videoslidestype** - images/html - if this exists we load images or any html/text from slidecontent If you would like to load only video do not add it. HTML type have to have companion video.
 
 example:
@@ -71,7 +73,7 @@ example with images:
     }
   ]
  ```
- 
+
 with html content:
 
  ```
@@ -161,7 +163,7 @@ example:
   ]
  ```
 
-**subtitles** – you can add subtitles as specified in subtitle iso 
+**subtitles** – you can add subtitles as specified in subtitle iso
 example:
 
  ```
@@ -169,11 +171,12 @@ example:
     {
       "src" : "/subtitle.vtt",
       "srclang" : "pl",
-      "label" : "label"
+      "label" : "label",
+      "default" : true
     }
   ]
  ```
- 
+
 ### Load New Player
 
 Add a link to your playlist with type set to JSON or call
@@ -181,7 +184,7 @@ Add a link to your playlist with type set to JSON or call
  ```
 slideMe.reload('jsonurl');
  ```
- 
+
 ## Useful Helpers
 
 Remove SlideMe
@@ -189,7 +192,7 @@ Remove SlideMe
 ```
  slideMe.destroy();
 ```
- 
+
 Display Error
 
 ```
@@ -217,6 +220,8 @@ To build SlideMe locally run;
 gulp
 ```
 
+If you wish its better to change cdn assets to your local. Just change all slideMe.loadAssets.
+
 ## Code of Conduct
 
 In order to have an inclusive and welcoming community around the open source code
@@ -228,8 +233,8 @@ repositories, websites, and resources. If you encounter someone violating
 these terms, please let a maintainer (@xoxoxo) know
 and we will address it as soon as possible.
 
-## Changelog - v0.1
+## Changelog - 0.1.0
 
-### 0.1
+### 0.1.0
 
 - First Beta Release

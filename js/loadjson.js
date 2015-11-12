@@ -10,8 +10,8 @@ slideMe.loadJson = function (jsonUrl) {
 
     if (request.readyState == 4 && request.status == 200) {
 
-      slideMe.data = JSON.parse(request.responseText); 
-    
+      slideMe.data = JSON.parse(request.responseText);
+
       if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
         var videojsurl = '//vjs.zencdn.net/4.12.11/video.js';
         slideMe.loadAssets(videojsurl, 'script', function() {
@@ -29,7 +29,7 @@ slideMe.loadJson = function (jsonUrl) {
       }
 
       console.log('json fetched');
-      
+
     } else {
       slideMe.errorThat('cannot connect', slideMe.slideMeContainer);
     }
