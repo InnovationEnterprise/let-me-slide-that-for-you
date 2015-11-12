@@ -7,7 +7,7 @@
       },
       "subtitles" : [
         {
-        "src" : "//d3gr29hczmiozh.cloudfront.net/0.1.0/subtitle.vtt",
+        "src" : "/example/subtitle.vtt",
         "srclang" : "en",
         "label" : "Eng",
         "default" : true
