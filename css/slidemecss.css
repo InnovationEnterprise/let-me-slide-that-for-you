@@ -50,6 +50,7 @@
   top: 0;
   right: 0;
   background: #fff;
+  color: #000;
 }
 .slideme-html #slideme-list {
   position: absolute;
@@ -226,7 +227,7 @@
 .slideme-drop-active  #slideme-playlist-drop {
   transform: rotate(90deg);
 }
-#slideme-playlist-list { 
+#slideme-playlist-list {
   width: 300px;
   max-height: 170px;
   overflow-y: auto;
@@ -544,4 +545,3 @@
   }
 
 }
-

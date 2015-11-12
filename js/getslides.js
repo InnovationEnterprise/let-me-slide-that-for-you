@@ -6,7 +6,6 @@ slideMe.getSlides = function () {
     slideMe.slideMeContainer.appendChild(slideMe.DOM.presentationNode);
   }
 
-  slideMe.DOM.createImgContainerWrapper;
   if (!slideMe.data.slideshare) {
     slideMe.DOM.createImgContainer = document.createElement('div');
     slideMe.DOM.createImgContainer.setAttribute('id', 'slideme-list');

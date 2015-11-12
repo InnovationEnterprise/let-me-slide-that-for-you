@@ -34,22 +34,22 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
   if (slideMe.data.videoslidestype === 'images') {
     var animated = false;
     var imgContainerWidth = 100 * slideMe.data.videoslides.length;
-  
+
     document.getElementById('slideme-btn-next').addEventListener('click', function() {
       var imgContainerPosition = slideMe.DOM.createImgContainer.offsetLeft;
       if (animated === false && imgContainerPosition > - imgContainerWidth + 500) {
-        animated = true;        
+        animated = true;
         slideMe.DOM.createImgContainer.style.left = imgContainerPosition - 200 + 'px';
         setTimeout(function(){
           animated = false;
         }, 325);
       }
     }, false);
-  
+
     document.getElementById('slideme-btn-prev').addEventListener('click', function() {
       var imgContainerPosition = slideMe.DOM.createImgContainer.offsetLeft;
       if (!animated && imgContainerPosition < 50) {
-        animated = true; 
+        animated = true;
         var slideThatMuch;
         if (imgContainerPosition < -50) {
           slideThatMuch = 200;
@@ -61,8 +61,8 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
           animated = false;
         }, 325);
       }
-    }, false);   
-    
+    }, false);
+
   }
 
 };

@@ -907,7 +907,7 @@ body.vjs-full-window {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 3em;
+  bottom: 4em;
   right: 0;
   pointer-events: none;
 }

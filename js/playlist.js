@@ -1,8 +1,6 @@
 
 slideMe.playList = function () {
 
-  slideMe.DOM.createPlaylist;
-
   if (document.getElementById('slideme-playlist') !== null) {
     slideMe.DOM.createPlaylist = document.getElementById('slideme-playlist');
   } else {
