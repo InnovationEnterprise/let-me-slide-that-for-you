@@ -106,6 +106,15 @@ example:
 "youtube": "true"
 ```
 
+**syncoff** - boolean - if set disable slide synchronisation
+
+```
+ {
+   "syncoff" : true
+ }
+```
+
+
 ## Extras
 
 Here are some useful functions
