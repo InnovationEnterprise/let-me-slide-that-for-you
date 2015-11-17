@@ -9,7 +9,7 @@ Add to your HTML
 
 ```
 <div data-slidemejs="LINK_TO_JSON_FILE"></div>
-<script src="//d3gr29hczmiozh.cloudfront.net/0.1.0/slideme.min.js" async></script>
+<script src="//d3gr29hczmiozh.cloudfront.net/0.1.1/slideme.min.js" async></script>
 ```
 
 ### Configuration
@@ -242,7 +242,12 @@ repositories, websites, and resources. If you encounter someone violating
 these terms, please let a maintainer (@xoxoxo) know
 and we will address it as soon as possible.
 
-## Changelog - 0.1.0
+## Changelog - 0.1.1
+
+### 0.1.1
+
+- Fixed lazy loading of slideMe
+- Fixed bug with preloader in interview mode.
 
 ### 0.1.0
 

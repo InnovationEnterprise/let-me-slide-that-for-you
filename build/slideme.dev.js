@@ -1,6 +1,7 @@
+var slideMe;
 (function(){
-var slideMe = slideMe || {};
-var getHead = document.getElementsByTagName('head')[0];
+slideMe = slideMe || {};
+slideMe.getHead = document.getElementsByTagName('head')[0];
 slideMe.timeList = [];
 slideMe.currentArrayNr = '00';
 slideMe.contentReady = false;
@@ -15,6 +16,7 @@ if (document.all && !window.atob) {
   d)&&(this.push(d),e=!0);while(++b<c);e&&this._updateClassName()};d.remove=function(){var a=arguments,b=0,c=a.length,d,e=!1,h;do for(d=a[b]+"",h=g(this,d);-1!==h;)this.splice(h,1),e=!0,h=g(this,d);while(++b<c);e&&this._updateClassName()};d.toggle=function(a,b){a+="";var c=this.contains(a),d=c?!0!==b&&"remove":!1!==b&&"add";if(d)this[d](a);return!0===b||!1===b?b:!c};d.toString=function(){return this.join(" ")};if(c.defineProperty){d={get:m,enumerable:!0,configurable:!0};try{c.defineProperty(a,"classList",
   d)}catch(p){-2146823252===p.number&&(d.enumerable=!1,c.defineProperty(a,"classList",d))}}else c.prototype.__defineGetter__&&a.__defineGetter__("classList",m)}}(self));
 }
+
 // Get Helpers here
 
 // display errors
@@ -184,13 +186,17 @@ slideMe.checkifready = function(){
           if (slideMe.data.videoslides) {
             slideMe.sliderClickEvent(slideMe.firstImage, true);
           }
-          slideMe.DOM.preloaderWrapper.remove();
+          if (slideMe.DOM.preloaderWrapper) {
+            slideMe.DOM.preloaderWrapper.remove();
+          }
           clearInterval(slideMeInterval);
           slideMe.isreloading = false;
         }
       } else {
         if (slideMe.contentReady) {
-          slideMe.DOM.preloaderWrapper.remove();
+          if (slideMe.DOM.preloaderWrapper) {
+            slideMe.DOM.preloaderWrapper.remove();
+          }
           slideMe.isreloading = false;
         }
       }
@@ -202,7 +208,7 @@ slideMe.checkifready = function(){
 
 var insertSpiner = document.createElement('style');
 insertSpiner.innerHTML = '[data-slidemejs] {font-family: Helvetica, Arial, sans-serif;position:relative;height:500px}#slideme-preloader{position:absolute;top:0;bottom:0;left:0;right:0;padding:15% 0 0;background:#fff;z-index:50;color:#000;text-align:center}#slideme-preloader:after{content:"Loading, please wait...";font-size:12px;font-weight:100;display:block}@keyframes slideMeSpinner{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@-webkit-keyframes slideMeSpinner{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}.icon-spinner{-webkit-animation:slideMeSpinner .75s linear infinite;animation:slideMeSpinner 2s linear infinite;font-size:20px;line-height:50px;width:50px;height:50px;cursor:default;text-align:center;color:#000}';
-getHead.appendChild(insertSpiner);
+slideMe.getHead.appendChild(insertSpiner);
 
 slideMe.addPreloader = function () {
 
@@ -282,7 +288,7 @@ slideMe.createDOM = function () {
 
       } else {
 
-          slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.0/slidemeyt.js', 'script', function() {
+          slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.1/slidemeyt.js', 'script', function() {
             slideMe.fireVideJs();
           });
 
@@ -459,10 +465,10 @@ slideMe.fireVideJs = function () {
         };
       }
 
-      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.0/slidemeads.css', 'css');
+      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.1/slidemeads.css', 'css');
 
       slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
-        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.0/slidemeads.js', 'script', function() {
+        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.1/slidemeads.js', 'script', function() {
 
           slideMe.thisPlayer.ima(options);
           slideMe.thisPlayer.ima.initializeAdDisplayContainer();
@@ -888,7 +894,7 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
 slideMe.embed = function() {
   var embedNode = document.createElement('div');
   embedNode.setAttribute('id', 'slideme-share');
-  var embedCode = document.createTextNode('<div data-slidemejs="' + slideMe.getSlideMeUrl + '"></div> <script src="//d3gr29hczmiozh.cloudfront.net/0.1.0/slideme.min.js" async></script>');
+  var embedCode = document.createTextNode('<div data-slidemejs="' + slideMe.getSlideMeUrl + '"></div> <script src="//d3gr29hczmiozh.cloudfront.net/0.1.1/slideme.min.js" async></script>');
   embedNode.innerHTML = '<div id="slideme-embed-close">x</div><div id="slideme-title">Embed<p>Copy and paste the code below into your website</p></div><textarea id="slideme-code"></textarea>';
   slideMe.slideMeContainer.appendChild(embedNode);
   document.getElementById('slideme-code').appendChild(embedCode);
@@ -1115,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (!slideMe.firstLoad) {
-    slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.0/slidemecss.min.css', 'css', function(){
+    slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.1/slidemecss.min.css', 'css', function(){
       slideMe.firstLoad = true;
       startupLoop();
     });

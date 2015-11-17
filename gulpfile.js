@@ -17,7 +17,7 @@ gulp.task('lint', function() {
 gulp.task('scripts', function() {
   gulp.src(['js/var.js', 'js/helpers.js', 'js/preloader.js', 'js/create.js',  'js/loadjson.js', 'js/playlist.js', 'js/video.js', 'js/getslides.js', 'js/setslide.js', 'js/setsize.js', 'js/loadimages.js', 'js/sliderclickevent.js', 'js/embed.js', 'js/setcontent.js', 'js/fullscreen.js', 'js/config.js'])
     .pipe(concat('slideme.dev.js'))
-    .pipe(wrap('(function(){\n<%= contents %>\n})();'))
+    .pipe(wrap('var slideMe;\n(function(){\n<%= contents %>\n})();'))
     .pipe(gulp.dest('build'))
     .pipe(rename('slideme.min.js'))
     .pipe(uglify())

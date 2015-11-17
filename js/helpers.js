@@ -167,13 +167,17 @@ slideMe.checkifready = function(){
           if (slideMe.data.videoslides) {
             slideMe.sliderClickEvent(slideMe.firstImage, true);
           }
-          slideMe.DOM.preloaderWrapper.remove();
+          if (slideMe.DOM.preloaderWrapper) {
+            slideMe.DOM.preloaderWrapper.remove();
+          }
           clearInterval(slideMeInterval);
           slideMe.isreloading = false;
         }
       } else {
         if (slideMe.contentReady) {
-          slideMe.DOM.preloaderWrapper.remove();
+          if (slideMe.DOM.preloaderWrapper) {
+            slideMe.DOM.preloaderWrapper.remove();
+          }
           slideMe.isreloading = false;
         }
       }

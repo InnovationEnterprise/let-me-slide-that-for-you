@@ -1,6 +1,6 @@
 {
   "name": "slideMe",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple js plugin to roll presentations.",
   "main": "build/slideme.min.js",
   "repository": {
@@ -14,21 +14,21 @@
   },
   "homepage": "https://slidemejs.com",
   "devDependencies": {
-    "gulp-install": "^0.6.0",
-    "gulp": "*",
+    "gulp": "^3.9.0",
+    "gulp-closure-compiler": "^0.3.1",
     "gulp-concat": "*",
     "gulp-cssmin": "*",
+    "gulp-install": "^0.6.0",
     "gulp-jshint": "*",
     "gulp-minify-css": "^1.2.1",
-    "gulp-rename": "*",
-    "gulp-uglify": "*",
-    "node-sass": "*",
-    "gulp-closure-compiler": "^0.3.1",
     "gulp-recursive-concat": "0.0.9",
+    "gulp-rename": "*",
     "gulp-sass": "*",
     "gulp-shell": "*",
+    "gulp-uglify": "*",
     "gulp-wrap": "^0.11.0",
     "gulp-wrap-amd": "^0.5.0",
-    "http-server": "*"
+    "http-server": "*",
+    "node-sass": "*"
   }
 }
