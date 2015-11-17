@@ -66,7 +66,7 @@ slideMe.createDOM = function () {
 
       } else {
 
-          slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.0/slidemeyt.js', 'script', function() {
+          slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.1/slidemeyt.js', 'script', function() {
             slideMe.fireVideJs();
           });
 

@@ -31,9 +31,9 @@
           },
           {
             "link" : "/example/json/videoandsubtitles.json",
-            "title" : "Just video",
+            "title" : "Video and subtitles",
             "type" : "json"
-          },   
+          },
           {
             "link" : "/example/json/images.json",
             "title" : "Just images",
@@ -43,12 +43,12 @@
             "link" : "/example/json/videoslideshare.json",
             "title" : "Video with slideshare",
             "type" : "json"
-          }, 
+          },
           {
             "link" : "/example/json/youtubeandhtml.json",
             "title" : "Youtube with html",
             "type" : "json"
-          }, 
+          },
           {
             "link" : "http://theinnovationenterprise.com/",
             "title" : "Just a link"

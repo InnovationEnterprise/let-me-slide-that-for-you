@@ -19,7 +19,7 @@
           },
         {
           "link" : "/example/json/videoandsubtitles.json",
-          "title" : "Just video",
+          "title" : "Video and subtitles",
           "type" : "json"
         },
         {

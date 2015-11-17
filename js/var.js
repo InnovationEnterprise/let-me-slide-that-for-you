@@ -1,5 +1,5 @@
-var slideMe = slideMe || {};
-var getHead = document.getElementsByTagName('head')[0];
+slideMe = slideMe || {};
+slideMe.getHead = document.getElementsByTagName('head')[0];
 slideMe.timeList = [];
 slideMe.currentArrayNr = '00';
 slideMe.contentReady = false;
