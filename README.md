@@ -1,5 +1,5 @@
 # SlideMe
-Simple JS plugin to roll presentations. You can use it as a video presentation slider, image presentation, text presentation or just a video player.
+Build on top of Video.js simple js plugin to roll presentations. You can use it as a video presentation slider, image presentation, text presentation or just a video player.
 
 #### View online
 http://slidemejs.com/
