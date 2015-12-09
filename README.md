@@ -252,3 +252,7 @@ and we will address it as soon as possible.
 ### 0.1.0
 
 - First Beta Release
+
+## Follow Us
+
+If you like what we have done here or have any questions be sure to reach out to us on [Twitter](https://twitter.com/IE_DevTeam)
