@@ -25,7 +25,6 @@
     "gulp-rename": "*",
     "gulp-sass": "*",
     "gulp-shell": "*",
-    "gulp-strip-comments": "^1.1.1",
     "gulp-strip-debug": "^1.1.0",
     "gulp-uglify": "*",
     "gulp-wrap": "^0.11.0",
