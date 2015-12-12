@@ -6,6 +6,7 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   minifycss = require('gulp-minify-css'),
   shell = require('gulp-shell'),
+  stripDebug = require('gulp-strip-debug');
   wrap = require("gulp-wrap");
 
 gulp.task('lint', function() {
@@ -20,6 +21,7 @@ gulp.task('scripts', function() {
     .pipe(wrap('var slideMe;\n(function(){\n<%= contents %>\n})();'))
     .pipe(gulp.dest('build'))
     .pipe(rename('slideme.min.js'))
+    .pipe(stripDebug())
     .pipe(uglify())
     .pipe(gulp.dest('build'));
 
@@ -38,6 +40,6 @@ gulp.task('watch', function() {
 
 gulp.task('http-server', shell.task([
   'http-server -o'
-]))
+]));
 
 gulp.task('default', ['lint', 'scripts', 'minify-css', 'watch', 'http-server']);

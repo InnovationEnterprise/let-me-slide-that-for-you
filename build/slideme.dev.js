@@ -177,7 +177,7 @@ slideMe.checkifready = function(){
           if (slideMe.data.videoslides && !slideMe.data.syncoff && !slideMe.data.slideshare){
             slideMe.thisPlayer.on('timeupdate', slideMe.throttle(slideMe.setNewSlide, 500));
           }
-          if (!slideMe.data.videoslides === 'images' && (slideMe.data.videosourcesmobile || slideMe.data.videosources)) {
+          if (slideMe.data.videoslides !== 'images' && (slideMe.data.videosourcesmobile || slideMe.data.videosources)) {
             slideMe.slideMeContainer.style.overflow = 'hidden';
           } else {
             slideMe.slideMeContainer.style.overflow = 'visible';
@@ -288,7 +288,7 @@ slideMe.createDOM = function () {
 
       } else {
 
-          slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.1/slidemeyt.js', 'script', function() {
+          slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.2/slidemeyt.js', 'script', function() {
             slideMe.fireVideJs();
           });
 
@@ -465,10 +465,10 @@ slideMe.fireVideJs = function () {
         };
       }
 
-      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.1/slidemeads.css', 'css');
+      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.2/slidemeads.css', 'css');
 
       slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
-        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.1/slidemeads.js', 'script', function() {
+        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.2/slidemeads.js', 'script', function() {
 
           slideMe.thisPlayer.ima(options);
           slideMe.thisPlayer.ima.initializeAdDisplayContainer();
@@ -894,7 +894,7 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
 slideMe.embed = function() {
   var embedNode = document.createElement('div');
   embedNode.setAttribute('id', 'slideme-share');
-  var embedCode = document.createTextNode('<div data-slidemejs="' + slideMe.getSlideMeUrl + '"></div> <script src="//d3gr29hczmiozh.cloudfront.net/0.1.1/slideme.min.js" async></script>');
+  var embedCode = document.createTextNode('<div data-slidemejs="' + slideMe.getSlideMeUrl + '"></div> <script src="//d3gr29hczmiozh.cloudfront.net/0.1.2/slideme.min.js" async></script>');
   embedNode.innerHTML = '<div id="slideme-embed-close">x</div><div id="slideme-title">Embed<p>Copy and paste the code below into your website</p></div><textarea id="slideme-code"></textarea>';
   slideMe.slideMeContainer.appendChild(embedNode);
   document.getElementById('slideme-code').appendChild(embedCode);
@@ -1121,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (!slideMe.firstLoad) {
-    slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.1/slidemecss.min.css', 'css', function(){
+    slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.2/slidemecss.min.css', 'css', function(){
       slideMe.firstLoad = true;
       startupLoop();
     });

@@ -1,6 +1,6 @@
 {
   "name": "slideMe",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Simple js plugin to roll presentations.",
   "main": "build/slideme.min.js",
   "repository": {
@@ -25,6 +25,8 @@
     "gulp-rename": "*",
     "gulp-sass": "*",
     "gulp-shell": "*",
+    "gulp-strip-comments": "^1.1.1",
+    "gulp-strip-debug": "^1.1.0",
     "gulp-uglify": "*",
     "gulp-wrap": "^0.11.0",
     "gulp-wrap-amd": "^0.5.0",
