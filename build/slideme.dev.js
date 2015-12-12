@@ -177,7 +177,7 @@ slideMe.checkifready = function(){
           if (slideMe.data.videoslides && !slideMe.data.syncoff && !slideMe.data.slideshare){
             slideMe.thisPlayer.on('timeupdate', slideMe.throttle(slideMe.setNewSlide, 500));
           }
-          if (slideMe.data.videoslides !== 'images' && (slideMe.data.videosourcesmobile || slideMe.data.videosources)) {
+          if (slideMe.data.videoslides === 'images' && (slideMe.data.videosourcesmobile || slideMe.data.videosources)) {
             slideMe.slideMeContainer.style.overflow = 'hidden';
           } else {
             slideMe.slideMeContainer.style.overflow = 'visible';
