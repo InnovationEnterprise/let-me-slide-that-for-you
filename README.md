@@ -9,7 +9,7 @@ Add to your HTML
 
 ```
 <div data-slidemejs="LINK_TO_JSON_FILE"></div>
-<script src="//d3gr29hczmiozh.cloudfront.net/0.1.2/slideme.min.js" async></script>
+<script src="//d3gr29hczmiozh.cloudfront.net/0.1.3/slideme.min.js" async></script>
 ```
 
 ### Configuration
@@ -242,7 +242,11 @@ repositories, websites, and resources. If you encounter someone violating
 these terms, please let a maintainer (@xoxoxo) know
 and we will address it as soon as possible.
 
-## Changelog - 0.1.2
+## Changelog - 0.1.3
+
+### 0.1.3
+
+- Add polyfill for remove()
 
 ### 0.1.2
 

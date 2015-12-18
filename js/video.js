@@ -49,10 +49,10 @@ slideMe.fireVideJs = function () {
         };
       }
 
-      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.2/slidemeads.css', 'css');
+      slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.3/slidemeads.css', 'css');
 
       slideMe.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
-        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.2/slidemeads.js', 'script', function() {
+        slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.3/slidemeads.js', 'script', function() {
 
           slideMe.thisPlayer.ima(options);
           slideMe.thisPlayer.ima.initializeAdDisplayContainer();

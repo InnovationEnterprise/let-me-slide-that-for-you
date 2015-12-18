@@ -6,7 +6,7 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   minifycss = require('gulp-minify-css'),
   shell = require('gulp-shell'),
-  stripDebug = require('gulp-strip-debug');
+  stripDebug = require('gulp-strip-debug'),
   wrap = require("gulp-wrap");
 
 gulp.task('lint', function() {
