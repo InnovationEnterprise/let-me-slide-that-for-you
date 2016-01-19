@@ -1,38 +1,38 @@
-slideMe.setNewSlide = function() {
-  if (slideMe.isreloading) {
+letSlide.setNewSlide = function() {
+  if (letSlide.isreloading) {
     return false;
   }
-  var getCurrentTime = Math.round(slideMe.thisPlayer.currentTime());
+  var getCurrentTime = Math.round(letSlide.thisPlayer.currentTime());
   var arrayNr;
 
-  for (var i = 0; i < slideMe.timeList.length; i++) {   
+  for (var i = 0; i < letSlide.timeList.length; i++) {   
 
-    if (getCurrentTime >= slideMe.timeList[i]) {
-      arrayNr = slideMe.timeList[i];
+    if (getCurrentTime >= letSlide.timeList[i]) {
+      arrayNr = letSlide.timeList[i];
     }
 
   }
-  if (slideMe.currentArrayNr !== arrayNr) {
+  if (letSlide.currentArrayNr !== arrayNr) {
 
-    slideMe.currentArrayNr = arrayNr;
+    letSlide.currentArrayNr = arrayNr;
 
-    var getSlideFromDom = document.querySelectorAll('[data-slideme-time="' + arrayNr + '"]')[0];
+    var getSlideFromDom = document.querySelectorAll('[data-letSlide-time="' + arrayNr + '"]')[0];
 
-    if (slideMe.data.videoslidestype === 'images') {
+    if (letSlide.data.videoslidestype === 'images') {
       if (getSlideFromDom !== getSlideFromDom) {
-        slideMe.DOM.createImgContainer.style.left =  150 - getSlideFromDom.offsetLeft + 'px';
+        letSlide.DOM.createImgContainer.style.left =  150 - getSlideFromDom.offsetLeft + 'px';
       } else { 
-        slideMe.DOM.createImgContainer.style.left =  50 - getSlideFromDom.offsetLeft + 'px' ;
+        letSlide.DOM.createImgContainer.style.left =  50 - getSlideFromDom.offsetLeft + 'px' ;
       }
-      slideMe.firstImage.setAttribute('src', getSlideFromDom.getAttribute('src'));
+      letSlide.firstImage.setAttribute('src', getSlideFromDom.getAttribute('src'));
     } else {
-      var slideMeAllSlides = document.querySelectorAll('[data-slideme-time]');
-      for (var i = 0; i < slideMeAllSlides.length; i++) {
-        if (slideMeAllSlides[i].classList.contains('slideme-img-active')) {
-          slideMeAllSlides[i].classList.remove('slideme-img-active');
+      var letSlideAllSlides = document.querySelectorAll('[data-letSlide-time]');
+      for (var i = 0; i < letSlideAllSlides.length; i++) {
+        if (letSlideAllSlides[i].classList.contains('letSlide-img-active')) {
+          letSlideAllSlides[i].classList.remove('letSlide-img-active');
         }
       }
-      getSlideFromDom.classList.add('slideme-img-active');
+      getSlideFromDom.classList.add('letSlide-img-active');
     }
 
   }

@@ -1,4 +1,4 @@
-slideMe.loadJson = function (jsonUrl) {
+letSlide.loadJson = function (jsonUrl) {
 
   var request = new XMLHttpRequest();
 
@@ -6,39 +6,39 @@ slideMe.loadJson = function (jsonUrl) {
 
   request.onload = function() {
 
-    slideMe.checkifready();
+    letSlide.checkifready();
 
     if (request.readyState == 4 && request.status == 200) {
 
-      slideMe.data = JSON.parse(request.responseText);
+      letSlide.data = JSON.parse(request.responseText);
 
-      if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
+      if (letSlide.data.videosourcesmobile || letSlide.data.videosources) {
         var videojsurl = '//vjs.zencdn.net/4.12.11/video.js';
-        slideMe.loadAssets(videojsurl, 'script', function() {
+        letSlide.loadAssets(videojsurl, 'script', function() {
           console.log("videojsurl");
-          slideMe.createDOM();
+          letSlide.createDOM();
         });
       }
 
-      if (slideMe.data.videoslides || slideMe.data.slideshare) {
-        slideMe.getSlides();
+      if (letSlide.data.videoslides || letSlide.data.slideshare) {
+        letSlide.getSlides();
       }
 
-      if (slideMe.data.playlist) {
-        slideMe.playList();
+      if (letSlide.data.playlist) {
+        letSlide.playList();
       }
 
       console.log('json fetched');
 
     } else {
-      slideMe.errorThat('cannot connect', slideMe.slideMeContainer);
+      letSlide.errorThat('cannot connect', letSlide.letSlideContainer);
     }
 
   };
 
   request.onerror = function() {
 
-    slideMe.errorThat('cannot connect', slideMe.slideMeContainer);
+    letSlide.errorThat('cannot connect', letSlide.letSlideContainer);
   };
 
   request.send();

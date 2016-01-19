@@ -1,4 +1,4 @@
-[data-slidemejs] {
+[data-letSlidejs] {
   height: auto;
   width: 100%;
   height: 400px;
@@ -6,7 +6,7 @@
   overflow: hidden;
   position: relative;
 }
-[data-slidemejs] * {
+[data-letSlidejs] * {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -15,22 +15,22 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
-[data-slidemejs] *::selection, [data-slidemejs] *:after::selection {
+[data-letSlidejs] *::selection, [data-letSlidejs] *:after::selection {
   background: transparent;
 }
 
 
-#slideme-wrapper {
+#letSlide-wrapper {
   float: left;
 }
 
-#slideme-container img {
+#letSlide-container img {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-#slideme-list-wrapper {
+#letSlide-list-wrapper {
   position: relative;
   width: 1120px;
   height: 75px;
@@ -38,72 +38,72 @@
   background: #000;
   overflow: hidden;
 }
-#slideme-list-wrapper .icon-nextslide, #slideme-list-wrapper .icon-prevslide {
+#letSlide-list-wrapper .icon-nextslide, #letSlide-list-wrapper .icon-prevslide {
   color: #fff;
   position: relative;
   top: 25px;
   left: 20px;
 }
 
-.slideme-html #slideme-list-wrapper {
+.letSlide-html #letSlide-list-wrapper {
   position: absolute;
   top: 0;
   right: 0;
   background: #fff;
   color: #000;
 }
-.slideme-html #slideme-list {
+.letSlide-html #letSlide-list {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 }
-.slideme-html #slideme-list, .slideme-html [data-slideme-time] {
+.letSlide-html #letSlide-list, .letSlide-html [data-letSlide-time] {
   height: 100%;
   width: 100%;
 }
 
-.slideme-html [data-slideme-time] {
+.letSlide-html [data-letSlide-time] {
   display: none;
 }
-.slideme-html [data-slideme-time].slideme-img-active {
+.letSlide-html [data-letSlide-time].letSlide-img-active {
   display: block;
 }
 
-#slideme-list {
+#letSlide-list {
   position: absolute;
   height: 75px;
   width: 100%;
   left: 50px;
   transition: left 300ms linear;
 }
-#slideme-list [data-slideme-time] {
+#letSlide-list [data-letSlide-time] {
   cursor: pointer;
 }
-#slideme-list img {
+#letSlide-list img {
   height: 75px;
   width: 100px;
   float: left;
   opacity: 0.8;
   cursor: pointer;
 }
-#slideme-list .slideme-img-active {
+#letSlide-list .letSlide-img-active {
   opacity: 1;
 }
 
-#slideme-list img:hover {
+#letSlide-list img:hover {
   opacity: 0.95;
 }
 
-#slideme-btn-prev {
+#letSlide-btn-prev {
   left: 0;
 }
 
-#slideme-btn-next {
+#letSlide-btn-next {
   right: 0;
 }
 
-#slideme-btn-prev, #slideme-btn-next {
+#letSlide-btn-prev, #letSlide-btn-next {
   position: absolute;
   top: 0;
   width: 50px;
@@ -113,15 +113,15 @@
   cursor: pointer;
 }
 
-#slideme-btn-prev:hover, #slideme-btn-next:hover {
+#letSlide-btn-prev:hover, #letSlide-btn-next:hover {
   background: rgba(18, 155, 239, 0.88);
 }
 
-#slideme-btn-prev::selection, #slideme-btn-next::selection {
+#letSlide-btn-prev::selection, #letSlide-btn-next::selection {
   background: transparent;
 }
 
-.slideme-error {
+.letSlide-error {
   background: #fff;
   position: relative;
   top: 0;
@@ -137,7 +137,7 @@
   padding: 50px 0 0 50px;
 }
 
-#slideme-subtitle {
+#letSlide-subtitle {
   position: absolute;
   bottom: 40px;
   @includ font-size(16, 16);
@@ -148,7 +148,7 @@
   padding: 20px;
 }
 
-#slideme-html-nav {
+#letSlide-html-nav {
  z-index: 10;
  position: absolute;
  width: 50px;
@@ -156,7 +156,7 @@
  bottom: 0;
  right: 0;
 }
-#slideme-html-nav-left, #slideme-html-nav-right {
+#letSlide-html-nav-left, #letSlide-html-nav-right {
   float: left;
   width: 25px;
   line-height: 25px;
@@ -165,12 +165,12 @@
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
-#slideme-html-nav-left:hover, #slideme-html-nav-right:hover {
+#letSlide-html-nav-left:hover, #letSlide-html-nav-right:hover {
   background: rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.9);
 }
 
-.slideme-list-content {
+.letSlide-list-content {
   width: 100%;
   height: 100%;
   position: relative;
@@ -186,7 +186,7 @@
   top: 35%;
 }
 
-#slideme-playlist {
+#letSlide-playlist {
   width: 100%;
   height: 40px;
   position: absolute;
@@ -194,14 +194,14 @@
   bottom: -40px;
   left: 0;
 }
-.this-fixed #slideme-playlist {
+.this-fixed #letSlide-playlist {
   visibility: hidden;
 }
-.slideme-images-only #slideme-playlist {
+.letSlide-images-only #letSlide-playlist {
   bottom: -115px;
 }
 
-#slideme-playlist-title {
+#letSlide-playlist-title {
   font-size: 12px;
   line-height: 40px;
   left: 0;
@@ -214,20 +214,20 @@
   font-weight: lighter;
   cursor: pointer;
 }
-#slideme-playlist-title.slideme-drop-active {
+#letSlide-playlist-title.letSlide-drop-active {
   width: 300px;
 }
-#slideme-playlist-drop {
+#letSlide-playlist-drop {
   position: absolute;
   top: 0;
   right: 10px;
   transform: rotate(270deg);
   transition: transform 300ms linear;
 }
-.slideme-drop-active  #slideme-playlist-drop {
+.letSlide-drop-active  #letSlide-playlist-drop {
   transform: rotate(90deg);
 }
-#slideme-playlist-list {
+#letSlide-playlist-list {
   width: 300px;
   max-height: 170px;
   overflow-y: auto;
@@ -238,7 +238,7 @@
   display: none;
   font-size: 14px;
 }
-#slideme-playlist-list a, #slideme-playlist-list p {
+#letSlide-playlist-list a, #letSlide-playlist-list p {
   display: block;
   color: #000;
   text-decoration: none;
@@ -246,24 +246,24 @@
   border-bottom: 1px solid #DBDBDB;
   cursor: pointer;
 }
-#slideme-playlist-list a:hover, #slideme-playlist-list p:hover {
+#letSlide-playlist-list a:hover, #letSlide-playlist-list p:hover {
   background: #fff;
 }
 
-#slideme-quality {
+#letSlide-quality {
   line-height: 3em;
   height: 3em;
   float: left;
   cursor: pointer;
 }
-#slideme-change-quality {
+#letSlide-change-quality {
   padding: 0 7px;
 }
-#slideme-change-quality:hover {
+#letSlide-change-quality:hover {
   text-shadow: 0 0 1em #fff;
 }
 
-#slideme-change-quality-list {
+#letSlide-change-quality-list {
   display: none;
   position: absolute;
   top: -60px;
@@ -276,14 +276,14 @@
 
 
 
-.slideme-html #slideme-container {
+.letSlide-html #letSlide-container {
   top: 0;
   right: 0;
   position: absolute;
   overflow: hidden;
 }
 
-.slideme-html #videojs {
+.letSlide-html #videojs {
   top: 0;
   left: 0;
   position: absolute;
@@ -291,48 +291,48 @@
 
 
 
-.slideme-images #videojs {
+.letSlide-images #videojs {
   top: 0;
   left: 0;
   position: absolute;
 }
 
-.slideme-images #slideme-container {
+.letSlide-images #letSlide-container {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-.slideme-images #slideme-list-wrapper {
+.letSlide-images #letSlide-list-wrapper {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
 }
 
-.slideme-images-only #slideme-container img {
+.letSlide-images-only #letSlide-container img {
   max-width: 700px;
   margin: auto;
   display: block;
 }
 
-[data-slidemejs].slideme-images-only {
+[data-letSlidejs].letSlide-images-only {
   width: 100%;
 }
 
-.slideme-images-only #slideme-list-wrapper {
+.letSlide-images-only #letSlide-list-wrapper {
   width: 100%;
 }
 
-.slideme-images-only {
+.letSlide-images-only {
   max-width: 980px;
 }
 
-[data-slidemejs].slideme-images-only #slideme-container {
+[data-letSlidejs].letSlide-images-only #letSlide-container {
   height: 100%;
 }
 
-#slideme-share {
+#letSlide-share {
   display: none;
   position: absolute;
   top: 0;
@@ -342,16 +342,16 @@
   background: rgba(0, 0, 0, 0.56);
   z-index: 30;
 }
-#slideme-title {
+#letSlide-title {
   color: #fff;
   padding: 30px;
   font-size: 30px;
 }
-#slideme-title p {
+#letSlide-title p {
   font-size: 14px;
   line-height: 20px;
 }
-#slideme-code {
+#letSlide-code {
   color: #000;
   padding: 30px;
   background: rgba(255,255,255,.9);
@@ -368,7 +368,7 @@
   outline: none;
   resize: none;
 }
-#slideme-embed-close {
+#letSlide-embed-close {
   color: #ABABAB;
   position: absolute;
   right: 0;
@@ -377,14 +377,14 @@
   padding: 10px;
   cursor: pointer;
 }
-#slideme-embed-close:hover {
+#letSlide-embed-close:hover {
   color: #fff;
 }
-[data-slidemejs] #slideme-code::selection , [data-slidemejs] #slideme-code :after::selection {
+[data-letSlidejs] #letSlide-code::selection , [data-letSlidejs] #letSlide-code :after::selection {
   background: rgba(56, 202, 255, 0.58);
 }
 
-.vjs-default-skin .vjs-control.slideme-vjs-title {
+.vjs-default-skin .vjs-control.letSlide-vjs-title {
   width: 100%;
   background: rgba(0, 0, 0, .8);
   top: 0;
@@ -402,7 +402,7 @@
   text-overflow: ellipsis;
 }
 
-.vjs-default-skin .vjs-control.slideme-emebed-btn {
+.vjs-default-skin .vjs-control.letSlide-emebed-btn {
   width: auto;
   position: absolute;
   bottom: 8em;
@@ -413,18 +413,18 @@
   display: none;
 }
 
-.slideme-emebed-btn {
+.letSlide-emebed-btn {
   opacity: 0;
   transition: opacity 500ms linear;
 }
 
-.vjs-has-started.vjs-user-active .slideme-emebed-btn, .vjs-has-started.vjs-user-active .slideme-vjs-title  {
+.vjs-has-started.vjs-user-active .letSlide-emebed-btn, .vjs-has-started.vjs-user-active .letSlide-vjs-title  {
   opacity: 1;
 }
-.vjs-has-started.vjs-user-inactive .slideme-emebed-btn, .vjs-has-started.vjs-user-inactive .slideme-vjs-title {
+.vjs-has-started.vjs-user-inactive .letSlide-emebed-btn, .vjs-has-started.vjs-user-inactive .letSlide-vjs-title {
   opacity: 0;
 }
-.slideme-emebed-btn:after {
+.letSlide-emebed-btn:after {
   content: 'Embed';
   display: block;
   padding: 0 15px;
@@ -437,31 +437,31 @@
   background: rgba(0, 0, 0, .7);
 }
 
-.vjs-default-skin .vjs-control.slideme-fullscreen-btn {
+.vjs-default-skin .vjs-control.letSlide-fullscreen-btn {
   float: right;
   cursor: pointer;
   width: 70px;
 }
-.vjs-default-skin .vjs-control.slideme-fullscreen-btn:after {
+.vjs-default-skin .vjs-control.letSlide-fullscreen-btn:after {
   content : 'View Slides';
 }
-.vjs-default-skin .vjs-control.slideme-hd-btn:after {
+.vjs-default-skin .vjs-control.letSlide-hd-btn:after {
   font-weight: 700;
   content : 'HD';
 }
-.vjs-default-skin .vjs-control.slideme-fullscreen-btn:after, .vjs-default-skin .vjs-control.slideme-hd-btn:after {
+.vjs-default-skin .vjs-control.letSlide-fullscreen-btn:after, .vjs-default-skin .vjs-control.letSlide-hd-btn:after {
   display: block;
   line-height: 3em;
   color: #ccc;
   cursor: pointer;
 }
-.vjs-default-skin .vjs-control.slideme-fullscreen-btn:hover:after, .vjs-default-skin .vjs-control.slideme-hd-btn:hover:after {
+.vjs-default-skin .vjs-control.letSlide-fullscreen-btn:hover:after, .vjs-default-skin .vjs-control.letSlide-hd-btn:hover:after {
   text-shadow: 0 0 1em #fff;
 }
-.vjs-default-skin .vjs-control.slideme-hd-btn {
+.vjs-default-skin .vjs-control.letSlide-hd-btn {
   opacity: 0.5;
 }
-[data-slidemejs].this-fixed {
+[data-letSlidejs].this-fixed {
   position: fixed;
   margin: auto;
   z-index: 9999;
@@ -469,12 +469,12 @@
   left: 0;
 }
 
-[data-slidemejs].this-fixed.full-mobile {
+[data-letSlidejs].this-fixed.full-mobile {
   position: relative;
   margin: auto !important;
 }
 
-#slideme-close-popup {
+#letSlide-close-popup {
   font-family: Helvetica, Arial, sans-serif;
   position: absolute;
   top: 20px;
@@ -485,7 +485,7 @@
   cursor: pointer;
 }
 
-#slideme-fullscreen {
+#letSlide-fullscreen {
   z-index: -1;
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
@@ -495,31 +495,31 @@
   right: 0;
 }
 
-[data-slidemejs].full-mobile #slideme-container {
+[data-letSlidejs].full-mobile #letSlide-container {
   margin: auto !important;
   width: auto !important;
   position:  relative;
 }
-[data-slidemejs].full-mobile #slideme-container img {
+[data-letSlidejs].full-mobile #letSlide-container img {
   width: auto;
   margin: auto;
 }
 
-.this-fixed.full-mobile.slideme-images #videojs {
+.this-fixed.full-mobile.letSlide-images #videojs {
   z-index: -1;
 
 }
 
 @media screen and (max-width: 700px) {
-  #slideme-main-wrapper {
+  #letSlide-main-wrapper {
     padding: 25px 0 0 0;
   }
 
-  [data-slidemejs] {
+  [data-letSlidejs] {
     height: 360px;
   }
 
-  #slideme-code {
+  #letSlide-code {
     width: 300px;
     height: 100px;
     margin: 0 auto;
@@ -527,17 +527,17 @@
 }
 
 @media screen and (max-width: 550px) {
-  #slideme-title {
+  #letSlide-title {
     padding: 10px;
   }
 }
 
 @media screen and (max-width: 415px) {
 
-  .vjs-default-skin .vjs-control.slideme-fullscreen-btn {
+  .vjs-default-skin .vjs-control.letSlide-fullscreen-btn {
     background: #000;
   }
-  .vjs-default-skin .vjs-control.slideme-hd-btn {
+  .vjs-default-skin .vjs-control.letSlide-hd-btn {
     display: none;
   }
   .vjs-subtitles-button.vjs-menu-button.vjs-control {

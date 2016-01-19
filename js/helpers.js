@@ -2,17 +2,17 @@
 
 // display errors
 
-slideMe.errorThat = function (thisError, thisContainer) {
+letSlide.errorThat = function (thisError, thisContainer) {
   var errorDiv = 'Player error:<br>' + thisError + '';
-  thisContainer.classList.add('slideme-error');
+  thisContainer.classList.add('letSlide-error');
   thisContainer.innerHTML = errorDiv;
-  slideMe.checkifready = null;
-  slideMe.error = true;
+  letSlide.checkifready = null;
+  letSlide.error = true;
 };
 
 // Helper for adding elements attributes
 
-slideMe.addAttributes = function (element, attribute) {
+letSlide.addAttributes = function (element, attribute) {
   for (var value in attribute) {
     if (attribute.hasOwnProperty(value)) {
      element.setAttribute(value, attribute[value]);
@@ -20,19 +20,19 @@ slideMe.addAttributes = function (element, attribute) {
   }
 };
 
-// Remove slideme
+// Remove letSlide
 
-slideMe.destroy = function() {
+letSlide.destroy = function() {
 
-    slideMe.thisPlayer.dispose();
-    slideMe.slideMeContainer.remove();
-    slideMe = undefined;
+    letSlide.thisPlayer.dispose();
+    letSlide.letSlideContainer.remove();
+    letSlide = undefined;
 
 };
 
 // Remy throttle fn
 
-slideMe.throttle = function (fn, threshhold, scope) {
+letSlide.throttle = function (fn, threshhold, scope) {
   var last,
       deferTimer;
   return function () {
@@ -56,7 +56,7 @@ slideMe.throttle = function (fn, threshhold, scope) {
 
 // function for loading assets
 
-slideMe.loadAssets = function (url, type, fn) {
+letSlide.loadAssets = function (url, type, fn) {
 
   var getBody = document.getElementsByTagName('body')[0];
   var getAssets;
@@ -109,76 +109,76 @@ slideMe.loadAssets = function (url, type, fn) {
 
 };
 
-// Reload slideme with new config json
+// Reload letSlide with new config json
 
-slideMe.reload = function (jsonUrl) {
+letSlide.reload = function (jsonUrl) {
 
-  slideMe.isreloading = true;
+  letSlide.isreloading = true;
 
-  if (slideMe.thisPlayer) {
-    slideMe.thisPlayer.pause();
-    slideMe.thisPlayer.dispose();
+  if (letSlide.thisPlayer) {
+    letSlide.thisPlayer.pause();
+    letSlide.thisPlayer.dispose();
     videojs = null;
-    slideMe.thisPlayer = null;
+    letSlide.thisPlayer = null;
   }
 
-  while(slideMe.slideMeContainer.firstChild) {
-    slideMe.slideMeContainer.removeChild(slideMe.slideMeContainer.firstChild);
+  while(letSlide.letSlideContainer.firstChild) {
+    letSlide.letSlideContainer.removeChild(letSlide.letSlideContainer.firstChild);
   }
 
 
-  slideMe.contentReady = false;
-  slideMe.videoready = false;
+  letSlide.contentReady = false;
+  letSlide.videoready = false;
 
-  slideMe.DOM = [];
+  letSlide.DOM = [];
 
-  slideMe.slideMeContainer.className = '';
-  slideMe.slideMeContainer.style.overflow = 'hidden';
+  letSlide.letSlideContainer.className = '';
+  letSlide.letSlideContainer.style.overflow = 'hidden';
 
-  slideMe.checkifready();
+  letSlide.checkifready();
 
-  slideMe.addPreloader();
-  slideMe.loadJson(jsonUrl);
+  letSlide.addPreloader();
+  letSlide.loadJson(jsonUrl);
 
 };
 
 
-// Check if slideme is ready
+// Check if letSlide is ready
 
-slideMe.checkifready = function(){
- var slideMeInterval =  setInterval(function(){
-    if (slideMe.error === true || typeof slideMe === 'undefined') {
-      clearInterval(slideMeInterval);
+letSlide.checkifready = function(){
+ var letSlideInterval =  setInterval(function(){
+    if (letSlide.error === true || typeof letSlide === 'undefined') {
+      clearInterval(letSlideInterval);
     } else {
-      if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
-        if (!slideMe.data.videoslides) {
-          slideMe.contentReady = true;
+      if (letSlide.data.videosourcesmobile || letSlide.data.videosources) {
+        if (!letSlide.data.videoslides) {
+          letSlide.contentReady = true;
         }
-        if (slideMe.contentReady && slideMe.videoready) {
-          if (slideMe.data.videoslides && !slideMe.data.syncoff && !slideMe.data.slideshare){
-            slideMe.thisPlayer.on('timeupdate', slideMe.throttle(slideMe.setNewSlide, 500));
+        if (letSlide.contentReady && letSlide.videoready) {
+          if (letSlide.data.videoslides && !letSlide.data.syncoff && !letSlide.data.slideshare){
+            letSlide.thisPlayer.on('timeupdate', letSlide.throttle(letSlide.setNewSlide, 500));
           }
-          if (slideMe.data.videoslides === 'images' && (slideMe.data.videosourcesmobile || slideMe.data.videosources)) {
-            slideMe.slideMeContainer.style.overflow = 'hidden';
+          if (letSlide.data.videoslides === 'images' && (letSlide.data.videosourcesmobile || letSlide.data.videosources)) {
+            letSlide.letSlideContainer.style.overflow = 'hidden';
           } else {
-            slideMe.slideMeContainer.style.overflow = 'visible';
+            letSlide.letSlideContainer.style.overflow = 'visible';
           }
 
-          if (slideMe.data.videoslides) {
-            slideMe.sliderClickEvent(slideMe.firstImage, true);
+          if (letSlide.data.videoslides) {
+            letSlide.sliderClickEvent(letSlide.firstImage, true);
           }
-          if (slideMe.DOM.preloaderWrapper) {
-            slideMe.DOM.preloaderWrapper.remove();
+          if (letSlide.DOM.preloaderWrapper) {
+            letSlide.DOM.preloaderWrapper.remove();
           }
-          clearInterval(slideMeInterval);
-          slideMe.isreloading = false;
+          clearInterval(letSlideInterval);
+          letSlide.isreloading = false;
         }
       } else {
-        if (slideMe.contentReady) {
-          if (slideMe.DOM.preloaderWrapper) {
-            slideMe.DOM.preloaderWrapper.remove();
+        if (letSlide.contentReady) {
+          if (letSlide.DOM.preloaderWrapper) {
+            letSlide.DOM.preloaderWrapper.remove();
           }
-          slideMe.isreloading = false;
+          letSlide.isreloading = false;
         }
       }
 

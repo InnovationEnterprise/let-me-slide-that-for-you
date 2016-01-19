@@ -1,31 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  var checkAllSlideme = document.querySelectorAll('[data-slidemejs]');
+  var checkAllletSlide = document.querySelectorAll('[data-letSlidejs]');
 
-  slideMe.startupSlideme = function (thiSlideme) {
-    thiSlideme.classList.add('slideme-loaded');
-    slideMe.slideMeContainer = thiSlideme;
-    slideMe.addPreloader();
-    slideMe.getSlideMeUrl = slideMe.slideMeContainer.getAttribute('data-slidemejs');
-    if (/^http?:\/\//.test(slideMe.getSlideMeUrl)) {
-      slideMe.getSlideMeUrl = slideMe.getSlideMeUrl.replace(/^https?:\/\//,'https://');
+  letSlide.startupletSlide = function (thiletSlide) {
+    thiletSlide.classList.add('letSlide-loaded');
+    letSlide.letSlideContainer = thiletSlide;
+    letSlide.addPreloader();
+    letSlide.getletSlideUrl = letSlide.letSlideContainer.getAttribute('data-letSlidejs');
+    if (/^http?:\/\//.test(letSlide.getletSlideUrl)) {
+      letSlide.getletSlideUrl = letSlide.getletSlideUrl.replace(/^https?:\/\//,'https://');
     }
-    slideMe.loadJson(slideMe.getSlideMeUrl);
+    letSlide.loadJson(letSlide.getletSlideUrl);
   };
 
 
   function startupLoop(){
-   for (var i = 0; i < checkAllSlideme.length; i++) {
-      if (!checkAllSlideme[i].classList.contains('slideme-loaded') && !checkAllSlideme[i].classList.contains('slideme-request')) {
-        slideMe.startupSlideme(checkAllSlideme[i]);
+   for (var i = 0; i < checkAllletSlide.length; i++) {
+      if (!checkAllletSlide[i].classList.contains('letSlide-loaded') && !checkAllletSlide[i].classList.contains('letSlide-request')) {
+        letSlide.startupletSlide(checkAllletSlide[i]);
         return false;
       }
     }
   }
 
-  if (!slideMe.firstLoad) {
-    slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.3/slidemecss.min.css', 'css', function(){
-      slideMe.firstLoad = true;
+  if (!letSlide.firstLoad) {
+    letSlide.loadAssets('http://127.0.0.1:8080/build/letSlidecss.min.css', 'css', function(){
+      letSlide.firstLoad = true;
       startupLoop();
     });
   } else {

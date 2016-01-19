@@ -1,20 +1,20 @@
-# SlideMe
+# Let me slide that for you
 Build on top of Video.js simple js plugin to roll presentations. You can use it as a video presentation slider, image presentation, text presentation or just a video player.
 
 #### View online
-http://slidemejs.com/
+http://letSlidejs.com/
 
 ## Installation
 Add to your HTML
 
 ```
-<div data-slidemejs="LINK_TO_JSON_FILE"></div>
-<script src="//d3gr29hczmiozh.cloudfront.net/0.1.3/slideme.min.js" async></script>
+<div data-letSlidejs="LINK_TO_JSON_FILE"></div>
+<script src="//d3gr29hczmiozh.cloudfront.net/0.1.3/letSlide.min.js" async></script>
 ```
 
 ### Configuration
 
-You can configure your SlideMe inside your JSON file (all values are strings):
+You can configure your letSlide inside your JSON file (all values are strings):
 
 **autoplay** - boolean – default to false
 
@@ -38,7 +38,7 @@ example:
 "title" :  “my title”
  ```
 
-**adTagUrl** – your DFP vast tag (you can also add this as data-adtag to your SlideMe container)
+**adTagUrl** – your DFP vast tag (you can also add this as data-adtag to your letSlide container)
 
  example:
 
@@ -99,7 +99,7 @@ example:
 "slideshare": "\u003ciframe src='//www.slideshare.net/slideshow/embed_code/key/fWtwkJWq5dERLK' width='425' height='355' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;' allowfullscreen\u003e \u003c/iframe\u003e \u003cdiv style='margin-bottom:5px'\u003e \u003cstrong\u003e \u003ca href='//www.slideshare.net/ThoughtWorks/strategy-to-execution-by-jonny-schneider-thoughtworks' title='Strategy to Execution by Jonny Schneider - ThoughtWorks' target='_blank'\u003eStrategy to Execution by Jonny Schneider - ThoughtWorks\u003c/a\u003e \u003c/strong\u003e from \u003cstrong\u003e\u003ca href='//www.slideshare.net/ThoughtWorks' target='_blank'\u003eThoughtWorks\u003c/a\u003e\u003c/strong\u003e \u003c/div\u003e"
 ```
 
-**youtube** - boolean - if exist and set to true with videosource as youtube will wrap your video into SlideMe.
+**youtube** - boolean - if exist and set to true with videosource as youtube will wrap your video into letSlide.
 
 ```
 "videosources": "https://www.youtube.com/watch?v=C0DPdy98e4c",
@@ -119,10 +119,10 @@ example:
 
 Here are some useful functions
 
-### SlideMe container options
+### letSlide container options
 
 
-**ad player** - add this to SlideMe container to use it as just video ads player.
+**ad player** - add this to letSlide container to use it as just video ads player.
 
  ```
 data-inarticle="true"
@@ -147,14 +147,14 @@ data-interview="true"
 Just add somewhere on the website
 
  ```
-<div id="slideme-h1"></div>
+<div id="letSlide-h1"></div>
  ```
 
 ### Playlist
 
 Use as in example just do not define type if you want to use it as a URL
 .
-Add id="slideme-playlist" somewhere on your website if you would like to change default position.
+Add id="letSlide-playlist" somewhere on your website if you would like to change default position.
 
 example:
 
@@ -191,27 +191,27 @@ example:
 Add a link to your playlist with type set to JSON or call
 
  ```
-slideMe.reload('jsonurl');
+letSlide.reload('jsonurl');
  ```
 
 ## Useful Helpers
 
-Remove SlideMe
+Remove letSlide
 
 ```
- slideMe.destroy();
+ letSlide.destroy();
 ```
 
 Display Error
 
 ```
- slideMe.destroy('error text', container);
+ letSlide.destroy('error text', container);
 ```
 
 Load Assets
 
 ```
-slideMe.loadAssets("url", "css/script", function(){
+letSlide.loadAssets("url", "css/script", function(){
   alert('assets loaded');
 });
 ```
@@ -223,13 +223,13 @@ To install all the development dependencies run;
 npm install
 ```
 
-To build SlideMe locally run;
+To build letSlide locally run;
 
 ```
 gulp
 ```
 
-If you wish its better to change cdn assets to your local. Just change all slideMe.loadAssets.
+If you wish its better to change cdn assets to your local. Just change all letSlide.loadAssets.
 
 ## Code of Conduct
 
@@ -244,6 +244,11 @@ and we will address it as soon as possible.
 
 ## Changelog - 0.1.3
 
+### 0.1.4
+
+- minor code clean up
+- changing name from slideMe to let me slide that for you (in project letSlide)
+
 ### 0.1.3
 
 - Add polyfill for remove()
@@ -255,7 +260,7 @@ and we will address it as soon as possible.
 
 ### 0.1.1
 
-- Fixed lazy loading of slideMe
+- Fixed lazy loading of letSlide
 - Fixed bug with preloader in interview mode.
 
 ### 0.1.0

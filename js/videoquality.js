@@ -1,13 +1,13 @@
-var slideMeHD = slideMe.thisPlayer.controlBar.addChild('button', {
+var letSlideHD = letSlide.thisPlayer.controlBar.addChild('button', {
   text: 'HD'
 });
 
-slideMeHD.addClass('slideme-hd-btn');
+letSlideHD.addClass('letSlide-hd-btn');
 
 var vidoQualityChanged = false;
-var videoOriginal = slideMe.thisPlayer.src();
+var videoOriginal = letSlide.thisPlayer.src();
 
-var slideMeGetQuality = function () {
+var letSlideGetQuality = function () {
 
   var src;
   
@@ -15,33 +15,33 @@ var slideMeGetQuality = function () {
 
     vidoQualityChanged = true;
 
-    var thisTypeUrl = slideMe.thisPlayer.src();
-    var findThatType = slideMe.slideMeContainer.getElementsByTagName('video')[0];
+    var thisTypeUrl = letSlide.thisPlayer.src();
+    var findThatType = letSlide.letSlideContainer.getElementsByTagName('video')[0];
     findThatType = findThatType.querySelectorAll('[ src="' + thisTypeUrl + '"]')[0];
     findThatType = findThatType.getAttribute('type');
     
     var videoHigh;
 
-    for (var sourceType in slideMe.data.videosources) {
+    for (var sourceType in letSlide.data.videosources) {
       if (sourceType === findThatType) {
-        videoHigh = slideMe.data.videosources[sourceType];
+        videoHigh = letSlide.data.videosources[sourceType];
       }
     }
 
     src = videoHigh;
-    document.getElementsByClassName('slideme-hd-btn')[0].style.opacity = '1';
+    document.getElementsByClassName('letSlide-hd-btn')[0].style.opacity = '1';
 
   } else {
     vidoQualityChanged = false;
     src = videoOriginal;
-    document.getElementsByClassName('slideme-hd-btn')[0].style.opacity = '0.5';
+    document.getElementsByClassName('letSlide-hd-btn')[0].style.opacity = '0.5';
   }
 
-  var thisTime = slideMe.thisPlayer.currentTime();
-  slideMe.thisPlayer.src(src);
-  slideMe.thisPlayer.currentTime(thisTime);
-  slideMe.thisPlayer.play();
+  var thisTime = letSlide.thisPlayer.currentTime();
+  letSlide.thisPlayer.src(src);
+  letSlide.thisPlayer.currentTime(thisTime);
+  letSlide.thisPlayer.play();
 
 };
 
-slideMeHD.on('click', slideMeGetQuality);
+letSlideHD.on('click', letSlideGetQuality);

@@ -1,53 +1,53 @@
-slideMe.sliderClickEvent = function (firstImage, ready) {
+letSlide.sliderClickEvent = function (firstImage, ready) {
 
-  slideMe.addClicks = document.querySelectorAll('[data-slideme-time]');
-  slideMe.addClicks[0].classList.add('slideme-img-active');
+  letSlide.addClicks = document.querySelectorAll('[data-letSlide-time]');
+  letSlide.addClicks[0].classList.add('letSlide-img-active');
 
   function addClicksFn() {
 
-    if (ready && !slideMe.data.syncoff) {
-      var duration = slideMe.thisPlayer.duration();
-      if (slideMe.data.videosourcesmobile && duration > 10 || slideMe.data.videosources && duration > 10) {
-        var thisTime = this.getAttribute('data-slideme-time');
-        slideMe.thisPlayer.currentTime(thisTime);
-        slideMe.thisPlayer.play();
+    if (ready && !letSlide.data.syncoff) {
+      var duration = letSlide.thisPlayer.duration();
+      if (letSlide.data.videosourcesmobile && duration > 10 || letSlide.data.videosources && duration > 10) {
+        var thisTime = this.getAttribute('data-letSlide-time');
+        letSlide.thisPlayer.currentTime(thisTime);
+        letSlide.thisPlayer.play();
       }
     }
 
-    if (slideMe.data.videoslidestype === 'images' && this !== slideMe.addClicks[0]) {
-      slideMe.DOM.createImgContainer.style.left = 150 - this.offsetLeft + 'px';
+    if (letSlide.data.videoslidestype === 'images' && this !== letSlide.addClicks[0]) {
+      letSlide.DOM.createImgContainer.style.left = 150 - this.offsetLeft + 'px';
     }
 
-    if (slideMe.data.videoslidestype === 'images') {
+    if (letSlide.data.videoslidestype === 'images') {
       firstImage.setAttribute('src', this.getAttribute('src'));
     }
 
-    document.getElementsByClassName('slideme-img-active')[0].classList.remove('slideme-img-active');
-    this.classList.add('slideme-img-active');
+    document.getElementsByClassName('letSlide-img-active')[0].classList.remove('letSlide-img-active');
+    this.classList.add('letSlide-img-active');
 
   }
 
-  for (var g = 0; g < slideMe.addClicks.length; g++) {
-    slideMe.addClicks[g].addEventListener('click', addClicksFn, false);
+  for (var g = 0; g < letSlide.addClicks.length; g++) {
+    letSlide.addClicks[g].addEventListener('click', addClicksFn, false);
   }
 
-  if (slideMe.data.videoslidestype === 'images') {
+  if (letSlide.data.videoslidestype === 'images') {
     var animated = false;
-    var imgContainerWidth = 100 * slideMe.data.videoslides.length;
+    var imgContainerWidth = 100 * letSlide.data.videoslides.length;
 
-    document.getElementById('slideme-btn-next').addEventListener('click', function() {
-      var imgContainerPosition = slideMe.DOM.createImgContainer.offsetLeft;
+    document.getElementById('letSlide-btn-next').addEventListener('click', function() {
+      var imgContainerPosition = letSlide.DOM.createImgContainer.offsetLeft;
       if (animated === false && imgContainerPosition > - imgContainerWidth + 500) {
         animated = true;
-        slideMe.DOM.createImgContainer.style.left = imgContainerPosition - 200 + 'px';
+        letSlide.DOM.createImgContainer.style.left = imgContainerPosition - 200 + 'px';
         setTimeout(function(){
           animated = false;
         }, 325);
       }
     }, false);
 
-    document.getElementById('slideme-btn-prev').addEventListener('click', function() {
-      var imgContainerPosition = slideMe.DOM.createImgContainer.offsetLeft;
+    document.getElementById('letSlide-btn-prev').addEventListener('click', function() {
+      var imgContainerPosition = letSlide.DOM.createImgContainer.offsetLeft;
       if (!animated && imgContainerPosition < 50) {
         animated = true;
         var slideThatMuch;
@@ -56,7 +56,7 @@ slideMe.sliderClickEvent = function (firstImage, ready) {
         } else {
           slideThatMuch = 100;
         }
-        slideMe.DOM.createImgContainer.style.left = imgContainerPosition + slideThatMuch + 'px';
+        letSlide.DOM.createImgContainer.style.left = imgContainerPosition + slideThatMuch + 'px';
         setTimeout(function(){
           animated = false;
         }, 325);

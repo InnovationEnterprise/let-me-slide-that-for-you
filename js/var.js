@@ -1,11 +1,11 @@
-slideMe = slideMe || {};
-slideMe.getHead = document.getElementsByTagName('head')[0];
-slideMe.timeList = [];
-slideMe.currentArrayNr = '00';
-slideMe.contentReady = false;
-slideMe.videoready = false;
-slideMe.isreloading = false;
-slideMe.DOM = {};
+letSlide = letSlide || {};
+letSlide.getHead = document.getElementsByTagName('head')[0];
+letSlide.timeList = [];
+letSlide.currentArrayNr = '00';
+letSlide.contentReady = false;
+letSlide.videoready = false;
+letSlide.isreloading = false;
+letSlide.DOM = {};
 if (!('remove' in Element.prototype)) {
     Element.prototype.remove = function() {
         if (this.parentNode) {

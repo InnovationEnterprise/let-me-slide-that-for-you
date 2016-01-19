@@ -1,43 +1,43 @@
-slideMe.fullscreen = function() {
+letSlide.fullscreen = function() {
 
-  var slidemefullscreen = slideMe.thisPlayer.controlBar.addChild('button', {
+  var letSlidefullscreen = letSlide.thisPlayer.controlBar.addChild('button', {
     text: 'Full screen'
   });
-  slidemefullscreen.addClass('slideme-fullscreen-btn');
+  letSlidefullscreen.addClass('letSlide-fullscreen-btn');
 
   var fullscreenon = false;
 
-  slidemefullscreen.on('click', function() {
+  letSlidefullscreen.on('click', function() {
 
     if (!fullscreenon) {
 
       fullscreenon = true;
 
-      slideMe.slideMeContainer.classList.add('this-fixed');
-      slideMe.slideMeContainer.classList.add('full-mobile');
+      letSlide.letSlideContainer.classList.add('this-fixed');
+      letSlide.letSlideContainer.classList.add('full-mobile');
 
       var fullScreen = document.createElement('div');
-      fullScreen.setAttribute('id', 'slideme-fullscreen');
+      fullScreen.setAttribute('id', 'letSlide-fullscreen');
       var fullScreenClose = document.createElement('div');
-      fullScreenClose.setAttribute('id', 'slideme-close-popup');
+      fullScreenClose.setAttribute('id', 'letSlide-close-popup');
       fullScreenClose.innerHTML = 'x';
-      slideMe.slideMeContainer.appendChild(fullScreen);
-      slideMe.slideMeContainer.appendChild(fullScreenClose);
+      letSlide.letSlideContainer.appendChild(fullScreen);
+      letSlide.letSlideContainer.appendChild(fullScreenClose);
 
-      slideMe.DOM.presentationNode.style.display = 'block';
+      letSlide.DOM.presentationNode.style.display = 'block';
 
-      if (!slideMe.data.slideshare) {
-        document.getElementById('slideme-list-wrapper').style.display = 'block';
-        slideMe.DOM.presentationNode.style.height = parseFloat(slideMe.slideMeContainer.style.height) + 'px';
-        document.getElementById('slideme-list-wrapper').style.bottom = - 75 + 'px';
+      if (!letSlide.data.slideshare) {
+        document.getElementById('letSlide-list-wrapper').style.display = 'block';
+        letSlide.DOM.presentationNode.style.height = parseFloat(letSlide.letSlideContainer.style.height) + 'px';
+        document.getElementById('letSlide-list-wrapper').style.bottom = - 75 + 'px';
       } else {
-        slideMe.DOM.presentationNode.style.height = '100%';
+        letSlide.DOM.presentationNode.style.height = '100%';
       }
 
-      if (slideMe.DOM.presentationNode) {
-        slideMe.DOM.presentationNode.style.display = 'block';
-        if (!slideMe.data.slideshare) {
-          document.getElementById('slideme-list-wrapper').style.display = 'block';
+      if (letSlide.DOM.presentationNode) {
+        letSlide.DOM.presentationNode.style.display = 'block';
+        if (!letSlide.data.slideshare) {
+          document.getElementById('letSlide-list-wrapper').style.display = 'block';
         }
       }
 
@@ -45,26 +45,26 @@ slideMe.fullscreen = function() {
       var removeFullScr = function() {
         fullScreen.remove();
         fullScreenClose.remove();
-        slideMe.slideMeContainer.classList.remove('this-fixed');
-        slideMe.slideMeContainer.classList.remove('full-mobile');
-        if (!slideMe.data.slideshare) {
-          if (slideMe.slideMeContainer.parentNode.offsetWidth <= 770) {
-              document.getElementById('slideme-list-wrapper').style.display = 'none';
+        letSlide.letSlideContainer.classList.remove('this-fixed');
+        letSlide.letSlideContainer.classList.remove('full-mobile');
+        if (!letSlide.data.slideshare) {
+          if (letSlide.letSlideContainer.parentNode.offsetWidth <= 770) {
+              document.getElementById('letSlide-list-wrapper').style.display = 'none';
             } else {
-              document.getElementById('slideme-list-wrapper').style.display = 'block';
+              document.getElementById('letSlide-list-wrapper').style.display = 'block';
             }
           }
-        slideMe.slideMeContainer.style.marginTop = 0 + 'px';
-        slideMe.slideMeContainer.style.marginLeft = 'auto';
+        letSlide.letSlideContainer.style.marginTop = 0 + 'px';
+        letSlide.letSlideContainer.style.marginLeft = 'auto';
 
         fullscreenon = false;
-        slideMe.setSize();
+        letSlide.setSize();
       };
 
 
 
-      document.getElementById('slideme-close-popup').addEventListener('click', removeFullScr, false);
-      document.getElementById('slideme-fullscreen').addEventListener('click', removeFullScr, false);
+      document.getElementById('letSlide-close-popup').addEventListener('click', removeFullScr, false);
+      document.getElementById('letSlide-fullscreen').addEventListener('click', removeFullScr, false);
 
     }
 

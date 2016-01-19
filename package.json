@@ -1,18 +1,18 @@
 {
-  "name": "slideMe",
-  "version": "0.1.3",
+  "name": "let me slide that for you",
+  "version": "0.1.4",
   "description": "Simple js plugin to roll presentations.",
-  "main": "build/slideme.min.js",
+  "main": "build/letSlide.min.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/InnovationEnterprise/slideme-ie.git"
+    "url": "https://github.com/InnovationEnterprise/letSlide-ie.git"
   },
   "author": "Radoslaw Wroblewski - The Innovation Enterprise",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/InnovationEnterprise/slideme-ie/issues"
+    "url": "https://github.com/InnovationEnterprise/letSlide-ie/issues"
   },
-  "homepage": "https://slidemejs.com",
+  "homepage": "https://letSlidejs.com",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-closure-compiler": "^0.3.1",

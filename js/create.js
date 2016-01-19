@@ -1,73 +1,73 @@
-slideMe.createDOM = function () {
+letSlide.createDOM = function () {
 
   // create video dom
 
     var createVideoPlayer = document.createElement('div');
-    createVideoPlayer.setAttribute('id', 'slideme-wrapper');
+    createVideoPlayer.setAttribute('id', 'letSlide-wrapper');
 
-    if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
+    if (letSlide.data.videosourcesmobile || letSlide.data.videosources) {
 
-      slideMe.DOM.thisVideoPlayer = document.createElement('video');
+      letSlide.DOM.thisVideoPlayer = document.createElement('video');
 
-      slideMe.inarticle = slideMe.slideMeContainer.getAttribute('data-inarticle');
+      letSlide.inarticle = letSlide.letSlideContainer.getAttribute('data-inarticle');
 
-      if (slideMe.inarticle === 'true') {
-        slideMe.addAttributes(slideMe.DOM.thisVideoPlayer, {'id': 'videojs'});
+      if (letSlide.inarticle === 'true') {
+        letSlide.addAttributes(letSlide.DOM.thisVideoPlayer, {'id': 'videojs'});
       } else {
-        slideMe.addAttributes(slideMe.DOM.thisVideoPlayer, {'id': 'videojs', 'controls': ''});
+        letSlide.addAttributes(letSlide.DOM.thisVideoPlayer, {'id': 'videojs', 'controls': ''});
       }
 
       var videoSources;
 
-      if (slideMe.data.videosourcesmobile) {
-        videoSources = slideMe.data.videosourcesmobile;
+      if (letSlide.data.videosourcesmobile) {
+        videoSources = letSlide.data.videosourcesmobile;
       } else {
-        videoSources = slideMe.data.videosources;
+        videoSources = letSlide.data.videosources;
       }
 
-      if (slideMe.data.subtitles) {
+      if (letSlide.data.subtitles) {
 
-        for (var i = 0; i < slideMe.data.subtitles.length; i++) {
+        for (var i = 0; i < letSlide.data.subtitles.length; i++) {
 
           var createSubtitleNode = document.createElement('track');
 
-          slideMe.addAttributes(createSubtitleNode, {
-            'src' : slideMe.data.subtitles[i].src,
-            'srclang' : slideMe.data.subtitles[i].srclang,
-            'label' : slideMe.data.subtitles[i].label
+          letSlide.addAttributes(createSubtitleNode, {
+            'src' : letSlide.data.subtitles[i].src,
+            'srclang' : letSlide.data.subtitles[i].srclang,
+            'label' : letSlide.data.subtitles[i].label
           });
 
-          if (slideMe.data.subtitles[i].default === true) {
+          if (letSlide.data.subtitles[i].default === true) {
             createSubtitleNode.setAttribute('default', '');
           }
 
-          slideMe.DOM.thisVideoPlayer.appendChild(createSubtitleNode);
+          letSlide.DOM.thisVideoPlayer.appendChild(createSubtitleNode);
 
         }
 
       }
 
 
-      slideMe.slideMeContainer.appendChild(slideMe.DOM.thisVideoPlayer);
+      letSlide.letSlideContainer.appendChild(letSlide.DOM.thisVideoPlayer);
 
-      if (slideMe.data.youtube !== 'true') {
+      if (letSlide.data.youtube !== 'true') {
         for (var value in videoSources) {
           if (videoSources.hasOwnProperty(value)) {
             var createVideoSource = document.createElement("source");
-            slideMe.addAttributes(createVideoSource, {
+            letSlide.addAttributes(createVideoSource, {
               "src": videoSources[value],
               "type": value
             });
-            slideMe.DOM.thisVideoPlayer.appendChild(createVideoSource);
+            letSlide.DOM.thisVideoPlayer.appendChild(createVideoSource);
           }
         }
 
-      slideMe.fireVideJs();
+      letSlide.fireVideJs();
 
       } else {
 
-          slideMe.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.3/slidemeyt.js', 'script', function() {
-            slideMe.fireVideJs();
+          letSlide.loadAssets('http://127.0.0.1:8080/build/letSlideyt.js', 'script', function() {
+            letSlide.fireVideJs();
           });
 
 

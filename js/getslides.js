@@ -1,61 +1,61 @@
-slideMe.getSlides = function () {
+letSlide.getSlides = function () {
 
-  if (slideMe.data.videoslidestype === 'images' || slideMe.data.slideshare) {
-    slideMe.DOM.presentationNode = document.createElement('div');
-    slideMe.DOM.presentationNode.setAttribute('id', 'slideme-container');
-    slideMe.slideMeContainer.appendChild(slideMe.DOM.presentationNode);
+  if (letSlide.data.videoslidestype === 'images' || letSlide.data.slideshare) {
+    letSlide.DOM.presentationNode = document.createElement('div');
+    letSlide.DOM.presentationNode.setAttribute('id', 'letSlide-container');
+    letSlide.letSlideContainer.appendChild(letSlide.DOM.presentationNode);
   }
 
-  if (!slideMe.data.slideshare) {
-    slideMe.DOM.createImgContainer = document.createElement('div');
-    slideMe.DOM.createImgContainer.setAttribute('id', 'slideme-list');
-    slideMe.DOM.createImgContainerWrapper = document.createElement('div');
-    slideMe.DOM.createImgContainerWrapper.setAttribute('id', 'slideme-list-wrapper');
-    slideMe.slideMeContainer.appendChild(slideMe.DOM.createImgContainerWrapper);
+  if (!letSlide.data.slideshare) {
+    letSlide.DOM.createImgContainer = document.createElement('div');
+    letSlide.DOM.createImgContainer.setAttribute('id', 'letSlide-list');
+    letSlide.DOM.createImgContainerWrapper = document.createElement('div');
+    letSlide.DOM.createImgContainerWrapper.setAttribute('id', 'letSlide-list-wrapper');
+    letSlide.letSlideContainer.appendChild(letSlide.DOM.createImgContainerWrapper);
   }
 
-  if (slideMe.data.videoslidestype === 'images' || slideMe.data.slideshare) {
+  if (letSlide.data.videoslidestype === 'images' || letSlide.data.slideshare) {
 
-    if (slideMe.data.videosourcesmobile || slideMe.data.videosources) {
-      slideMe.slideMeContainer.classList.add('slideme-images');
+    if (letSlide.data.videosourcesmobile || letSlide.data.videosources) {
+      letSlide.letSlideContainer.classList.add('letSlide-images');
     } else {
-      slideMe.slideMeContainer.classList.add('slideme-images-only');
+      letSlide.letSlideContainer.classList.add('letSlide-images-only');
     }
 
-    if (!slideMe.data.slideshare) {
-      var createButtons = '<div id="slideme-btn-prev"><i class="icon-prevslide"><</i></div><div id="slideme-btn-next"><i class="icon-nextslide">></i></div>';
-      slideMe.DOM.createImgContainerWrapper.innerHTML = createButtons;
-      slideMe.loadImages();
+    if (!letSlide.data.slideshare) {
+      var createButtons = '<div id="letSlide-btn-prev"><i class="icon-prevslide"><</i></div><div id="letSlide-btn-next"><i class="icon-nextslide">></i></div>';
+      letSlide.DOM.createImgContainerWrapper.innerHTML = createButtons;
+      letSlide.loadImages();
     } else {
-      if (!slideMe.data.videosources || !slideMe.data.videosourcesmobile) {
-        slideMe.contentReady = true;
+      if (!letSlide.data.videosources || !letSlide.data.videosourcesmobile) {
+        letSlide.contentReady = true;
       }
     }
 
   } else {
 
     var createHtmlPresentationNav = document.createElement('div');
-    createHtmlPresentationNav.setAttribute('id', 'slideme-html-nav');
-    createHtmlPresentationNav.innerHTML = '<div id="slideme-html-nav-left"><</div><div id="slideme-html-nav-right">></div>';
-    slideMe.DOM.createImgContainerWrapper.appendChild(createHtmlPresentationNav);
+    createHtmlPresentationNav.setAttribute('id', 'letSlide-html-nav');
+    createHtmlPresentationNav.innerHTML = '<div id="letSlide-html-nav-left"><</div><div id="letSlide-html-nav-right">></div>';
+    letSlide.DOM.createImgContainerWrapper.appendChild(createHtmlPresentationNav);
 
-    slideMe.slideMeContainer.classList.add('slideme-html');
-    slideMe.DOM.presentationNode = slideMe.DOM.createImgContainerWrapper;
-    slideMe.setContent(false);
+    letSlide.letSlideContainer.classList.add('letSlide-html');
+    letSlide.DOM.presentationNode = letSlide.DOM.createImgContainerWrapper;
+    letSlide.setContent(false);
 
   }
 
-  if (!slideMe.data.slideshare) {
-    slideMe.DOM.createImgContainerWrapper.appendChild(slideMe.DOM.createImgContainer);
+  if (!letSlide.data.slideshare) {
+    letSlide.DOM.createImgContainerWrapper.appendChild(letSlide.DOM.createImgContainer);
   }
 
-  if (slideMe.data.slideshare) {
-    slideMe.DOM.presentationNode.innerHTML = slideMe.data.slideshare;
-    var getSlideShareIframe = slideMe.DOM.presentationNode.getElementsByTagName('iframe')[0];
+  if (letSlide.data.slideshare) {
+    letSlide.DOM.presentationNode.innerHTML = letSlide.data.slideshare;
+    var getSlideShareIframe = letSlide.DOM.presentationNode.getElementsByTagName('iframe')[0];
     getSlideShareIframe.style.width = '100%';
     getSlideShareIframe.style.height = '100%';
-    slideMe.DOM.presentationNode.style.overflow = 'hidden';
-    slideMe.contentReady = true;
+    letSlide.DOM.presentationNode.style.overflow = 'hidden';
+    letSlide.contentReady = true;
   }
 
 };

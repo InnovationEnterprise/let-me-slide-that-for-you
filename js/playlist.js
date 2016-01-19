@@ -1,25 +1,25 @@
 
-slideMe.playList = function () {
+letSlide.playList = function () {
 
-  if (document.getElementById('slideme-playlist') !== null) {
-    slideMe.DOM.createPlaylist = document.getElementById('slideme-playlist');
+  if (document.getElementById('letSlide-playlist') !== null) {
+    letSlide.DOM.createPlaylist = document.getElementById('letSlide-playlist');
   } else {
-    slideMe.DOM.createPlaylist = document.createElement('div');
-    slideMe.DOM.createPlaylist.setAttribute('id', 'slideme-playlist');
-    slideMe.slideMeContainer.appendChild(slideMe.DOM.createPlaylist);
+    letSlide.DOM.createPlaylist = document.createElement('div');
+    letSlide.DOM.createPlaylist.setAttribute('id', 'letSlide-playlist');
+    letSlide.letSlideContainer.appendChild(letSlide.DOM.createPlaylist);
   }
 
-  slideMe.DOM.createPlaylist.innerHTML = '<div id="slideme-playlist-title">Playlist<div id="slideme-playlist-drop">></div></div><div id="slideme-playlist-list"></div>';
+  letSlide.DOM.createPlaylist.innerHTML = '<div id="letSlide-playlist-title">Playlist<div id="letSlide-playlist-drop">></div></div><div id="letSlide-playlist-list"></div>';
 
-  var playListTitle = document.getElementById('slideme-playlist-title');
-  var playListList = document.getElementById('slideme-playlist-list');
+  var playListTitle = document.getElementById('letSlide-playlist-title');
+  var playListList = document.getElementById('letSlide-playlist-list');
 
-  if (slideMe.data.playlist) {
-    playListData = slideMe.data.playlist;
+  if (letSlide.data.playlist) {
+    playListData = letSlide.data.playlist;
   }
 
   function playlistReloadClick() {
-    slideMe.reload(this.getAttribute('data-json'));
+    letSlide.reload(this.getAttribute('data-json'));
     return false;
   }
 
@@ -49,11 +49,11 @@ slideMe.playList = function () {
     if (!open) {
       open = true;
       playListList.style.display = 'block';
-      playListTitle.classList.add('slideme-drop-active');
+      playListTitle.classList.add('letSlide-drop-active');
     } else {
       open = false;
       playListList.style.display = 'none';
-      playListTitle.classList.remove('slideme-drop-active');
+      playListTitle.classList.remove('letSlide-drop-active');
     }
 
   });
@@ -61,7 +61,7 @@ slideMe.playList = function () {
 };
 
 
-slideMe.destroyPlaylist = function() {
-  slideMe.DOM.createPlaylist.remove();
+letSlide.destroyPlaylist = function() {
+  letSlide.DOM.createPlaylist.remove();
   return false;
 };

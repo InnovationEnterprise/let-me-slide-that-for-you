@@ -1,23 +1,23 @@
-slideMe.loadImages = function () {
+letSlide.loadImages = function () {
 
   var ajaxImgCount = 0;
-  var videoSlidesLength =  slideMe.data.videoslides.length;
+  var videoSlidesLength =  letSlide.data.videoslides.length;
 
   function getAllImages(i) {
 
-    var thisImg = slideMe.data.videoslides[i].slidecontent;
+    var thisImg = letSlide.data.videoslides[i].slidecontent;
     var reqImg = new Image();
     reqImg.src = thisImg;
 
     reqImg.onload = function() {
       ajaxImgCount = ajaxImgCount + 1;
       if (ajaxImgCount === videoSlidesLength) {
-        slideMe.setContent(true);
+        letSlide.setContent(true);
       }
     };
 
     reqImg.onerror = function() {
-      slideMe.errorThat('cannot load image', slideMe.slideMeContainer);
+      letSlide.errorThat('cannot load image', letSlide.letSlideContainer);
     };
 
   }
