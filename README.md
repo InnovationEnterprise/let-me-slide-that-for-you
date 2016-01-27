@@ -2,7 +2,7 @@
 Build on top of Video.js simple js plugin to roll presentations. You can use it as a video presentation slider, image presentation, text presentation or just a video player.
 
 #### View online
-http://letSlidejs.com/
+http://letmeslidethatforyou.com/
 
 ## Installation
 Add to your HTML
