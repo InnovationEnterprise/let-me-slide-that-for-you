@@ -50,7 +50,7 @@ letSlide.fireVideJs = function () {
       letSlide.thisPlayer.play();
     }
 
-    if (letSlide.letSlideContainer.parentNode.offsetWidth >= 400) {
+    if (letSlide.letSlideContainer.parentNode.offsetWidth >= 400 && letSlide.inarticle !== 'true') {
       letSlide.embed();
     }
 
@@ -63,7 +63,7 @@ letSlide.fireVideJs = function () {
       document.getElementsByClassName('vjs-big-play-button')[0].style.left = '0';
     }
 
-    if (document.getElementById('letSlide-h1') === null && letSlide.letSlideContainer.getAttribute('data-interview') !== 'true' && letSlide.data.youtube !== 'true') {
+    if (document.getElementById('letSlide-h1') === null && letSlide.letSlideContainer.getAttribute('data-interview') !== 'true' && letSlide.data.youtube !== 'true' && letSlide.inarticle !== 'true') {
       var letSlideVjstitle = letSlide.thisPlayer.addChild('button');
       letSlideVjstitle.addClass('letSlide-vjs-title');
       document.getElementsByClassName('letSlide-vjs-title')[0].innerHTML = letSlide.data.title;

@@ -7,9 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     letSlide.letSlideContainer = thiletSlide;
     letSlide.addPreloader();
     letSlide.getletSlideUrl = letSlide.letSlideContainer.getAttribute('data-letSlidejs');
-    if (/^http?:\/\//.test(letSlide.getletSlideUrl)) {
-      letSlide.getletSlideUrl = letSlide.getletSlideUrl.replace(/^https?:\/\//,'https://');
-    }
     letSlide.loadJson(letSlide.getletSlideUrl);
   };
 
@@ -24,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (!letSlide.firstLoad) {
-    letSlide.loadAssets('http://127.0.0.1:8080/build/letSlidecss.min.css', 'css', function(){
+    letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlidecss.min.css', 'css', function(){
       letSlide.firstLoad = true;
       startupLoop();
     });

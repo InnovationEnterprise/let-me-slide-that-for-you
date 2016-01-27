@@ -66,7 +66,7 @@ letSlide.createDOM = function () {
 
       } else {
 
-          letSlide.loadAssets('http://127.0.0.1:8080/build/letSlideyt.js', 'script', function() {
+          letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlideyt.js', 'script', function() {
             letSlide.fireVideJs();
           });
 

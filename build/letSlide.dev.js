@@ -1,4 +1,4 @@
-var letSlide;
+var letSlide;var slideMe = letSlide;
 (function(){
 letSlide = letSlide || {};
 letSlide.getHead = document.getElementsByTagName('head')[0];
@@ -294,7 +294,7 @@ letSlide.createDOM = function () {
 
       } else {
 
-          letSlide.loadAssets('http://127.0.0.1:8080/build/letSlideyt.js', 'script', function() {
+          letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlideyt.js', 'script', function() {
             letSlide.fireVideJs();
           });
 
@@ -438,10 +438,10 @@ letSlide.ads = function() {
       };
     }
 
-    letSlide.loadAssets('http://127.0.0.1:8080/build/letSlideads.css', 'css');
+    letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlideads.css', 'css');
 
     letSlide.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
-      letSlide.loadAssets('http://127.0.0.1:8080/build/letSlideads.js', 'script', function() {
+      letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlideads.js', 'script', function() {
 
         letSlide.thisPlayer.ima(options);
         letSlide.thisPlayer.ima.initializeAdDisplayContainer();
@@ -450,31 +450,18 @@ letSlide.ads = function() {
 
         if (letSlide.inarticle === 'true') {
 
+          letSlide.DOM.closeAds = document.createElement('div');
+          letSlide.DOM.closeAds.setAttribute('class', 'letsSlide-closeads');
+          letSlide.DOM.closeAds.innerHTML = 'Close this ad';
+          letSlide.letSlideContainer.appendChild(letSlide.DOM.closeAds);
+          letSlide.DOM.closeAds.addEventListener('click', function(){
+            letSlide.destroy();
+          });
+
           letSlide.thisPlayer.play();
-          var checIfAdRdy = setInterval(pauseAd, 10);
-
-          var pauseAd =function () {
-              letSlide.thisPlayer.ima.pauseAd();
-          };
-
-          letSlide.thisPlayer.on("adsready", function(){
-            setTimeout(function(){
-              clearInterval(checIfAdRdy);
-            }, 1500);
-          });
-
           letSlide.thisPlayer.on("ended", function(){
-            letSlide.thisPlayer.play();
-            letSlide.thisPlayer.ima.requestAds();
-            letSlide.thisPlayer.ima.start();
-            var checIfAdRdy = setInterval(pauseAd, 10);
-            letSlide.thisPlayer.on("adsready", function(){
-              setTimeout(function(){
-                clearInterval(checIfAdRdy);
-              }, 1500);
-            });
+            letSlide.reload(letSlide.getletSlideUrl);
           });
-
         }
       });
     });
@@ -534,7 +521,7 @@ letSlide.fireVideJs = function () {
       letSlide.thisPlayer.play();
     }
 
-    if (letSlide.letSlideContainer.parentNode.offsetWidth >= 400) {
+    if (letSlide.letSlideContainer.parentNode.offsetWidth >= 400 && letSlide.inarticle !== 'true') {
       letSlide.embed();
     }
 
@@ -547,7 +534,7 @@ letSlide.fireVideJs = function () {
       document.getElementsByClassName('vjs-big-play-button')[0].style.left = '0';
     }
 
-    if (document.getElementById('letSlide-h1') === null && letSlide.letSlideContainer.getAttribute('data-interview') !== 'true' && letSlide.data.youtube !== 'true') {
+    if (document.getElementById('letSlide-h1') === null && letSlide.letSlideContainer.getAttribute('data-interview') !== 'true' && letSlide.data.youtube !== 'true' && letSlide.inarticle !== 'true') {
       var letSlideVjstitle = letSlide.thisPlayer.addChild('button');
       letSlideVjstitle.addClass('letSlide-vjs-title');
       document.getElementsByClassName('letSlide-vjs-title')[0].innerHTML = letSlide.data.title;
@@ -1107,9 +1094,6 @@ document.addEventListener('DOMContentLoaded', function() {
     letSlide.letSlideContainer = thiletSlide;
     letSlide.addPreloader();
     letSlide.getletSlideUrl = letSlide.letSlideContainer.getAttribute('data-letSlidejs');
-    if (/^http?:\/\//.test(letSlide.getletSlideUrl)) {
-      letSlide.getletSlideUrl = letSlide.getletSlideUrl.replace(/^https?:\/\//,'https://');
-    }
     letSlide.loadJson(letSlide.getletSlideUrl);
   };
 
@@ -1124,7 +1108,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (!letSlide.firstLoad) {
-    letSlide.loadAssets('http://127.0.0.1:8080/build/letSlidecss.min.css', 'css', function(){
+    letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlidecss.min.css', 'css', function(){
       letSlide.firstLoad = true;
       startupLoop();
     });
