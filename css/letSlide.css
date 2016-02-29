@@ -315,12 +315,10 @@
   margin: auto;
   display: block;
 }
-
 [data-letSlidejs].letSlide-images-only {
-  width: 100%;
+  margin-bottom: 75px;
 }
-
-.letSlide-images-only #letSlide-list-wrapper {
+[data-letSlidejs].letSlide-images-only, .letSlide-images-only #letSlide-list-wrapper {
   width: 100%;
 }
 
