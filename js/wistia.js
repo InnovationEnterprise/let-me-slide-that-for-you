@@ -13,12 +13,13 @@ letSlide.setWistia = function() {
   letSlide.letSlideContainer.appendChild(letSlide.DOM.wistiaContainer);
   letSlide.DOM.wistiaContainer.appendChild(letSlide.DOM.playListContainer);
 
-  letSlide.data.wistia.forEach(function(i) {
-    var playListLink = document.createElement('a');
-    playListLink.setAttribute('href', '#wistia_' + i);
+  letSlide.DOM.wistiaVideo = {};
+  for (var g = 0; g < letSlide.data.wistia.length; g++) {
+    letSlide.DOM.wistiaVideo[g] = document.createElement('a');
+    letSlide.DOM.wistiaVideo[g].setAttribute('href', '#wistia_' + letSlide.DOM.wistiaVideo[g]);
+    letSlide.DOM.wistiaContainer.appendChild(letSlide.DOM.wistiaVideo[g]);
+  }
 
-    letSlide.DOM.wistiaContainer.appendChild(playListLink);
-  });
 
   letSlide.loadAssets('//fast.wistia.com/assets/external/E-v1.js', 'script', function() {
     console.log('%cWistia Project, loaded JS', 'color: hotpink');
