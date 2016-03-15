@@ -12,6 +12,13 @@ letSlide.loadJson = function (jsonUrl) {
 
       letSlide.data = JSON.parse(request.responseText);
 
+      if (letSlide.data.wistia) {
+        letSlide.loadAssets('//fast.wistia.com/assets/external/E-v1.js', 'script', function() {
+          console.log('%cWistia Project, loaded JS', 'text-color: hotpink');
+        })
+
+      }
+
       if (letSlide.data.videosourcesmobile || letSlide.data.videosources) {
         var videojsurl = '//vjs.zencdn.net/4.12.11/video.js';
         letSlide.loadAssets(videojsurl, 'script', function() {

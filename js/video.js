@@ -1,7 +1,6 @@
 letSlide.fireVideJs = function () {
 
   // player settings
-
   if (letSlide.data.preload === undefined || '') {
     letSlide.data.preload = 'metadata';
   }
