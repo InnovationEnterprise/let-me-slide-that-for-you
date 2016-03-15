@@ -275,7 +275,6 @@ letSlide.createDOM = function () {
 
       }
 
-
       letSlide.letSlideContainer.appendChild(letSlide.DOM.thisVideoPlayer);
 
       if (letSlide.data.youtube !== 'true') {
@@ -297,12 +296,8 @@ letSlide.createDOM = function () {
           letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlideyt.js', 'script', function() {
             letSlide.fireVideJs();
           });
-
-
       }
-
     }
-
 };
 
 letSlide.loadJson = function (jsonUrl) {
@@ -320,10 +315,7 @@ letSlide.loadJson = function (jsonUrl) {
       letSlide.data = JSON.parse(request.responseText);
 
       if (letSlide.data.wistia) {
-        letSlide.loadAssets('//fast.wistia.com/assets/external/E-v1.js', 'script', function() {
-          console.log('%cWistia Project, loaded JS', 'text-color: hotpink');
-        })
-
+        letSlide.setWistia();
       }
 
       if (letSlide.data.videosourcesmobile || letSlide.data.videosources) {
@@ -347,16 +339,13 @@ letSlide.loadJson = function (jsonUrl) {
     } else {
       letSlide.errorThat('cannot connect', letSlide.letSlideContainer);
     }
-
   };
 
   request.onerror = function() {
-
     letSlide.errorThat('cannot connect', letSlide.letSlideContainer);
   };
 
   request.send();
-
 };
 
 
@@ -1087,6 +1076,35 @@ letSlide.fullscreen = function() {
 
     }
 
+  });
+
+};
+
+// For Wistia Integration
+
+letSlide.setWistia = function() {
+  letSlide.DOM.wistiaContainer = document.createElement('div');
+  letSlide.DOM.wistiaContainer.setAttribute('class', 'wistiaContainer');
+
+  letSlide.DOM.playListContainer = document.createElement('div');
+  letSlide.addAttributes(letSlide.DOM.playListContainer, {
+    'class': 'wistia_embed wistia_async_' + letSlide.data.wistia[0] + ' playlistLinks=auto autoPlay=true',
+    'style': 'height:360px;width:640px'
+  });
+
+  letSlide.letSlideContainer.appendChild(letSlide.DOM.wistiaContainer);
+  letSlide.DOM.wistiaContainer.appendChild(letSlide.DOM.playListContainer);
+
+  letSlide.data.wistia.forEach(function(i) {
+    var playListLink = document.createElement('a');
+    playListLink.setAttribute('href', '#wistia_' + i);
+
+    letSlide.DOM.wistiaContainer.appendChild(playListLink);
+  });
+
+  letSlide.loadAssets('//fast.wistia.com/assets/external/E-v1.js', 'script', function() {
+    console.log('%cWistia Project, loaded JS', 'color: hotpink');
+    letSlide.contentReady = true;
   });
 
 };

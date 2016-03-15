@@ -13,10 +13,7 @@ letSlide.loadJson = function (jsonUrl) {
       letSlide.data = JSON.parse(request.responseText);
 
       if (letSlide.data.wistia) {
-        letSlide.loadAssets('//fast.wistia.com/assets/external/E-v1.js', 'script', function() {
-          console.log('%cWistia Project, loaded JS', 'text-color: hotpink');
-        })
-
+        letSlide.setWistia();
       }
 
       if (letSlide.data.videosourcesmobile || letSlide.data.videosources) {
@@ -40,14 +37,11 @@ letSlide.loadJson = function (jsonUrl) {
     } else {
       letSlide.errorThat('cannot connect', letSlide.letSlideContainer);
     }
-
   };
 
   request.onerror = function() {
-
     letSlide.errorThat('cannot connect', letSlide.letSlideContainer);
   };
 
   request.send();
-
 };

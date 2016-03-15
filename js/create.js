@@ -47,7 +47,6 @@ letSlide.createDOM = function () {
 
       }
 
-
       letSlide.letSlideContainer.appendChild(letSlide.DOM.thisVideoPlayer);
 
       if (letSlide.data.youtube !== 'true') {
@@ -69,10 +68,6 @@ letSlide.createDOM = function () {
           letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlideyt.js', 'script', function() {
             letSlide.fireVideJs();
           });
-
-
       }
-
     }
-
 };

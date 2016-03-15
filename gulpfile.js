@@ -16,7 +16,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('scripts', function() {
-  gulp.src(['js/var.js', 'js/helpers.js', 'js/preloader.js', 'js/create.js',  'js/loadjson.js', 'js/playlist.js', 'js/ads.js', 'js/video.js', 'js/getslides.js', 'js/setslide.js', 'js/setsize.js', 'js/loadimages.js', 'js/sliderclickevent.js', 'js/embed.js', 'js/setcontent.js', 'js/fullscreen.js', 'js/config.js'])
+  gulp.src(['js/var.js', 'js/helpers.js', 'js/preloader.js', 'js/create.js',  'js/loadjson.js', 'js/playlist.js', 'js/ads.js', 'js/video.js', 'js/getslides.js', 'js/setslide.js', 'js/setsize.js', 'js/loadimages.js', 'js/sliderclickevent.js', 'js/embed.js', 'js/setcontent.js', 'js/fullscreen.js', 'js/wistia.js',  'js/config.js'])
     .pipe(concat('letSlide.dev.js'))
     .pipe(wrap('var letSlide;var slideMe = letSlide;\n(function(){\n<%= contents %>\n})();'))
     .pipe(gulp.dest('build'))
