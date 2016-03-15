@@ -1,5 +1,5 @@
 {
-  "name": "let me slide that for you",
+  "name": "letMeSlideThatForYou",
   "version": "0.1.4",
   "description": "Simple js plugin to roll presentations.",
   "main": "build/letSlide.min.js",
