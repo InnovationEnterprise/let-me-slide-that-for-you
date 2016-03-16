@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (!letSlide.firstLoad) {
-    letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlidecss.min.css', 'css', function(){
+    letSlide.loadAssets('/build/letSlidecss.min.css', 'css', function(){
       letSlide.firstLoad = true;
       startupLoop();
     });

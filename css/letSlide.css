@@ -517,6 +517,58 @@
   cursor: pointer;
 }
 
+/*
+  Wistia styling
+*/
+
+.wistia_romulus_control {
+   background-color: rgba(7,20,30,.7) !important;
+}
+
+.wistia_romulus_control.wistia_playbar {
+  height: 10px!important;
+  bottom: 22px!important;
+  margin-left: 4px !important;
+}
+
+.wistia_romulus_control.wistia_playbar :nth-child(1) {
+  width: 100% !important;
+  height: 10px !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+
+.wistia_romulus_control.wistia_playbar :nth-child(2) {
+  display: none !important;
+}
+
+.wistia_romulus_control.wistia_playbar :nth-child(3) {
+  width: 100% !important;
+  height: 10px !important;
+  left: 0 !important;
+  top: 0 !important;
+  border: 0 !important;
+}
+
+.wistia_played {
+  height: 10px !important;
+}
+
+.wistia_time {
+  right: initial !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 5px !important;
+  font-size: 10px !important;
+  line-height: 10px !important;
+  z-index: 99999 !important;
+}
+
+.wistia_scrub_bar {
+  height: 10px !important;
+}
+
+
 @media screen and (max-width: 700px) {
   #letSlide-main-wrapper {
     padding: 25px 0 0 0;
