@@ -523,12 +523,11 @@
 
 .wistia_romulus_control {
    background-color: rgba(7,20,30,.7) !important;
-}
+   padding: 0px 0px 0 5px;
+ }
 
 .wistia_romulus_control.wistia_playbar {
-  height: 10px!important;
-  bottom: 22px!important;
-  margin-left: 4px !important;
+  background: rgba(0, 0, 0, .8);
 }
 
 .wistia_romulus_control.wistia_playbar :nth-child(1) {

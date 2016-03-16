@@ -16,7 +16,7 @@ letSlide.setWistia = function() {
   letSlide.DOM.wistiaVideo = {};
   for (var g = 0; g < letSlide.data.wistia.length; g++) {
     letSlide.DOM.wistiaVideo[g] = document.createElement('a');
-    letSlide.DOM.wistiaVideo[g].setAttribute('href', '#wistia_' + letSlide.DOM.wistiaVideo[g]);
+    letSlide.DOM.wistiaVideo[g].setAttribute('href', '#wistia_' + letSlide.data.wistia[g]);
     letSlide.DOM.wistiaContainer.appendChild(letSlide.DOM.wistiaVideo[g]);
   }
 
