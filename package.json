@@ -1,6 +1,6 @@
 {
-  "name": "let me slide that for you",
-  "version": "0.1.4",
+  "name": "letMeSlideThatForYou",
+  "version": "0.1.5",
   "description": "Simple js plugin to roll presentations.",
   "main": "build/letSlide.min.js",
   "repository": {
@@ -30,6 +30,7 @@
     "gulp-wrap": "^0.11.0",
     "gulp-wrap-amd": "^0.5.0",
     "http-server": "*",
-    "node-sass": "*"
+    "node-sass": "*",
+    "jshint": "^2.9.1"
   }
 }
