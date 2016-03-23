@@ -121,7 +121,6 @@ letSlide.setSize = function() {
     if (!letSlide.data.videoslides && !letSlide.data.slideshare && !letSlide.data.wistia) {
       letSlide.letSlideContainer.style.height = vH + 'px';
     } else if (!letSlide.data.videoslides && !letSlide.data.slideshare && letSlide.data.wistia) {
-      console.log('dupsko');
       letSlide.letSlideContainer.style.height = vH + 'px';
       letSlide.letSlideContainer.style.width = vW + 'px';
     }
