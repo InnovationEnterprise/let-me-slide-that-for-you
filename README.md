@@ -186,13 +186,13 @@ example:
   ]
  ```
 
- ###  Wistia Support
+### Wistia Support
 
- **wistia** – add id to play wistia videos (id not wistia_id)
- example:
+**wistia** – add id to play wistia videos (id not wistia_id)
+example:
 
   ```
-  "wistia" : ["someid", "someid", "someid" ]
+    "wistia" : ["someid", "someid", "someid" ]
   ```
 
 
