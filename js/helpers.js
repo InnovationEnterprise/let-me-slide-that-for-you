@@ -175,6 +175,9 @@ letSlide.checkifready = function(){
         }
       } else {
         if (letSlide.contentReady) {
+          if (letSlide.data.wistia) {
+            letSlide.letSlideContainer.style.overflow = 'visible';
+          }
           if (letSlide.DOM.preloaderWrapper) {
             letSlide.DOM.preloaderWrapper.remove();
           }

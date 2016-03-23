@@ -1,23 +1,23 @@
-letSlide.fullscreen = function() {
+letSlide.fullScreen = function() {
 
-  var letSlidefullscreen = letSlide.thisPlayer.controlBar.addChild('button', {
+  var letSlidefullScreen = letSlide.thisPlayer.controlBar.addChild('button', {
     text: 'Full screen'
   });
-  letSlidefullscreen.addClass('letSlide-fullscreen-btn');
+  letSlidefullScreen.addClass('letSlide-fullScreen-btn');
 
-  var fullscreenon = false;
+  var fullScreenOn = false;
 
-  letSlidefullscreen.on('click', function() {
+  letSlidefullScreen.on('click', function() {
 
-    if (!fullscreenon) {
+    if (!fullScreenon) {
 
-      fullscreenon = true;
+      fullScreenon = true;
 
       letSlide.letSlideContainer.classList.add('this-fixed');
       letSlide.letSlideContainer.classList.add('full-mobile');
 
       var fullScreen = document.createElement('div');
-      fullScreen.setAttribute('id', 'letSlide-fullscreen');
+      fullScreen.setAttribute('id', 'letSlide-fullScreen');
       var fullScreenClose = document.createElement('div');
       fullScreenClose.setAttribute('id', 'letSlide-close-popup');
       fullScreenClose.innerHTML = 'x';
@@ -57,14 +57,14 @@ letSlide.fullscreen = function() {
         letSlide.letSlideContainer.style.marginTop = 0 + 'px';
         letSlide.letSlideContainer.style.marginLeft = 'auto';
 
-        fullscreenon = false;
+        fullScreenon = false;
         letSlide.setSize();
       };
 
 
 
       document.getElementById('letSlide-close-popup').addEventListener('click', removeFullScr, false);
-      document.getElementById('letSlide-fullscreen').addEventListener('click', removeFullScr, false);
+      document.getElementById('letSlide-fullScreen').addEventListener('click', removeFullScr, false);
 
     }
 

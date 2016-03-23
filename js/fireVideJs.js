@@ -54,7 +54,7 @@ letSlide.fireVideJs = function () {
     }
 
     if (letSlide.letSlideContainer.parentNode.offsetWidth <= 900 && letSlide.data.videoslides || letSlide.letSlideContainer.parentNode.offsetWidth <= 900 && letSlide.data.slideshare) {
-      letSlide.fullscreen();
+      letSlide.fullScreen();
     }
 
     if (letSlide.letSlideContainer.parentNode.offsetWidth <= 400) {

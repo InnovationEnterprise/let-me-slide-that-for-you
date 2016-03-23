@@ -5,7 +5,7 @@
     "videosourcesmobile": {
       "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/development/10-2015/sueprtest2015_mobile.mp4"
     },
-    "slideshare": "\u003ciframe src='//www.slideshare.net/slideshow/embed_code/key/fWtwkJWq5dERLK' width='425' height='355' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;' allowfullscreen\u003e \u003c/iframe\u003e \u003cdiv style='margin-bottom:5px'\u003e \u003cstrong\u003e \u003ca href='//www.slideshare.net/ThoughtWorks/strategy-to-execution-by-jonny-schneider-thoughtworks' title='Strategy to Execution by Jonny Schneider - ThoughtWorks' target='_blank'\u003eStrategy to Execution by Jonny Schneider - ThoughtWorks\u003c/a\u003e \u003c/strong\u003e from \u003cstrong\u003e\u003ca href='//www.slideshare.net/ThoughtWorks' target='_blank'\u003eThoughtWorks\u003c/a\u003e\u003c/strong\u003e \u003c/div\u003e",
+    "slideshare": "\u003ciframe src='//www.slideshare.net/slideshow/embed_code/key/fWtwkJWq5dERLK' width='425' height='355' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;' allowfullScreen\u003e \u003c/iframe\u003e \u003cdiv style='margin-bottom:5px'\u003e \u003cstrong\u003e \u003ca href='//www.slideshare.net/ThoughtWorks/strategy-to-execution-by-jonny-schneider-thoughtworks' title='Strategy to Execution by Jonny Schneider - ThoughtWorks' target='_blank'\u003eStrategy to Execution by Jonny Schneider - ThoughtWorks\u003c/a\u003e \u003c/strong\u003e from \u003cstrong\u003e\u003ca href='//www.slideshare.net/ThoughtWorks' target='_blank'\u003eThoughtWorks\u003c/a\u003e\u003c/strong\u003e \u003c/div\u003e",
     "playlist" : [
         {
           "link" : "/example/json/videoandslides.json",
@@ -35,6 +35,11 @@
         {
           "link" : "/example/json/youtubeandhtml.json",
           "title" : "Youtube with html",
+          "type" : "json"
+        },
+        {
+          "link" : "/example/json/wistia.json",
+          "title" : "Wistia",
           "type" : "json"
         },
         {

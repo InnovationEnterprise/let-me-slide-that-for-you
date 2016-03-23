@@ -5,7 +5,7 @@ letSlide.setNewSlide = function() {
   var getCurrentTime = Math.round(letSlide.thisPlayer.currentTime());
   var arrayNr;
 
-  for (var i = 0; i < letSlide.timeList.length; i++) {   
+  for (var i = 0; i < letSlide.timeList.length; i++) {
 
     if (getCurrentTime >= letSlide.timeList[i]) {
       arrayNr = letSlide.timeList[i];
@@ -21,7 +21,7 @@ letSlide.setNewSlide = function() {
     if (letSlide.data.videoslidestype === 'images') {
       if (getSlideFromDom !== getSlideFromDom) {
         letSlide.DOM.createImgContainer.style.left =  150 - getSlideFromDom.offsetLeft + 'px';
-      } else { 
+      } else {
         letSlide.DOM.createImgContainer.style.left =  50 - getSlideFromDom.offsetLeft + 'px' ;
       }
       letSlide.firstImage.setAttribute('src', getSlideFromDom.getAttribute('src'));

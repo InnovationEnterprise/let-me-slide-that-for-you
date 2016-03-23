@@ -30,10 +30,10 @@
         "type" : "json"
       },
       {
-        "link" : "/example/json/videoandads.json",
-        "title" : "Video and ads",
-        "type" : "json"
-      },
+          "link" : "/example/json/videoandads.json",
+          "title" : "Video and ads",
+          "type" : "json"
+        },
       {
         "link" : "/example/json/videoandsubtitles.json",
         "title" : "Video and subtitles",
@@ -52,6 +52,11 @@
       {
         "link" : "/example/json/youtubeandhtml.json",
         "title" : "Youtube with html",
+        "type" : "json"
+      },
+      {
+        "link" : "/example/json/wistia.json",
+        "title" : "Wistia",
         "type" : "json"
       },
       {

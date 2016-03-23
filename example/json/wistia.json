@@ -2,10 +2,7 @@
   "autoplay" : true,
   "preload" : "metadata",
   "title" :  "sueprduper2017",
-  "videosourcesmobile": {
-    "video/mp4" : "https://ieondemand-videos.s3.amazonaws.com/development/10-2015/sueprtest2015_mobile.mp4"
-  },
-  "adTagUrl" : "http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/422581008/test_video&ciu_szs&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator=[timestamp]",
+  "wistia" : ["to370xkyuf", "heol6ok5k7", "fq1s7yzk7x" ],
   "playlist" : [
       {
         "link" : "/example/json/videoandslides.json",

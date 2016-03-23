@@ -54,6 +54,11 @@
           "type" : "json"
         },
         {
+          "link" : "/example/json/wistia.json",
+          "title" : "Wistia",
+          "type" : "json"
+        },
+        {
           "link" : "http://theinnovationenterprise.com/",
           "title" : "Just a link"
         }

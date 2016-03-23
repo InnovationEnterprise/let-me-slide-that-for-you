@@ -65,7 +65,7 @@ letSlide.createDOM = function () {
 
       } else {
 
-          letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlideyt.js', 'script', function() {
+          letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.6/letSlideyt.js', 'script', function() {
             letSlide.fireVideJs();
           });
       }

@@ -16,32 +16,23 @@ letSlide.setSize = function() {
     var letSlideParent = letSlide.letSlideContainer.parentNode;
     var letSlideParentWidth = letSlideParent.offsetWidth;
 
-    if (!letSlide.data.videosourcesmobile && !letSlide.data.videosources) {
+    if (letSlide.letSlideContainer.getAttribute('data-wide') === 'true') {
 
-      sH = 480;
+      sW = letSlideParentWidth / 2;
+      sH = sW * 0.67;
+
+      vW = sW;
+      vH = sW * 0.67;
 
     } else {
 
-      if (letSlide.letSlideContainer.getAttribute('data-wide') === 'true') {
+      sW = sW / 2;
+      sH = sW / 1.78;
 
-        sW = letSlideParentWidth / 2;
-        sH = sW * 0.67;
+      vW = sW;
+      vH = sH;
 
-        vW = sW;
-        vH = sW * 0.67;
-
-      } else {
-
-        sW = sW / 2;
-        sH = sW / 1.78;
-
-        vW = sW;
-        vH = sH;
-
-        sW = sH * 1.33;
-      }
-
-
+      sW = sH * 1.33;
     }
 
 
@@ -65,8 +56,10 @@ letSlide.setSize = function() {
 
       }
 
-      letSlide.DOM.presentationNode.style.width = sW + 'px';
-      letSlide.DOM.presentationNode.style.height = sH + 'px';
+      if (letSlide.DOM.presentationNode) {
+        letSlide.DOM.presentationNode.style.width = sW + 'px';
+        letSlide.DOM.presentationNode.style.height = sH + 'px';
+      }
 
       if (letSlide.data.videoslidestype === 'images') {
         letSlide.letSlideContainer.style.height = vH + 75 + 'px';
@@ -75,8 +68,12 @@ letSlide.setSize = function() {
       }
 
     }
-    
-    letSlide.letSlideContainer.style.width = vW + sW + 'px';
+
+    if (!letSlide.data.wistia) {
+      letSlide.letSlideContainer.style.width = vW + sW + 'px';
+    } else {
+      letSlide.letSlideContainer.style.width = vW + 'px';
+    }
 
     var letSlideHeaderOne = document.getElementById('letSlide-h1');
 
@@ -87,7 +84,7 @@ letSlide.setSize = function() {
       if (letSlideHeaderOne !== null) {
         letSlideHeaderOne.style.maxWidth = vW + 'px';
       }
-      
+
     } else {
       if (letSlideHeaderOne !== null) {
         letSlideHeaderOne.style.maxWidth = vW + sW + 'px';
@@ -95,7 +92,7 @@ letSlide.setSize = function() {
     }
 
     if (letSlide.letSlideContainer.parentNode.offsetWidth <= 770) {
-      
+
       if (!isThisFixed) {
         if (letSlide.DOM.presentationNode) {
           letSlide.DOM.presentationNode.style.display = 'none';
@@ -121,8 +118,12 @@ letSlide.setSize = function() {
 
     }
 
-    if (!letSlide.data.videoslides && !letSlide.data.slideshare) {
+    if (!letSlide.data.videoslides && !letSlide.data.slideshare && !letSlide.data.wistia) {
       letSlide.letSlideContainer.style.height = vH + 'px';
+    } else if (!letSlide.data.videoslides && !letSlide.data.slideshare && letSlide.data.wistia) {
+      console.log('dupsko');
+      letSlide.letSlideContainer.style.height = vH + 'px';
+      letSlide.letSlideContainer.style.width = vW + 'px';
     }
 
     if (letSlide.thisPlayer) {

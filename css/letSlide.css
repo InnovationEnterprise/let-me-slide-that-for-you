@@ -435,25 +435,25 @@
   background: rgba(0, 0, 0, .7);
 }
 
-.vjs-default-skin .vjs-control.letSlide-fullscreen-btn {
+.vjs-default-skin .vjs-control.letSlide-fullScreen-btn {
   float: right;
   cursor: pointer;
   width: 70px;
 }
-.vjs-default-skin .vjs-control.letSlide-fullscreen-btn:after {
+.vjs-default-skin .vjs-control.letSlide-fullScreen-btn:after {
   content : 'View Slides';
 }
 .vjs-default-skin .vjs-control.letSlide-hd-btn:after {
   font-weight: 700;
   content : 'HD';
 }
-.vjs-default-skin .vjs-control.letSlide-fullscreen-btn:after, .vjs-default-skin .vjs-control.letSlide-hd-btn:after {
+.vjs-default-skin .vjs-control.letSlide-fullScreen-btn:after, .vjs-default-skin .vjs-control.letSlide-hd-btn:after {
   display: block;
   line-height: 3em;
   color: #ccc;
   cursor: pointer;
 }
-.vjs-default-skin .vjs-control.letSlide-fullscreen-btn:hover:after, .vjs-default-skin .vjs-control.letSlide-hd-btn:hover:after {
+.vjs-default-skin .vjs-control.letSlide-fullScreen-btn:hover:after, .vjs-default-skin .vjs-control.letSlide-hd-btn:hover:after {
   text-shadow: 0 0 1em #fff;
 }
 .vjs-default-skin .vjs-control.letSlide-hd-btn {
@@ -483,7 +483,7 @@
   cursor: pointer;
 }
 
-#letSlide-fullscreen {
+#letSlide-fullScreen {
   z-index: -1;
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
@@ -568,6 +568,16 @@
   height: 10px !important;
 }
 
+.letSlide-skipbutton {
+  right: 10px;
+  bottom: 60px;
+  position: absolute;
+  padding: 5px 20px;
+  border: 1px solid #777;
+  background: rgba(0, 0, 0, .7);
+  border-radius: 1px;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 700px) {
   #letSlide-main-wrapper {
@@ -593,7 +603,7 @@
 
 @media screen and (max-width: 415px) {
 
-  .vjs-default-skin .vjs-control.letSlide-fullscreen-btn {
+  .vjs-default-skin .vjs-control.letSlide-fullScreen-btn {
     background: #000;
   }
   .vjs-default-skin .vjs-control.letSlide-hd-btn {
