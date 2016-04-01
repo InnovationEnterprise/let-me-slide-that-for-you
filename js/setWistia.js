@@ -20,43 +20,44 @@ letSlide.setWistia = function() {
   }
 
   letSlide.loadAssets('//fast.wistia.com/assets/external/E-v1.js', 'script', function() {
-    setTimeout(function(){
-      console.log('%cWistia Project, loaded JS', 'color: hotpink');
-      letSlide.wistiaVideo = Wistia.api(letSlide.data.wistia[0]);
-      letSlide.setSize();
-      letSlide.setWistia.buttonRewind(true);
-      letSlide.setWistia.videoEnd();
-      letSlide.contentReady = true;
-    }, 500);
+      var checkIfWistiaReady = setInterval(function(){
+        if (Wistia) {
+          console.log('%cWistia Project, loaded JS', 'color: hotpink');
+          letSlide.wistiaVideo = Wistia.api(letSlide.data.wistia[0]);
+          letSlide.setSize();
+          letSlide.setWistia.buttonRewind(true);
+          letSlide.setWistia.videoEnd();
+          letSlide.contentReady = true;
+          clearInterval(checkIfWistiaReady);
+        }
+      }, 100);
   });
 
 
   letSlide.setWistia.checkIfChanged = function(){
-    if (Wistia) {
-      var wistiaInterval = setInterval(function(){
-        console.log(Wistia.api(letSlide.data.wistia[0])._playlistIndex);
-        console.log(letSlide.setWistia.playlistIndex);
-        if (Wistia.api(letSlide.data.wistia[0])._playlistIndex !== letSlide.setWistia.playlistIndex) {
-          console.log('dupa zmieonony');
-          clearInterval(wistiaInterval);
-          letSlide.setWistia.playlistIndex = letSlide.setWistia.playlistIndex + 1;
-          letSlide.wistiaVideo = Wistia.api(letSlide.data.wistia[letSlide.setWistia.playlistIndex]);
-          setTimeout(function(){
-            console.log("koniec " + letSlide.setWistia.playlistIndex + " "+ (letSlide.data.wistia.length - 1));
-            if (letSlide.setWistia.playlistIndex === letSlide.data.wistia.length - 1) {
-              letSlide.setWistia.buttonRewind(false);
-            } else if (letSlide.setWistia.playlistIndex === 0 ) {
-              etSlide.setWistia.buttonRewind(true);
-            } else {
-              if (letSlide.setWistia.skipButton) {
-                letSlide.setWistia.skipButton.remove();
-              }
+    var wistiaInterval = setInterval(function(){
+      console.log(Wistia.api(letSlide.data.wistia[0])._playlistIndex);
+      console.log(letSlide.setWistia.playlistIndex);
+      if (Wistia.api(letSlide.data.wistia[0])._playlistIndex !== letSlide.setWistia.playlistIndex) {
+        console.log('dupa zmieonony');
+        clearInterval(wistiaInterval);
+        letSlide.setWistia.playlistIndex = letSlide.setWistia.playlistIndex + 1;
+        letSlide.wistiaVideo = Wistia.api(letSlide.data.wistia[letSlide.setWistia.playlistIndex]);
+        setTimeout(function(){
+          console.log("koniec " + letSlide.setWistia.playlistIndex + " "+ (letSlide.data.wistia.length - 1));
+          if (letSlide.setWistia.playlistIndex === letSlide.data.wistia.length - 1) {
+            letSlide.setWistia.buttonRewind(false);
+          } else if (letSlide.setWistia.playlistIndex === 0 ) {
+            etSlide.setWistia.buttonRewind(true);
+          } else {
+            if (letSlide.setWistia.skipButton) {
+              letSlide.setWistia.skipButton.remove();
             }
-            letSlide.setWistia.videoEnd();
-          }, 500);
-        }
-      }, 500);
-    }
+          }
+          letSlide.setWistia.videoEnd();
+        }, 500);
+      }
+    }, 500);
   };
 
   letSlide.setWistia.videoEnd = function() {
