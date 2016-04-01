@@ -16,7 +16,7 @@ letSlide.getSlides = function () {
 
   if (letSlide.data.videoslidestype === 'images' || letSlide.data.slideshare) {
 
-    if (letSlide.data.videosourcesmobile || letSlide.data.videosources) {
+    if (letSlide.data.videosourcesmobile || letSlide.data.videosources || letSlide.data.wistia) {
       letSlide.letSlideContainer.classList.add('letSlide-images');
     } else {
       letSlide.letSlideContainer.classList.add('letSlide-images-only');
