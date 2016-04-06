@@ -118,10 +118,14 @@ letSlide.setSize = function() {
     letSlide.letSlideContainer.style.height = vH + 'px';
     letSlide.letSlideContainer.style.width = vW + 'px';
   }
-  console.log(vW);
-  console.log(letSlide.letSlideContainer.parentNode.offsetWidth);
-letSlide.letSlideContainer.getElementsByClassName('wistia_embed')[0].style.height = vH + 'px';
-letSlide.letSlideContainer.getElementsByClassName('wistia_embed')[0].style.width = vW + 'px';
+
+  if (letSlide.letSlideContainer.getElementsByClassName('wistia_embed')[0]) {
+    letSlide.letSlideContainer.getElementsByClassName('wistia_embed')[0].style.height = vH + 1 + 'px';
+    letSlide.letSlideContainer.getElementsByClassName('wistia_embed')[0].style.width = vW + 'px';
+    if (letSlide.wistiaVideo) {
+      letSlide.wistiaVideo.height(vH + 1);
+    }
+  }
 
   if (letSlide.thisPlayer) {
     letSlide.thisPlayer.dimensions(vW, vH);

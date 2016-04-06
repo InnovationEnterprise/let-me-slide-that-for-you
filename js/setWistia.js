@@ -5,7 +5,7 @@ letSlide.setWistia = function() {
   letSlide.setWistia.playlistIndex = 0;
   letSlide.DOM.wistiaContainer = document.createElement('div');
   letSlide.addAttributes(letSlide.DOM.wistiaContainer, {
-    'class': 'wistia_embed wistia_async_' + letSlide.data.wistia[0] + ' rewatch=true playlistLinks=auto autoPlay=true playerPreference=html5',
+    'class': 'wistia_embed wistia_async_' + letSlide.data.wistia[0] + ' rewatch=true playlistLinks=auto playerPreference=html5',
     'id' : letSlide.data.wistia[0]
   });
 
@@ -19,51 +19,63 @@ letSlide.setWistia = function() {
     letSlide.letSlideContainer.appendChild(letSlide.DOM.wistiaVideo[g]);
   }
 
-  letSlide.loadAssets('//fast.wistia.com/assets/external/E-v1.js', 'script', function() {
-      var checkIfWistiaReady = setInterval(function(){
-        if (Wistia) {
-          console.log('%cWistia Project, loaded JS', 'color: hotpink');
-          letSlide.wistiaVideo = Wistia.api(letSlide.data.wistia[0]);
-          letSlide.setSize();
-          letSlide.setWistia.buttonRewind(true);
-          letSlide.setWistia.videoEnd();
-          letSlide.contentReady = true;
-          clearInterval(checkIfWistiaReady);
-        }
+  letSlide.setWistia.callWistia = function() {
+    letSlide.wistiaVideo = Wistia.api(letSlide.data.wistia[0]);
+    letSlide.setSize();
+    window.onresize = letSlide.throttle(letSlide.setSize, 200);
+    document.addEventListener('orientationchange', function() {
+      letSlide.setSize();
+    });
+
+    if (letSlide.data.wistia.length >= 2) {
+      letSlide.setWistia.buttonRewind(true);
+    }
+    letSlide.setWistia.checkIfChanged();
+    setTimeout(function(){
+      letSlide.wistiaVideo.play();
+      letSlide.videoready = true;
+    }, 50);
+  };
+
+  if (!letSlide.wistiaJsLoaded) {
+    letSlide.loadAssets('//fast.wistia.com/assets/external/E-v1.js', 'script', function() {
+      console.log('%cWistia Project, loaded JS', 'color: hotpink');
+      letSlide.wistiaJsLoaded = true;
+    });
+  }
+
+  letSlide.setWistia.checkIfWistiaReady = setInterval(function(){
+    if (typeof Wistia !== 'undefined' && Wistia) {
+      clearInterval(letSlide.setWistia.checkIfWistiaReady);
+      setTimeout(function(){
+        letSlide.setWistia.callWistia();
       }, 100);
-  });
+    }
+  }, 100);
 
 
   letSlide.setWistia.checkIfChanged = function(){
     var wistiaInterval = setInterval(function(){
-      console.log(Wistia.api(letSlide.data.wistia[0])._playlistIndex);
-      console.log(letSlide.setWistia.playlistIndex);
-      if (Wistia.api(letSlide.data.wistia[0])._playlistIndex !== letSlide.setWistia.playlistIndex) {
-        console.log('dupa zmieonony');
-        clearInterval(wistiaInterval);
-        letSlide.setWistia.playlistIndex = letSlide.setWistia.playlistIndex + 1;
-        letSlide.wistiaVideo = Wistia.api(letSlide.data.wistia[letSlide.setWistia.playlistIndex]);
-        setTimeout(function(){
-          console.log("koniec " + letSlide.setWistia.playlistIndex + " "+ (letSlide.data.wistia.length - 1));
-          if (letSlide.setWistia.playlistIndex === letSlide.data.wistia.length - 1) {
-            letSlide.setWistia.buttonRewind(false);
-          } else if (letSlide.setWistia.playlistIndex === 0 ) {
-            etSlide.setWistia.buttonRewind(true);
-          } else {
-            if (letSlide.setWistia.skipButton) {
-              letSlide.setWistia.skipButton.remove();
-            }
+      if (letSlide.data.wistia && letSlide.data.wistia.length >= 2) {
+        if (Wistia.api(letSlide.data.wistia[0])._playlistIndex !== letSlide.setWistia.playlistIndex) {
+          letSlide.setWistia.playlistIndex = Wistia.api(letSlide.data.wistia[0])._playlistIndex;
+          letSlide.wistiaVideo = Wistia.api(letSlide.data.wistia[letSlide.setWistia.playlistIndex]);
+          letSlide.setSize();
+          if (letSlide.setWistia.skipButton) {
+            letSlide.setWistia.skipButton.remove();
+            letSlide.setWistia.skipButton = null;
           }
-          letSlide.setWistia.videoEnd();
-        }, 500);
+          if (letSlide.setWistia.playlistIndex === letSlide.data.wistia.length - 1 && !letSlide.setWistia.skipButton) {
+            letSlide.setWistia.buttonRewind(false);
+          }
+          if (letSlide.setWistia.playlistIndex === 0 && !letSlide.setWistia.skipButton) {
+            letSlide.setWistia.buttonRewind(true);
+          }
+        }
+      } else {
+        clearInterval(wistiaInterval);
       }
-    }, 500);
-  };
-
-  letSlide.setWistia.videoEnd = function() {
-    letSlide.wistiaVideo.bind("end", function() {
-      letSlide.setWistia.checkIfChanged();
-    });
+    }, 100);
   };
 
 
@@ -77,17 +89,17 @@ letSlide.setWistia = function() {
     }
     letSlide.DOM.wistiaContainer.appendChild(letSlide.setWistia.skipButton);
     letSlide.setWistia.skipButton.addEventListener('click', function() {
+      if (letSlide.setWistia.skipButton) {
+        letSlide.setWistia.skipButton.remove();
+        letSlide.setWistia.skipButton = null;
+      }
       if (skip === true) {
-        letSlide.setWistia.playlistIndex = 1;
         letSlide.DOM.wistiaVideo[1].click();
       } else {
-        letSlide.setWistia.videoEnd();
-        letSlide.setWistia.playlistIndex = 0;
         letSlide.DOM.wistiaVideo[0].click();
         letSlide.setWistia.buttonRewind(true);
+        letSlide.setSize();
       }
-      this.remove();
-      letSlide.setWistia.checkIfChanged();
     });
   };
 

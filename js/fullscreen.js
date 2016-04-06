@@ -9,9 +9,9 @@ letSlide.fullScreen = function() {
 
   letSlidefullScreen.on('click', function() {
 
-    if (!fullScreenon) {
+    if (!fullScreenOn) {
 
-      fullScreenon = true;
+      fullScreenOn = true;
 
       letSlide.letSlideContainer.classList.add('this-fixed');
       letSlide.letSlideContainer.classList.add('full-mobile');
@@ -57,7 +57,7 @@ letSlide.fullScreen = function() {
         letSlide.letSlideContainer.style.marginTop = 0 + 'px';
         letSlide.letSlideContainer.style.marginLeft = 'auto';
 
-        fullScreenon = false;
+        fullScreenOn = false;
         letSlide.setSize();
       };
 

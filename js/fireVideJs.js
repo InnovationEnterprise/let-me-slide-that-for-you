@@ -30,13 +30,6 @@ letSlide.fireVideJs = function () {
   // video player ready function
   letSlide.thisPlayer.ready(function() {
 
-    letSlide.setSize();
-
-    window.onresize = letSlide.throttle(letSlide.setSize, 200);
-
-    document.addEventListener('orientationchange', function() {
-      letSlide.setSize();
-    });
 
     console.log('player created');
 
@@ -68,7 +61,14 @@ letSlide.fireVideJs = function () {
       document.getElementsByClassName('letSlide-vjs-title')[0].innerHTML = letSlide.data.title;
     }
 
-    letSlide.videoready = true;
+    setTimeout(function(){
+      letSlide.setSize();
+      window.onresize = letSlide.throttle(letSlide.setSize, 200);
+      document.addEventListener('orientationchange', function() {
+        letSlide.setSize();
+      });
+      letSlide.videoready = true;
+    }, 100);
 
   });
 

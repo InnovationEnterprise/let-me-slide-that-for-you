@@ -3,24 +3,6 @@
   "preload" : "metadata",
   "title" :  "sueprduper2017",
   "wistia" : ["to370xkyuf", "heol6ok5k7", "fq1s7yzk7x" ],
-  "videoslidestype": "images",
-  "videoslides": [
-      {
-        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/985/original/temporary_276820140320-98367-azcrn4.pdf000.jpg?1395328739",
-        "timemin" : "0",
-        "timesec" : "0"
-      },
-      {
-        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/986/original/temporary_276820140320-98367-azcrn4.pdf001.jpg?1395328739",
-        "timemin" : "0",
-        "timesec" : "5"
-      },
-      {
-        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/987/original/temporary_276820140320-98367-azcrn4.pdf002.jpg?1395328739",
-        "timemin" : "0",
-        "timesec" : "10"
-      }
-  ],
   "playlist" : [
       {
         "link" : "/example/json/videoandslides.json",

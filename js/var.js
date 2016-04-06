@@ -5,6 +5,8 @@ letSlide.currentArrayNr = '00';
 letSlide.contentReady = false;
 letSlide.videoready = false;
 letSlide.isreloading = false;
+letSlide.wistiaJsLoaded = false;
+letSlide.videoJsLoaded = false;
 letSlide.DOM = {};
 if (!('remove' in Element.prototype)) {
     Element.prototype.remove = function() {

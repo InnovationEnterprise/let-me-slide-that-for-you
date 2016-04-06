@@ -257,7 +257,8 @@ and we will address it as soon as possible.
 ### 0.1.6
 - add wistia support
 - clean up filenames
-- other minor fixes
+- improved script loading and reloading
+- few other js & css fixes
 
 ### 0.1.5
 - fix repeated playback of ads when used as ad player

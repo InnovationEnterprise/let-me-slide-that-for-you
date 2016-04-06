@@ -198,9 +198,6 @@
 .this-fixed #letSlide-playlist {
   visibility: hidden;
 }
-.letSlide-images-only #letSlide-playlist {
-  bottom: -115px;
-}
 
 #letSlide-playlist-title {
   font-size: 12px;
@@ -290,7 +287,9 @@
   position: absolute;
 }
 
-
+[data-letSlidejs] .letSlide-images {
+  background: #000;
+}
 
 .letSlide-images #videojs {
   top: 0;
@@ -318,6 +317,9 @@
 }
 [data-letSlidejs].letSlide-images-only {
   height: 475px;
+}
+[data-letSlidejs].letSlide-images-only {
+  background: transparent;
 }
 [data-letSlidejs].letSlide-images-only, .letSlide-images-only #letSlide-list-wrapper {
   width: 100%;
@@ -565,7 +567,7 @@
   z-index: 99999 !important;
 }
 
-.wistia_embed {
+.wistia_embed  {
   position: relative;
 }
 
