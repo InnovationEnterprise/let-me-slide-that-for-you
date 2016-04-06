@@ -140,7 +140,8 @@
 #letSlide-subtitle {
   position: absolute;
   bottom: 40px;
-  @includ font-size(16, 16);
+  font-size: 16px;
+  line-height: 18px;
   text-shadow: 1px 1px 1px #000;
   color: #fff;
   font-weight: 400;
@@ -196,9 +197,6 @@
 }
 .this-fixed #letSlide-playlist {
   visibility: hidden;
-}
-.letSlide-images-only #letSlide-playlist {
-  bottom: -115px;
 }
 
 #letSlide-playlist-title {
@@ -289,7 +287,9 @@
   position: absolute;
 }
 
-
+[data-letSlidejs] .letSlide-images {
+  background: #000;
+}
 
 .letSlide-images #videojs {
   top: 0;
@@ -317,6 +317,9 @@
 }
 [data-letSlidejs].letSlide-images-only {
   height: 475px;
+}
+[data-letSlidejs].letSlide-images-only {
+  background: transparent;
 }
 [data-letSlidejs].letSlide-images-only, .letSlide-images-only #letSlide-list-wrapper {
   width: 100%;
@@ -435,25 +438,25 @@
   background: rgba(0, 0, 0, .7);
 }
 
-.vjs-default-skin .vjs-control.letSlide-fullscreen-btn {
+.vjs-default-skin .vjs-control.letSlide-fullScreen-btn {
   float: right;
   cursor: pointer;
   width: 70px;
 }
-.vjs-default-skin .vjs-control.letSlide-fullscreen-btn:after {
+.vjs-default-skin .vjs-control.letSlide-fullScreen-btn:after {
   content : 'View Slides';
 }
 .vjs-default-skin .vjs-control.letSlide-hd-btn:after {
   font-weight: 700;
   content : 'HD';
 }
-.vjs-default-skin .vjs-control.letSlide-fullscreen-btn:after, .vjs-default-skin .vjs-control.letSlide-hd-btn:after {
+.vjs-default-skin .vjs-control.letSlide-fullScreen-btn:after, .vjs-default-skin .vjs-control.letSlide-hd-btn:after {
   display: block;
   line-height: 3em;
   color: #ccc;
   cursor: pointer;
 }
-.vjs-default-skin .vjs-control.letSlide-fullscreen-btn:hover:after, .vjs-default-skin .vjs-control.letSlide-hd-btn:hover:after {
+.vjs-default-skin .vjs-control.letSlide-fullScreen-btn:hover:after, .vjs-default-skin .vjs-control.letSlide-hd-btn:hover:after {
   text-shadow: 0 0 1em #fff;
 }
 .vjs-default-skin .vjs-control.letSlide-hd-btn {
@@ -483,7 +486,7 @@
   cursor: pointer;
 }
 
-#letSlide-fullscreen {
+#letSlide-fullScreen {
   z-index: -1;
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
@@ -517,6 +520,74 @@
   cursor: pointer;
 }
 
+/*
+  Wistia styling
+*/
+
+.wistia_romulus_control {
+   background-color: rgba(7,20,30,.7) !important;
+   padding: 0px 0px 0 5px;
+ }
+
+.wistia_romulus_control.wistia_playbar {
+  background: rgba(0, 0, 0, .8);
+  padding: 0;
+}
+
+.wistia_romulus_control.wistia_playbar :nth-child(1) {
+  width: 100% !important;
+  height: 10px !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+
+.wistia_romulus_control.wistia_playbar :nth-child(2) {
+  display: none !important;
+}
+
+.wistia_romulus_control.wistia_playbar :nth-child(3) {
+  width: 100% !important;
+  height: 10px !important;
+  left: 0 !important;
+  top: 0 !important;
+  border: 0 !important;
+}
+
+.wistia_played {
+  height: 10px !important;
+}
+
+.wistia_time {
+  right: initial !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 5px !important;
+  font-size: 10px !important;
+  line-height: 10px !important;
+  z-index: 99999 !important;
+}
+
+.wistia_embed  {
+  position: relative;
+}
+
+.wistia_scrub_bar {
+  height: 10px !important;
+}
+
+.letSlide-skipbutton {
+  right: 10px;
+  bottom: 60px;
+  position: absolute;
+  padding: 10px 20px;
+  border: 1px solid #777;
+  background: rgba(0, 0, 0, .7);
+  font-size: 16px;
+  color: #fff;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 700px) {
   #letSlide-main-wrapper {
     padding: 25px 0 0 0;
@@ -541,7 +612,7 @@
 
 @media screen and (max-width: 415px) {
 
-  .vjs-default-skin .vjs-control.letSlide-fullscreen-btn {
+  .vjs-default-skin .vjs-control.letSlide-fullScreen-btn {
     background: #000;
   }
   .vjs-default-skin .vjs-control.letSlide-hd-btn {

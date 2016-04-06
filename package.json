@@ -1,6 +1,6 @@
 {
   "name": "letMeSlideThatForYou",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Simple js plugin to roll presentations.",
   "main": "build/letSlide.min.js",
   "repository": {

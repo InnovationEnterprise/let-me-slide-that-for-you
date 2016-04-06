@@ -12,12 +12,22 @@ letSlide.loadJson = function (jsonUrl) {
 
       letSlide.data = JSON.parse(request.responseText);
 
+      if (letSlide.data.wistia) {
+        letSlide.setWistia();
+      }
+
       if (letSlide.data.videosourcesmobile || letSlide.data.videosources) {
-        var videojsurl = '//vjs.zencdn.net/4.12.11/video.js';
-        letSlide.loadAssets(videojsurl, 'script', function() {
+        if (!letSlide.videoJsLoaded) {
+          var videojsurl = '//vjs.zencdn.net/4.12.11/video.js';
+          letSlide.loadAssets(videojsurl, 'script', function() {
+            letSlide.videoJsLoaded = true;
+            console.log("videojsurl");
+            letSlide.createDOM();
+          });
+        } else {
           console.log("videojsurl");
           letSlide.createDOM();
-        });
+        }
       }
 
       if (letSlide.data.videoslides || letSlide.data.slideshare) {
@@ -33,14 +43,11 @@ letSlide.loadJson = function (jsonUrl) {
     } else {
       letSlide.errorThat('cannot connect', letSlide.letSlideContainer);
     }
-
   };
 
   request.onerror = function() {
-
     letSlide.errorThat('cannot connect', letSlide.letSlideContainer);
   };
 
   request.send();
-
 };

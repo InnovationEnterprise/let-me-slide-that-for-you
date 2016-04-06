@@ -16,10 +16,10 @@ letSlide.ads = function() {
       };
     }
 
-    letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlideads.css', 'css');
+    letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.6/letSlideads.css', 'css');
 
     letSlide.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
-      letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlideads.js', 'script', function() {
+      letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.6/letSlideads.js', 'script', function() {
 
         letSlide.thisPlayer.ima(options);
         letSlide.thisPlayer.ima.initializeAdDisplayContainer();

@@ -1,57 +1,62 @@
-  {
-    "title" :  "sueprduper2017",
-    "videoslidestype": "images",
-    "videoslides": [
-        {
-          "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/985/original/temporary_276820140320-98367-azcrn4.pdf000.jpg?1395328739",
-          "timemin" : "0",
-          "timesec" : "0"
+{
+  "title" :  "sueprduper2017",
+  "videoslidestype": "images",
+  "videoslides": [
+      {
+        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/985/original/temporary_276820140320-98367-azcrn4.pdf000.jpg?1395328739",
+        "timemin" : "0",
+        "timesec" : "0"
+      },
+      {
+        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/986/original/temporary_276820140320-98367-azcrn4.pdf001.jpg?1395328739",
+        "timemin" : "0",
+        "timesec" : "5"
+      },
+      {
+        "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/987/original/temporary_276820140320-98367-azcrn4.pdf002.jpg?1395328739",
+        "timemin" : "0",
+        "timesec" : "10"
+      }
+  ],
+  "playlist" : [
+      {
+        "link" : "/example/json/videoandslides.json",
+        "title" : "Video and imageslides",
+        "type" : "json"
+      },
+      {
+          "link" : "/example/json/videoandads.json",
+          "title" : "Video and ads",
+          "type" : "json"
         },
-        {
-          "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/986/original/temporary_276820140320-98367-azcrn4.pdf001.jpg?1395328739",
-          "timemin" : "0",
-          "timesec" : "5"
-        },
-        {
-          "slidecontent" : "https://s3.amazonaws.com/ieondemand/slides/pdfuploads/000/072/987/original/temporary_276820140320-98367-azcrn4.pdf002.jpg?1395328739",
-          "timemin" : "0",
-          "timesec" : "10"
-        }
-    ],
-      "playlist" : [
-          {
-            "link" : "/example/json/videoandslides.json",
-            "title" : "Video and imageslides",
-            "type" : "json"
-          },
-          {
-            "link" : "/example/json/videoandads.json",
-            "title" : "Video and ads",
-            "type" : "json"
-          },
-          {
-            "link" : "/example/json/videoandsubtitles.json",
-            "title" : "Video and subtitles",
-            "type" : "json"
-          },
-          {
-            "link" : "/example/json/images.json",
-            "title" : "Just images",
-            "type" : "json"
-          },
-          {
-            "link" : "/example/json/videoslideshare.json",
-            "title" : "Video with slideshare",
-            "type" : "json"
-          },
-          {
-            "link" : "/example/json/youtubeandhtml.json",
-            "title" : "Youtube with html",
-            "type" : "json"
-          },
-          {
-            "link" : "http://theinnovationenterprise.com/",
-            "title" : "Just a link"
-          }
-      ]
-  }
+      {
+        "link" : "/example/json/videoandsubtitles.json",
+        "title" : "Video and subtitles",
+        "type" : "json"
+      },
+      {
+        "link" : "/example/json/images.json",
+        "title" : "Just images",
+        "type" : "json"
+      },
+      {
+        "link" : "/example/json/videoslideshare.json",
+        "title" : "Video with slideshare",
+        "type" : "json"
+      },
+      {
+        "link" : "/example/json/youtubeandhtml.json",
+        "title" : "Youtube with html",
+        "type" : "json"
+      },
+      {
+        "link" : "/example/json/wistia.json",
+        "title" : "Wistia",
+        "type" : "json"
+      },
+      {
+        "link" : "http://theinnovationenterprise.com/",
+        "title" : "Just a link"
+      }
+  ]
+}

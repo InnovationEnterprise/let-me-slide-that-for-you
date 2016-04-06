@@ -50,7 +50,6 @@ letSlide.setContent = function (isImg) {
     letSlide.firstImage = new Image();
     letSlide.firstImage.src = videoSlides[0].slidecontent;
     letSlide.DOM.presentationNode.appendChild(letSlide.firstImage);
-    letSlide.letSlideContainer.style.overflow = 'visible';
   }
 
   console.log('slider content set');

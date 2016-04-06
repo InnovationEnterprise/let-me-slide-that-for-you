@@ -9,7 +9,7 @@ Add to your HTML
 
 ```
 <div data-letSlidejs="LINK_TO_JSON_FILE"></div>
-<script src="//d3gr29hczmiozh.cloudfront.net/0.1.5/letSlide.min.js" async></script>
+<script src="//d3gr29hczmiozh.cloudfront.net/0.1.6/letSlide.min.js" async></script>
 ```
 
 ### Configuration
@@ -96,7 +96,7 @@ without times:
 example:
 
 ```
-"slideshare": "\u003ciframe src='//www.slideshare.net/slideshow/embed_code/key/fWtwkJWq5dERLK' width='425' height='355' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;' allowfullscreen\u003e \u003c/iframe\u003e \u003cdiv style='margin-bottom:5px'\u003e \u003cstrong\u003e \u003ca href='//www.slideshare.net/ThoughtWorks/strategy-to-execution-by-jonny-schneider-thoughtworks' title='Strategy to Execution by Jonny Schneider - ThoughtWorks' target='_blank'\u003eStrategy to Execution by Jonny Schneider - ThoughtWorks\u003c/a\u003e \u003c/strong\u003e from \u003cstrong\u003e\u003ca href='//www.slideshare.net/ThoughtWorks' target='_blank'\u003eThoughtWorks\u003c/a\u003e\u003c/strong\u003e \u003c/div\u003e"
+"slideshare": "\u003ciframe src='//www.slideshare.net/slideshow/embed_code/key/fWtwkJWq5dERLK' width='425' height='355' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;' allowfullScreen\u003e \u003c/iframe\u003e \u003cdiv style='margin-bottom:5px'\u003e \u003cstrong\u003e \u003ca href='//www.slideshare.net/ThoughtWorks/strategy-to-execution-by-jonny-schneider-thoughtworks' title='Strategy to Execution by Jonny Schneider - ThoughtWorks' target='_blank'\u003eStrategy to Execution by Jonny Schneider - ThoughtWorks\u003c/a\u003e \u003c/strong\u003e from \u003cstrong\u003e\u003ca href='//www.slideshare.net/ThoughtWorks' target='_blank'\u003eThoughtWorks\u003c/a\u003e\u003c/strong\u003e \u003c/div\u003e"
 ```
 
 **youtube** - boolean - if exist and set to true with videosource as youtube will wrap your video into letSlide.
@@ -186,6 +186,16 @@ example:
   ]
  ```
 
+### Wistia Support
+
+**wistia** – add id to play wistia videos (id not wistia_id)
+example:
+
+  ```
+    "wistia" : ["someid", "someid", "someid" ]
+  ```
+
+
 ### Load New Player
 
 Add a link to your playlist with type set to JSON or call
@@ -242,7 +252,13 @@ repositories, websites, and resources. If you encounter someone violating
 these terms, please let a maintainer (@xoxoxo) know
 and we will address it as soon as possible.
 
-## Changelog - 0.1.5
+## Changelog - 0.1.6
+
+### 0.1.6
+- add wistia support
+- clean up filenames
+- improved script loading and reloading
+- few other js & css fixes
 
 ### 0.1.5
 - fix repeated playback of ads when used as ad player
