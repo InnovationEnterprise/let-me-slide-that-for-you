@@ -38,10 +38,6 @@ letSlide.fireVideJs = function () {
       document.getElementsByClassName('vjs-big-play-button')[0].style.display = 'none';
     }
 
-    if (letSlide.data.autoplay) {
-      letSlide.thisPlayer.play();
-    }
-
     if (letSlide.letSlideContainer.parentNode.offsetWidth >= 400 && letSlide.inarticle !== 'true') {
       letSlide.embed();
     }

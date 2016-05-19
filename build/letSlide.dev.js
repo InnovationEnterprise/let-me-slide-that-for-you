@@ -171,18 +171,11 @@ letSlide.checkifready = function(){
       clearInterval(letSlideInterval);
     } else {
       if (letSlide.data.videosourcesmobile || letSlide.data.videosources || letSlide.data.wistia) {
-        if (!letSlide.data.videoslides) {
-          letSlide.contentReady = true;
-        }
         if (letSlide.contentReady && letSlide.videoready) {
           if (letSlide.data.videoslides && !letSlide.data.syncoff && !letSlide.data.slideshare && !letSlide.data.wistia){
             letSlide.thisPlayer.on('timeupdate', letSlide.throttle(letSlide.setNewSlide, 500));
           }
-          if (letSlide.data.videoslides === 'images' && (letSlide.data.videosourcesmobile || letSlide.data.videosources || letSlide.data.wistia)) {
-            letSlide.letSlideContainer.style.overflow = 'hidden';
-          } else {
-            letSlide.letSlideContainer.style.overflow = 'visible';
-          }
+          letSlide.letSlideContainer.style.overflow = 'visible';
 
           if (letSlide.data.videoslides) {
             letSlide.sliderClickEvent(letSlide.firstImage, true);
@@ -190,15 +183,55 @@ letSlide.checkifready = function(){
           if (letSlide.DOM.preloaderWrapper) {
             letSlide.DOM.preloaderWrapper.remove();
           }
+          if (letSlide.data.autoplay && letSlide.thisPlayer) {
+            letSlide.thisPlayer.play();
+          }
+          if (letSlide.wistiaVideo && letSlide.data.autoplay) {
+            letSlide.wistiaVideo.play();
+          }
           clearInterval(letSlideInterval);
           letSlide.isreloading = false;
         }
+
+        if ((letSlide.data.videosourcesmobile || letSlide.data.videosources ) && letSlide.data.videoslidestype !== 'images'){
+          if (letSlide.data.videoslides && !letSlide.data.syncoff && !letSlide.data.slideshare){
+            letSlide.thisPlayer.on('timeupdate', letSlide.throttle(letSlide.setNewSlide, 500));
+          }
+          letSlide.letSlideContainer.style.overflow = 'visible';
+
+          if (letSlide.data.videoslides) {
+            letSlide.sliderClickEvent(letSlide.firstImage, true);
+          }
+          if (letSlide.DOM.preloaderWrapper) {
+            letSlide.DOM.preloaderWrapper.remove();
+          }
+          if (letSlide.data.autoplay) {
+            letSlide.thisPlayer.play();
+          }
+          letSlide.letSlideContainer.style.overflow = 'visible';
+          clearInterval(letSlideInterval);
+          letSlide.isreloading = false;
+        }
+
+        if (letSlide.wistiaVideo && letSlide.data.videoslidestype !== 'images'){
+          if (letSlide.DOM.preloaderWrapper) {
+            letSlide.DOM.preloaderWrapper.remove();
+          }
+          letSlide.letSlideContainer.style.overflow = 'visible';
+          if (letSlide.data.autoplay) {
+            letSlide.wistiaVideo.play();
+          }
+          clearInterval(letSlideInterval);
+          letSlide.isreloading = false;
+        }
+
       } else {
         if (letSlide.contentReady) {
           letSlide.letSlideContainer.style.overflow = 'visible';
           if (letSlide.DOM.preloaderWrapper) {
             letSlide.DOM.preloaderWrapper.remove();
           }
+          clearInterval(letSlideInterval);
           letSlide.isreloading = false;
         }
       }
@@ -288,7 +321,7 @@ letSlide.createDOM = function () {
       letSlide.fireVideJs();
 
       } else {
-        letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.6/letSlideyt.js', 'script', function() {
+        letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.7/letSlideyt.js', 'script', function() {
           letSlide.fireVideJs();
         });
       }
@@ -435,10 +468,10 @@ letSlide.ads = function() {
       };
     }
 
-    letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.6/letSlideads.css', 'css');
+    letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.7/letSlideads.css', 'css');
 
     letSlide.loadAssets('//imasdk.googleapis.com/js/sdkloader/ima3.js', 'script', function (){
-      letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.6/letSlideads.js', 'script', function() {
+      letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.7/letSlideads.js', 'script', function() {
 
         letSlide.thisPlayer.ima(options);
         letSlide.thisPlayer.ima.initializeAdDisplayContainer();
@@ -504,10 +537,6 @@ letSlide.fireVideJs = function () {
     // fix for double play button on iphone
     if (navigator.userAgent.match(/iPhone/i)) {
       document.getElementsByClassName('vjs-big-play-button')[0].style.display = 'none';
-    }
-
-    if (letSlide.data.autoplay) {
-      letSlide.thisPlayer.play();
     }
 
     if (letSlide.letSlideContainer.parentNode.offsetWidth >= 400 && letSlide.inarticle !== 'true') {
@@ -733,7 +762,6 @@ letSlide.setSize = function() {
   }
 
   if (letSlide.letSlideContainer.parentNode.offsetWidth <= 770) {
-
     if (!isThisFixed) {
       if (letSlide.DOM.presentationNode) {
         letSlide.DOM.presentationNode.style.display = 'none';
@@ -748,17 +776,19 @@ letSlide.setSize = function() {
     letSlide.letSlideContainer.style.height = vH + 'px';
 
   } else {
-
     if (letSlide.DOM.presentationNode) {
       letSlide.DOM.presentationNode.style.display = 'block';
       if (!letSlide.data.slideshare) {
         document.getElementById('letSlide-list-wrapper').style.display = 'block';
         document.getElementById('letSlide-list-wrapper').style.bottom = '0px';
       }
+    } else {
+      if (letSlide.letSlideContainer.getAttribute('data-wide') === 'true') {
+        vW = letSlide.letSlideContainer.offsetWidth;
+        vH = vW / 1.78;
+      }
     }
-
   }
-
   if (!letSlide.data.videoslides && !letSlide.data.slideshare && !letSlide.data.wistia) {
     letSlide.letSlideContainer.style.height = vH + 'px';
   } else if (!letSlide.data.videoslides && !letSlide.data.slideshare && letSlide.data.wistia) {
@@ -881,7 +911,7 @@ letSlide.sliderClickEvent = function (firstImage, ready) {
 letSlide.embed = function() {
   var embedNode = document.createElement('div');
   embedNode.setAttribute('id', 'letSlide-share');
-  var embedCode = document.createTextNode('<div data-letSlidejs="' + letSlide.getletSlideUrl + '"></div> <script src="//d3gr29hczmiozh.cloudfront.net/0.1.6/letSlide.min.js" async></script>');
+  var embedCode = document.createTextNode('<div data-letSlidejs="' + letSlide.getletSlideUrl + '"></div> <script src="//d3gr29hczmiozh.cloudfront.net/0.1.7/letSlide.min.js" async></script>');
   embedNode.innerHTML = '<div id="letSlide-embed-close">x</div><div id="letSlide-title">Embed<p>Copy and paste the code below into your website</p></div><textarea id="letSlide-code"></textarea>';
   letSlide.letSlideContainer.appendChild(embedNode);
   document.getElementById('letSlide-code').appendChild(embedCode);
@@ -1009,14 +1039,13 @@ letSlide.setContent = function (isImg) {
 
 letSlide.fullScreen = function() {
 
-  var letSlidefullScreen = letSlide.thisPlayer.controlBar.addChild('button', {
-    text: 'Full screen'
-  });
-  letSlidefullScreen.addClass('letSlide-fullScreen-btn');
+  var letSlidefullScreen = document.createElement('div');
+  letSlidefullScreen.setAttribute('class', 'letSlide-fullScreen-btn vjs-control vjs-menu-button');
+  document.querySelector('.vjs-control-bar').appendChild(letSlidefullScreen);
 
   var fullScreenOn = false;
 
-  letSlidefullScreen.on('click', function() {
+  document.querySelector('.letSlide-fullScreen-btn').addEventListener('click', function() {
 
     if (!fullScreenOn) {
 
@@ -1050,7 +1079,6 @@ letSlide.fullScreen = function() {
         }
       }
 
-
       var removeFullScr = function() {
         fullScreen.remove();
         fullScreenClose.remove();
@@ -1069,8 +1097,6 @@ letSlide.fullScreen = function() {
         fullScreenOn = false;
         letSlide.setSize();
       };
-
-
 
       document.getElementById('letSlide-close-popup').addEventListener('click', removeFullScr, false);
       document.getElementById('letSlide-fullScreen').addEventListener('click', removeFullScr, false);
@@ -1115,7 +1141,6 @@ letSlide.setWistia = function() {
     }
     letSlide.setWistia.checkIfChanged();
     setTimeout(function(){
-      letSlide.wistiaVideo.play();
       letSlide.videoready = true;
     }, 50);
   };
@@ -1212,7 +1237,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (!letSlide.firstLoad) {
-    letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.6/letSlidecss.min.css', 'css', function(){
+    letSlide.loadAssets('//d3gr29hczmiozh.cloudfront.net/0.1.7/letSlidecss.min.css', 'css', function(){
       letSlide.firstLoad = true;
       startupLoop();
     });

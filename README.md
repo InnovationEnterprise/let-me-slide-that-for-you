@@ -9,7 +9,7 @@ Add to your HTML
 
 ```
 <div data-letSlidejs="LINK_TO_JSON_FILE"></div>
-<script src="//d3gr29hczmiozh.cloudfront.net/0.1.6/letSlide.min.js" async></script>
+<script src="//d3gr29hczmiozh.cloudfront.net/0.1.7/letSlide.min.js" async></script>
 ```
 
 ### Configuration
@@ -252,7 +252,13 @@ repositories, websites, and resources. If you encounter someone violating
 these terms, please let a maintainer (@xoxoxo) know
 and we will address it as soon as possible.
 
-## Changelog - 0.1.6
+## Changelog - 0.1.7
+
+### 0.1.7
+- fixed video playing before presentation images are downloaded
+- fixed buton view slide on mobile
+- fixed resizing on tabled
+- other minor fixes
 
 ### 0.1.6
 - add wistia support
@@ -269,26 +275,21 @@ and we will address it as soon as possible.
 - some minor project updates
 
 ### 0.1.4
-
 - minor code clean up
 - changing name from slideMe to let me slide that for you (in project letSlide)
 
 ### 0.1.3
-
 - Add polyfill for remove()
 
 ### 0.1.2
-
 - Stripe console.log from minified version
 - Minor code clean up
 
 ### 0.1.1
-
 - Fixed lazy loading of letSlide
 - Fixed bug with preloader in interview mode.
 
 ### 0.1.0
-
 - First Beta Release
 
 ## Follow Us
