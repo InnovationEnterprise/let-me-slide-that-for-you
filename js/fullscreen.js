@@ -1,13 +1,12 @@
 letSlide.fullScreen = function() {
 
-  var letSlidefullScreen = letSlide.thisPlayer.controlBar.addChild('button', {
-    text: 'Full screen'
-  });
-  letSlidefullScreen.addClass('letSlide-fullScreen-btn');
+  var letSlidefullScreen = document.createElement('div');
+  letSlidefullScreen.setAttribute('class', 'letSlide-fullScreen-btn vjs-control vjs-menu-button');
+  document.querySelector('.vjs-control-bar').appendChild(letSlidefullScreen);
 
   var fullScreenOn = false;
 
-  letSlidefullScreen.on('click', function() {
+  document.querySelector('.letSlide-fullScreen-btn').addEventListener('click', function() {
 
     if (!fullScreenOn) {
 
@@ -41,7 +40,6 @@ letSlide.fullScreen = function() {
         }
       }
 
-
       var removeFullScr = function() {
         fullScreen.remove();
         fullScreenClose.remove();
@@ -60,8 +58,6 @@ letSlide.fullScreen = function() {
         fullScreenOn = false;
         letSlide.setSize();
       };
-
-
 
       document.getElementById('letSlide-close-popup').addEventListener('click', removeFullScr, false);
       document.getElementById('letSlide-fullScreen').addEventListener('click', removeFullScr, false);

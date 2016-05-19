@@ -32,7 +32,6 @@ letSlide.setWistia = function() {
     }
     letSlide.setWistia.checkIfChanged();
     setTimeout(function(){
-      letSlide.wistiaVideo.play();
       letSlide.videoready = true;
     }, 50);
   };
